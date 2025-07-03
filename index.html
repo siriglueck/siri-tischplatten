@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tischplatten-Konfigurator</title>
+</head>
+<body>
+	<h1> Tischplatten-Konfigurator </h1>
+	
+	<!-- Form -->
+	<form action="#" id="form1">
+		
+		<fieldset>
+			<legend>Größe</legend>
+			<br>
+			<!-- Breite -->
+			<label for="Breite">Breite :</label>
+			<input type="number" id="Breite" name="Breite" min="20" max="180" placeholder="20-180" required />
+			<span> cm.</span>
+			<sup class="erforderlich">*</sup>
+			<br><br>
+			
+			<!-- Länge -->
+			<label for="Laenge">Länge :</label>
+			<input type="number" id="Laenge" name="Laenge" min="20" max="450" placeholder="20-450" required />
+			<span> cm.</span>
+			<sup class="erforderlich">*</sup>
+			<br><br>
+			
+			<!-- Stärke -->
+			<label for="Straerke">Stärke :</label>
+			<select name="Straerke" id="Straerke" required>
+				<option value="">--- </option>
+				<option value="2.5">250</option>
+				<option value="3">300</option>
+				<option value="4">400</option>
+				<option value="5">500</option>
+				<option value="6">600</option>
+				<option value="7">700</option>
+				<option value="8">800</option>
+				<option value="9">900</option>
+				<option value="10">1000</option>
+				<option value="11">1100</option>
+				<option value="12">1200</option>
+			</select>
+			<span> cm.</span>
+			<sup class="erforderlich">*</sup>
+			<br><br>
+
+		</fieldset>
+
+		<br>
+
+		<fieldset>
+			<legend>Stil</legend>
+			<br>
+			<!-- Form -->
+			<label for="Form">Form :</label>
+			<select name="Form" id="Form">
+				<option value="" disabled selected>-- Bitte auswählen --</option>
+				<option value="F1">Gerade Kannte</option>
+				<option value="F2">Facettenkante</option>
+				<option value="F3">Mit Baumkane</option>
+				<option value="F4">Durchgängige Bohlen</option>
+				<option value="F5">Mit Querfrieß</option>
+				<option value="F6">Rund</option>
+				<option value="F7">Oval</option>
+				<option value="F8">Schiffsbodenmuster</option>
+				<option value="F9">Flechmuster</option>
+				<option value="F10">Rautenmuster</option>
+			</select>
+			<span></span>
+			<br><br>
+
+			<!-- Rissanteil -->
+			<fieldset>
+				<label for="Rissanteil">Rissanteil :</label>
+					<div>
+						<input type="radio" id="R1" name="Risssanteil" value="R1" />
+						<label for="R1">Leichter Rissanteil</label>
+					</div>
+					<div>
+						<input type="radio" id="R2" name="Risssanteil" value="R2" />
+						<label for="R2">Normaler Rissanteil</label>
+					</div>
+			</fieldset>
+			
+			<br>
+
+			<input type="checkbox" id="RBA" name="RBA" />
+			<label for="RBA"> mit "Reine Balken Außenseiten" kombiniert werden <strong>(Preis-Aufschlag 71,40 €/m²)</strong></label>
+			<span></span>
+			<br><br>
+
+
+			<!-- Farbe -->
+			<fieldset>
+				<label for="Farbe">Farbe :</label>
+					<div>
+						<input type="radio" id="F1" name="Farbe" value="F1" />
+						<label for="F1">Mattlack</label>
+					</div>
+					<div>
+						<input type="radio" id="F2" name="Farbe" value="F2" />
+						<label for="F2">Hartöl</label>
+					</div>
+			</fieldset>
+
+			<br>
+
+			<input type="checkbox" id="SV" name="SV" />
+			<label for="SV"> Äste/Risse schwarz verfüllt <strong>(Preis-Aufschlag 47,60 €/m²)</strong></label>
+			<span></span>
+
+		</fieldset>
+		
+		<br>
+		<button type="submit">Rechnen</button>
+	</form>
+
+	<h3>Fläche : <span class="QM"></span> m<sup>2</sup></h3>
+	<h3>Preis : <span class="Preis"></span> €</h3>
+
+	<script src="js/main.js"></script>
+</body>
+</html>
