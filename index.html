@@ -30,19 +30,19 @@
 			
 			<!-- Stärke -->
 			<label for="Straerke">Stärke :</label>
-			<select name="Straerke" id="Straerke" required>
+			<select name="Staerke" id="Staerke" required>
 				<option value="">--- </option>
-				<option value="2.5">250</option>
-				<option value="3">300</option>
-				<option value="4">400</option>
-				<option value="5">500</option>
-				<option value="6">600</option>
-				<option value="7">700</option>
-				<option value="8">800</option>
-				<option value="9">900</option>
-				<option value="10">1000</option>
-				<option value="11">1100</option>
-				<option value="12">1200</option>
+				<option value="250">250</option>
+				<option value="300">300</option>
+				<option value="400">400</option>
+				<option value="500">500</option>
+				<option value="600">600</option>
+				<option value="700">700</option>
+				<option value="800">800</option>
+				<option value="900">900</option>
+				<option value="1000">1000</option>
+				<option value="1100">1100</option>
+				<option value="1200">1200</option>
 			</select>
 			<span> cm.</span>
 			<sup class="erforderlich">*</sup>
@@ -56,8 +56,8 @@
 			<legend>Stil</legend>
 			<br>
 			<!-- Form -->
-			<label for="Form">Form :</label>
-			<select name="Form" id="Form">
+			<label for="tischForm">Form :</label>
+			<select name="tischForm" id="tischForm" required>
 				<option value="" disabled selected>-- Bitte auswählen --</option>
 				<option value="F1">Gerade Kannte</option>
 				<option value="F2">Facettenkante</option>
@@ -71,18 +71,20 @@
 				<option value="F10">Rautenmuster</option>
 			</select>
 			<span></span>
+			<sup class="erforderlich">*</sup>
 			<br><br>
 
 			<!-- Rissanteil -->
 			<fieldset>
 				<label for="Rissanteil">Rissanteil :</label>
+				<sup class="erforderlich">*</sup>
 					<div>
-						<input type="radio" id="R1" name="Risssanteil" value="R1" />
-						<label for="R1">Leichter Rissanteil</label>
+						<input type="radio" name="Rissanteil" value="Leich" />
+						<label for="Leich">Leichter Rissanteil</label>
 					</div>
 					<div>
-						<input type="radio" id="R2" name="Risssanteil" value="R2" />
-						<label for="R2">Normaler Rissanteil</label>
+						<input type="radio" name="Rissanteil" value="Normal" />
+						<label for="Normal">Normaler Rissanteil</label>
 					</div>
 			</fieldset>
 			
@@ -98,12 +100,12 @@
 			<fieldset>
 				<label for="Farbe">Farbe :</label>
 					<div>
-						<input type="radio" id="F1" name="Farbe" value="F1" />
-						<label for="F1">Mattlack</label>
+						<input type="radio" name="Farbe" value="Mattlack" />
+						<label for="Mattlack">Mattlack</label>
 					</div>
 					<div>
-						<input type="radio" id="F2" name="Farbe" value="F2" />
-						<label for="F2">Hartöl</label>
+						<input type="radio"  name="Farbe" value="Hartöl" />
+						<label for="Hartöl">Hartöl</label>
 					</div>
 			</fieldset>
 
@@ -116,11 +118,20 @@
 		</fieldset>
 		
 		<br>
-		<button type="submit">Rechnen</button>
+		<button type="submit" id="Rechnen">Rechnen</button>
 	</form>
 
-	<h3>Fläche : <span class="QM"></span> m<sup>2</sup></h3>
-	<h3>Preis : <span class="Preis"></span> €</h3>
+	<!-- Zusammenfassung -->
+	<h2>Ihr Wünsch</h2>
+	<p>----------------------</p>
+	<ul id="vorschau">
+
+	</ul>
+	<p>(*) mit Preis-Aufschlag</p>
+	<p>----------------------</p>
+	<h3>Fläche : <span id="displayQM"></span> m<sup>2</sup></h3>
+	
+	<h3>Preis : <span id="displayPreis"></span> €</h3>
 
 	<script src="js/main.js"></script>
 </body>
