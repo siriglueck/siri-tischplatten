@@ -21,6 +21,21 @@ const tischFormList = [
   { key: "F10", value: "Rautenmuster" },
 ];
 
+const preisListe = [
+  { key: 25, value: 300 },
+  { key: 30, value: 360 },
+  { key: 40, value: 420 },
+  { key: 50, value: 480 },
+  { key: 60, value: 560 },
+  { key: 70, value: 640 },
+  { key: 80, value: 720 },
+  { key: 90, value: 800 },
+  { key: 100, value: 880 },
+  { key: 110, value: 960 },
+  { key: 120, value: 1040 }
+]
+
+
 form.addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent the page from refreshing
   const inputBreite = Breite.value;
