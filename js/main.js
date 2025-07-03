@@ -4,6 +4,7 @@ const Laenge = document.getElementById("Laenge");
 const Staerke = document.getElementById("Staerke");
 const tischForm = document.getElementById("tischForm");
 const displayQM = document.getElementById("displayQM");
+const displayPreis = document.getElementById("displayPreis");
 const vorschauList = document.getElementById("vorschau");
 const rbaCheckbox = document.getElementById("RBA");
 const svCheckbox = document.getElementById("SV");
@@ -32,9 +33,8 @@ const preisListe = [
   { key: 90, value: 800 },
   { key: 100, value: 880 },
   { key: 110, value: 960 },
-  { key: 120, value: 1040 }
-]
-
+  { key: 120, value: 1040 },
+];
 
 form.addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent the page from refreshing
@@ -42,15 +42,26 @@ form.addEventListener("submit", function (event) {
   const inputLaenge = Laenge.value;
   const selectedStaerke = Staerke.value;
   const tischItem = tischFormList.find((item) => item.key === tischForm.value);
-  
+  const sPreis = preisListe.find(
+    (item) => item.key === parseInt(selectedStaerke)
+  );
+
   const Rissanteil = document.querySelector('input[name="Rissanteil"]:checked');
   const selectedRissanteil = Rissanteil.value;
-  
+
   const Farbe = document.querySelector('input[name="Farbe"]:checked');
   const selectedFarbe = Farbe.value;
 
   const qm = (inputBreite / 100) * (inputLaenge / 100);
+  console.log(sPreis.value);
+  let preisBerechnung;
 
+  if (qm < 1) {
+    preisBerechnung = qm * sPreis.value * 1.05;
+  } else {
+    preisBerechnung = qm * sPreis.value;
+  }
+  displayPreis.innerText = preisBerechnung.toFixed(2);
 
   addListItem("Breite : ", inputBreite, " cm.");
   addListItem("Länge : ", inputLaenge, " cm.");
@@ -60,11 +71,11 @@ form.addEventListener("submit", function (event) {
   addListItem("Farbe : ", selectedFarbe, "");
 
   if (rbaCheckbox.checked) {
-  addListItem("* mit Reine Balken Außenseiten","", "");
+    addListItem("* mit Reine Balken Außenseiten", "", "");
   }
 
   if (svCheckbox.checked) {
-  addListItem("* Äste/Risse schwarz verfüllt","", "");
+    addListItem("** Äste/Risse schwarz verfüllt", "", "");
   }
 
   function addListItem(text, input, einheit) {
@@ -73,5 +84,5 @@ form.addEventListener("submit", function (event) {
     vorschauList.appendChild(newListItem);
   }
 
-  displayQM.innerText = qm;
+  displayQM.innerText = qm.toFixed(2);
 });
