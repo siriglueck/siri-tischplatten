@@ -86,3 +86,56 @@ form.addEventListener("submit", function (event) {
 
   displayQM.innerText = qm.toFixed(2);
 });
+
+//* === Preistabelle generieren === */
+const table = document.createElement("table");
+table.border = "1";
+
+// 1. Create table element
+const thead = document.createElement("thead");
+const headerRow = document.createElement("tr");
+
+// 2. Create table header (thead)
+//   const headers = [
+// 	'Plattenstärke',
+// 	'Preis/m²',
+// 	'Preis',
+// 	'zzgl. Risse verfüllen <br> + 47,60 € / m²',
+// 	'zzgl. Reine Balken Aussenseiten <br> + 71,40 € / m²',
+// 	'zzgl. Risse verfüllen und Reine Balken Aussenseiten <br> + 47,60 € / m² <br> + 71,40 € / m²'
+// 	];
+const headers = ["Name", "Age", "City"];
+headers.forEach((text) => {
+  const th = document.createElement("th");
+  th.textContent = text;
+  headerRow.appendChild(th);
+});
+
+thead.appendChild(headerRow);
+table.appendChild(thead);
+
+// 3. Create table body (tbody)
+const tbody = document.createElement("tbody");
+
+const data = [
+  { Name: "Alice", Age: 25, City: "New York" },
+  { Name: "Bob", Age: 30, City: "London" },
+  { Name: "Charlie", Age: 28, City: "Paris" },
+];
+
+data.forEach((item) => {
+  const row = document.createElement("tr");
+
+  headers.forEach((header) => {
+    const td = document.createElement("td");
+    td.textContent = item[header];
+    row.appendChild(td);
+  });
+
+  tbody.appendChild(row);
+});
+
+table.appendChild(tbody);
+
+// 4. Append table to the DOM (e.g. inside a div with id="tableContainer")
+document.getElementById("tableContainer").appendChild(table);
