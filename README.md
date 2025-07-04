@@ -1,10 +1,9 @@
 # Tischplatten-Konfigurator
 
-
-## Eingaben
+### Eingaben
 **Auf der Website kann der Kunde..**
 
-- [x] die Maße 
+- [x] die Maße
     1. Breite (maximal 180cm)
     2. Länge (maximal 450cm)
     3. Strärke (2,5 - 12 cm) <small>- siehe die Tabelle unter*</small>
@@ -28,12 +27,12 @@
     2. Hartöl
     3. Äste/Risse schwarz verfüllt (Preis-Aufschlag 47,60 €/m²)
 
-
 **der anzufertigenden Tischplatte eingeben**
 
-Nachdem der Kunde seine Wünsche eingegeben hat, errechnet das Programm und gibt den Preis aus.
+---
+### Die Berechnung des Programms
 
-## Die Berechnung des Programms
+#### Nachdem der Kunde seine Wünsche eingegeben hat, errechnet das Programm und gibt den Preis aus.
 
 > ( Breite,max 450cm / 100 ) * ( Länge,max 180cm / 100 ) = Quadradmeter (m<sup>2</sup>)
 
@@ -59,9 +58,9 @@ Der Preis laut der Plattenstärke
 
 ## Das Ergebnis
 
-Die Preise sollen in einer Tabelle mit allen anderen möglichen Eigenschaften darstellen
+Die gerechten Preisen sollen in einer Tabelle mit allen anderen möglichen Eigenschaften darstellen
 
->| # | Plattensträke | Preis / m<sup>2</sup> | Preis für _ m<sup>2</sup> | zzgl.Reise verfüllen (+47,60€ / m<sup>2</sup>) | zzgl.Reine Balken Aussenseiten (+71,40€ / m<sup>2</sup>) | zzgl.Reise verfüllen (+47,60€ / m<sup>2</sup>) und Reine Balken Aussenseiten (+71,40€ / m<sup>2</sup>) |
+>| # | Plattensträke | Grundpreis/m<sup>2</sup> | Preis | zzgl.Reise verfüllen | zzgl.Reine Balken Aussenseiten | zzgl.Reise verfüllen und Reine Balken Aussenseiten |
 >|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
 >| 1 | 25 mm | 300 € | | | | |
 >| 2 | 30 mm | 360 € | | | | |
