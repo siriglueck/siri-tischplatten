@@ -3,10 +3,12 @@ const form1 = document.getElementById("form1");
 const Breite = document.getElementById("Breite");
 const Laenge = document.getElementById("Laenge");
 const Staerke = document.getElementById("Staerke");
+const ergTitel = document.getElementById("ergTitel");
 const tischForm = document.getElementById("tischForm");
 const displayQM = document.getElementById("displayQM");
 const resetButton = document.getElementById("resetBtn");
 const displayPreis = document.getElementById("displayPreis");
+const displayGesamtpreis = document.getElementById("displayGesamtpreis");
 const vorschauList = document.getElementById("vorschau");
 const balkenCheckbox = document.getElementById("Balken");
 const risseCheckbox = document.getElementById("Risse");
@@ -25,7 +27,7 @@ const tischFormList = [
   { key: "F10", value: "Rautenmuster" },
 ];
 
-const preisListe = [
+const preisListeVollmassiv = [
   { key: 25, value: 300 },
   { key: 30, value: 360 },
   { key: 40, value: 420 },
@@ -39,11 +41,51 @@ const preisListe = [
   { key: 120, value: 1040 },
 ];
 
+const preisListeGedoppelt = [
+  { key: 40, value: 315 },
+  { key: 50, value: 360 },
+  { key: 60, value: 420 },
+  { key: 70, value: 480 },
+  { key: 80, value: 540 },
+  { key: 90, value: 600 },
+  { key: 100, value: 660 },
+  { key: 110, value: 720 },
+  { key: 120, value: 780 },
+];
+
+let preisListe;
+
 addEventListener("DOMContentLoaded", () => {
+
+      // Add event listeners to radio buttons
+    document.querySelectorAll('input[name="Tischplatte"]').forEach(radio => {
+    radio.addEventListener("change", function () {
+      // Clear previous options
+      Staerke.innerHTML = '<option value="" disabled selected> - bitte auswählen - </option>';
+
+      // Add new options based on selected value
+      const selected = this.value;
+      preisListe = selected == "vollmassiv" ? preisListeVollmassiv : preisListeGedoppelt;
+      for (let i = 0; i < preisListe.length; i++) {
+        const value = preisListe[i].key;
+        const option = document.createElement("option"); // สร้าง <option>
+        option.value = value;                             // กำหนด value
+        option.textContent = value;                       // กำหนดข้อความที่แสดง
+        Staerke.appendChild(option);                // เพิ่มลงใน <select>
+      }
+    });
+   });
+
+
   /* === Rechnen geklickt werden === */
   form1.addEventListener("submit", function (event) {
     // Verhindern, dass die Seite aktualisiert wird
     event.preventDefault();
+
+    vorschauList.innerHTML = "";
+    tableContainer.innerHTML = "";
+    displayPreis.innerHTML = "";
+    displayQM.innerHTML = "";
 
     /* === DOM Zugriff & Variablen 2/2 === */
     const inputBreite = Breite.value;
@@ -76,23 +118,18 @@ addEventListener("DOMContentLoaded", () => {
     if (qm < 1) { preisBerechnung = qm * sPreis.value * 1.05; } 
     else { preisBerechnung = qm * sPreis.value; }
     const preisBerechnungDE = (parseFloat(preisBerechnung.toFixed(2))).toLocaleString('de-DE')
+    let gesamtPreis = preisBerechnung;
 
-    displayPreis.innerText = preisBerechnungDE + " €";
-    displayQM.innerText = qmDE;
+    ergTitel.innerText = "Ihr Wunsch";
+    displayPreis.innerHTML = "----------------------<br>"+"Preis :" + preisBerechnungDE + " €";
+    displayQM.innerHTML = "für " + qmDE + " m<sup>2</sup>" + "<br>----------------------<br>";
+
+
 
     function addListItem(text, eingabe, einheit) {
       const newListItem = document.createElement("li");
       newListItem.textContent = text + eingabe + einheit;
       vorschauList.appendChild(newListItem);
-    }
-
-    /* === zurücksetzen === */
-    function zurueckSetzen() {
-      form1.reset();
-      vorschauList.innerHTML = "";
-      tableContainer.innerHTML = "";
-      displayPreis.innerHTML = "";
-      displayQM.innerHTML = "";
     }
 
     /* === Preistabelle erzeugen === */
@@ -174,11 +211,15 @@ addEventListener("DOMContentLoaded", () => {
     addListItem("Rissanteil : ", selectedRissanteil, "");
     if (balkenCheckbox.checked) {
       addListItem("mit Reine Balken Außenseiten **", "", "");
+      gesamtPreis += balkenPreis;
       displayPreis.innerHTML += "<br> + " + balkenPreisDE + " € zzgl. Balken";
     }
     addListItem("Finish : ", selectedFinish, "");
     if (risseCheckbox.checked) {
+      gesamtPreis += rissePreis; 
       displayPreis.innerHTML += "<br> + " + rissePreisDE + " € zzgl. Risse";
     }
+    console.log(gesamtPreis)
+    displayGesamtpreis.innerHTML = "Gesamtpreis:" + gesamtPreis.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2 });;
   });
 });

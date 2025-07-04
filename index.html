@@ -1,171 +1,158 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tischplatten-Konfigurator</title>
 	<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 	<h1> Tischplatten-Konfigurator </h1>
+
+	<div class="flex">
+		<!-- Form -->
+		<div class="eingabe">
+				<form action="#" id="form1">
+					<fieldset>
+						<legend>Größe</legend>
+						<br>
+						<!-- Breite -->
+						<label for="Breite">Breite :</label>
+						<input type="number" id="Breite" name="Breite" min="20" max="180" placeholder="20-180" required />
+						<span> cm.</span>
+						<sup class="roteStern">*</sup>
+						<br><br>
+						<!-- Länge -->
+						<label for="Laenge">Länge :</label>
+						<input type="number" id="Laenge" name="Laenge" min="20" max="450" placeholder="20-450" required />
+						<span> cm.</span>
+						<sup class="roteStern">*</sup>
+				
+						<br><br>
+					</fieldset>
+				
+					<fieldset>
+						<legend>Stil</legend>
+				
+						<!-- Tischplatte -->
+						<div class="formularSektion">
+							<label for="Tischplatte">Tischplatte :</label>
+							<sup class="roteStern">*</sup>
+							<div>
+								<input type="radio" name="Tischplatte" value="vollmassiv" required />
+								<label for="Tischplatte">vollmassiv</label>
+							</div>
+							<div>
+								<input type="radio" name="Tischplatte" value="gedoppelt" required />
+								<label for="Tischplatte">optisch gedoppelt <strong>(-25%)</strong></label>
+							</div>
+							<br>
+							<!-- Stärke -->
+							<label for="Straerke">Plattenstärke :</label>
+							<select name="Staerke" id="Staerke" required>
+								<option value="" disabled selected> - bitte auswählen - </option>
+							</select>
+							<span> mm.</span>
+							<sup class="roteStern">*</sup>
+						</div>
+						<br><br>
+						<!-- Form & Farbe -->
+						<div class="formularSektion">
+							<label for="tischForm">Form :</label>
+							<select name="tischForm" id="tischForm" required>
+								<option value="" disabled selected> - bitte auswählen - </option>
+								<option value="F1">Gerade Kannte</option>
+								<option value="F2">Facettenkante</option>
+								<option value="F3">Mit Baumkane</option>
+								<option value="F4">Durchgängige Bohlen</option>
+								<option value="F5">Mit Querfrieß</option>
+								<option value="F6">Rund</option>
+								<option value="F7">Oval</option>
+								<option value="F8">Schiffsbodenmuster</option>
+								<option value="F9">Flechmuster</option>
+								<option value="F10">Rautenmuster</option>
+							</select>
+							<span class="roteStern">*</span>
+							<br><br>
+							<!-- Farbe -->
+							<label for="Farbe">Farbe :</label>
+							<select name="Farbe" id="Farbe" required>
+								<option value="" disabled selected> - bitte auswählen - </option>
+								<option value="1">Natura</option>
+								<option value="2">Alte Eiche</option>
+								<option value="3">Eiche dunkel</option>
+								<option value="4">Hellgrau geölt</option>
+								<option value="5">Dunkelgrau geölt</option>
+								<option value="6">Weiss geölt</option>
+								<option value="7">Weiss gekälkt</option>
+							</select>
+							<span class="roteStern">*</span>
+							<br><br>
+						</div>
+						<!-- Rissanteil -->
+						<div class="formularSektion">
+							<p>Rissanteil : <span class="roteStern">*</span></p>
+							<div>
+								<input type="radio" name="Rissanteil" value="Ohne" required />
+								<label for="Ohne">Ohne Rissanteil</label>
+							</div>
+							<div>
+								<input type="radio" name="Rissanteil" value="Leich" required />
+								<label for="Leich">Leichter Rissanteil</label>
+							</div>
+							<div>
+								<input type="radio" name="Rissanteil" value="Normal" required />
+								<label for="Normal">Normaler Rissanteil</label>
+							</div>
+							<br>
+							<div>
+								<input type="checkbox" id="Balken" name="Balken" />
+								<label for="Balken"> mit "Reine Balken Außenseiten" kombiniert werden <strong>(Preis-Aufschlag 71,40
+										€/m²)</strong></label>
+							</div>
+						</div>
+				
+						<br>
+				
+						<!-- Finish -->
+						<div class="formularSektion">
+							<p>Finish : <span class="roteStern">*</span></p>
+							<div>
+								<input type="radio" name="Finish" value="Mattlack" required />
+								<label for="Mattlack">Mattlack</label>
+							</div>
+							<div>
+								<input type="radio" name="Finish" value="Hartöl" required />
+								<label for="Hartöl">Hartöl</label>
+							</div>
+							<div>
+								<input type="radio" name="Finish" value="Äste/Risse schwarz verfüllt **" id="Risse" required />
+								<label for="Risse"> Äste/Risse schwarz verfüllt <strong>(Preis-Aufschlag 47,60 €/m²)</strong>
+							</div>
+						</div>
+				
+						<br>
+						</label>
+					</fieldset>
+				
+					<button type="submit" id="submitBtn">rechnen</button>
+				</form>
+		</div>
 	
-	<!-- Form -->
-	<form action="#" id="form1">
-		
-		<fieldset>
-			<legend>Größe</legend>
-			<br>
-			<!-- Breite -->
-			<label for="Breite">Breite :</label>
-			<input type="number" id="Breite" name="Breite" min="20" max="180" placeholder="20-180" required />
-			<span> cm.</span>
-			<sup class="roteStern">*</sup>
-			<br><br>
-			
-			<!-- Länge -->
-			<label for="Laenge">Länge :</label>
-			<input type="number" id="Laenge" name="Laenge" min="20" max="450" placeholder="20-450" required />
-			<span> cm.</span>
-			<sup class="roteStern">*</sup>
-			<br><br>
-			
-			<!-- Stärke -->
-			<label for="Straerke">Stärke :</label>
-			<select name="Staerke" id="Staerke" required>
-				<option value="">--- </option>
-				<option value="25">25</option>
-				<option value="30">30</option>
-				<option value="40">40</option>
-				<option value="50">50</option>
-				<option value="60">60</option>
-				<option value="70">70</option>
-				<option value="80">80</option>
-				<option value="90">90</option>
-				<option value="100">100</option>
-				<option value="110">110</option>
-				<option value="120">120</option>
-			</select>
-			<span> mm.</span>
-			<sup class="roteStern">*</sup>
-			<br><br>
-
-		</fieldset>
-
-		<br>
-
-		<fieldset>
-			<legend>Stil</legend>
-			<br>
-			<!-- Form -->
-			<label for="tischForm">Form :</label>
-			<select name="tischForm" id="tischForm" required>
-				<option value="" disabled selected>-- Bitte auswählen --</option>
-				<option value="F1">Gerade Kannte</option>
-				<option value="F2">Facettenkante</option>
-				<option value="F3">Mit Baumkane</option>
-				<option value="F4">Durchgängige Bohlen</option>
-				<option value="F5">Mit Querfrieß</option>
-				<option value="F6">Rund</option>
-				<option value="F7">Oval</option>
-				<option value="F8">Schiffsbodenmuster</option>
-				<option value="F9">Flechmuster</option>
-				<option value="F10">Rautenmuster</option>
-			</select>
-			<span></span>
-			<sup class="roteStern">*</sup>
-			<br><br>
-
-			<!-- Rissanteil -->
-			<fieldset>
-				<label for="Rissanteil">Rissanteil :</label>
-				<sup class="roteStern">*</sup>
-					<div>
-						<input type="radio" name="Rissanteil" value="Ohne" required />
-						<label for="Leich">Ohne Rissanteil</label>
-					</div>
-					<div>
-						<input type="radio" name="Rissanteil" value="Leich" required />
-						<label for="Leich">Leichter Rissanteil</label>
-					</div>
-					<div>
-						<input type="radio" name="Rissanteil" value="Normal" required/>
-						<label for="Normal">Normaler Rissanteil</label>
-					</div>
-					<br>
-					<div>
-						<input type="checkbox" id="Balken" name="Balken" />
-						<label for="Balken"> mit "Reine Balken Außenseiten" kombiniert werden <strong>(Preis-Aufschlag 71,40 €/m²)</strong></label>
-					</div>
-
-			</fieldset>
-			
-			<br>
-
-			<span></span>
-			<br>
-
-			<!-- Farbe -->
-			<label for="tischForm">Farbe :</label>
-			<select name="tischForm" id="tischForm" required>
-				<option value="" disabled selected>-- Bitte auswählen --</option>
-				<option value="1">Natura</option>
-				<option value="2">Alte Eiche</option>
-				<option value="3">Eiche dunkel</option>
-				<option value="4">Hellgrau geölt</option>
-				<option value="5">Dunkelgrau geölt</option>
-				<option value="6">Weiss geölt</option>
-				<option value="7">Weiss gekälkt</option>
-			</select>
-			<sup class="roteStern">*</sup>
-			<br><br>
-
-			<!-- Finish -->
-			<fieldset>
-				<label for="Finish">Finish :</label>
-					<sup class="roteStern">*</sup>
-					<div>
-						<input type="radio" name="Finish" value="Mattlack" required />
-						<label for="Mattlack">Mattlack</label>
-					</div>
-					<div>
-						<input type="radio" name="Finish" value="Hartöl" required/>
-						<label for="Hartöl">Hartöl</label>
-					</div>
-					<div>
-						<input type="radio" name="Finish" value="Äste/Risse schwarz verfüllt **" id="Risse" required />
-						<label for="Risse"> Äste/Risse schwarz verfüllt <strong>(Preis-Aufschlag 47,60 €/m²)</strong>
-					</div>
-			</fieldset>
-
-			<br>
-
-			</label>
-			<span></span>
-
-		</fieldset>
-		
-		<br>
-		<button type="submit" id="submitBtn">rechnen</button>
-		<br>
-		<br>
-		<button type="reset" id="resetBtn">zurücksetzen</button>
-	</form>
-
-	<!-- Zusammenfassung -->
-	<h2>Ihr Wunsch</h2>
-	<p>----------------------</p>
-	<ul id="vorschau">
-
-	</ul>
-	<p>(**) mit Preis-Aufschlag</p>
-	<p>----------------------</p>
-
-	<p>Preis : <span id="displayPreis"></span></p>
-	<p>für <span id="displayQM"></span> m<sup>2</sup></p>
-	<p>----------------------</p>
-	<br>
-	<div id="tableContainer"></div>
+		<!-- Zusammenfassung -->
+		<div class="ausgabe">
+			<h2 id="ergTitel"></h2>
+			<ul id="vorschau"></ul>
+			<div> <span id="displayPreis"></span></div>
+			<div id="displayQM"></div>
+			<div id="displayGesamtpreis"></div>
+			<div id="tableContainer"></div>
+		</div>
+	</div>
 
 	<script src="js/main.js"></script>
 </body>
+
 </html>
