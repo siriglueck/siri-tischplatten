@@ -24,6 +24,10 @@ img {
   box-sizing: border-box;
 }
 
+#tableContainer {
+	text-align: center;
+}
+
 .roteStern {
 	color: red;
 }

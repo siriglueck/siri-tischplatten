@@ -56,7 +56,7 @@ Der Preis laut der Plattenstärke
 >| 10 | 110 mm | 960 € |
 >| 11 | 120 mm | 1,040 € |
 
-## Das Ergebnis
+## Ausgaben
 
 Die gerechten Preisen sollen in einer Tabelle mit allen anderen möglichen Eigenschaften darstellen
 
@@ -73,3 +73,9 @@ Die gerechten Preisen sollen in einer Tabelle mit allen anderen möglichen Eigen
 >| 9 | 100 mm | 880 € | | | | |
 >| 10 | 110 mm | 960 € | | | | |
 >| 11 | 120 mm | 1,040 € | | | | |
+
+## Notes to myself
+  - Cascading dropdown
+  - toLocalString() can be used to convert numbers to european numeric system (1.000,00) and determine the prefered decimal units
+  - alternatively .toFixed(decimal units)
+  - but both return String
