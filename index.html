@@ -20,13 +20,13 @@
 						<br>
 						<!-- Breite -->
 						<label for="Breite">Breite :</label>
-						<input type="number" id="Breite" name="Breite" min="20" max="180" placeholder="20-180" required />
+						<input type="number" id="Breite" name="Breite" min="0" max="180" placeholder="0-180" required />
 						<span> cm.</span>
 						<sup class="roteStern">*</sup>
 						<br><br>
 						<!-- Länge -->
 						<label for="Laenge">Länge :</label>
-						<input type="number" id="Laenge" name="Laenge" min="20" max="450" placeholder="20-450" required />
+						<input type="number" id="Laenge" name="Laenge" min="0" max="450" placeholder="0-450" required />
 						<span> cm.</span>
 						<sup class="roteStern">*</sup>
 				
@@ -77,8 +77,8 @@
 							<span class="roteStern">*</span>
 							<br><br>
 							<!-- Farbe -->
-							<label for="Farbe">Farbe :</label>
-							<select name="Farbe" id="Farbe" required>
+							<label for="tischFarbe">Farbe :</label>
+							<select name="tischFarbe" id="tischFarbe" required>
 								<option value="" disabled selected> - bitte auswählen - </option>
 								<option value="1">Natura</option>
 								<option value="2">Alte Eiche</option>
@@ -95,22 +95,21 @@
 						<div class="formularSektion">
 							<p>Rissanteil : <span class="roteStern">*</span></p>
 							<div>
-								<input type="radio" name="Rissanteil" value="Ohne" required />
+								<input type="radio" name="Rissanteil" value="ohne-rissenanteil" required />
 								<label for="Ohne">Ohne Rissanteil</label>
 							</div>
 							<div>
-								<input type="radio" name="Rissanteil" value="Leich" required />
+								<input type="radio" name="Rissanteil" value="leichter-rissanteil" required />
 								<label for="Leich">Leichter Rissanteil</label>
 							</div>
 							<div>
-								<input type="radio" name="Rissanteil" value="Normal" required />
+								<input type="radio" name="Rissanteil" value="normaler-rissanteil" required />
 								<label for="Normal">Normaler Rissanteil</label>
 							</div>
 							<br>
 							<div>
-								<input type="checkbox" id="Balken" name="Balken" />
-								<label for="Balken"> mit "Reine Balken Außenseiten" kombiniert werden <strong>(Preis-Aufschlag 71,40
-										€/m²)</strong></label>
+								<input type="checkbox" id="Balken" name="Balken" value="reine-balken-aussenseiten" />
+								<label for="Balken"> mit "Reine Balken Außenseiten" kombiniert werden <strong>(Preis-Aufschlag 71,40€/m²)</strong></label>
 							</div>
 						</div>
 				
@@ -143,11 +142,15 @@
 	
 		<!-- Zusammenfassung -->
 		<div class="ausgabe">
-			<h2 id="ergTitel"></h2>
-			<ul id="vorschau"></ul>
+			<h3 id="ergTitel"></h3>
+			<div>
+				<ul id="vorschauOhneBild" class="flex"></ul>
+				<ul id="vorschau" class="flex wrap"></ul>
+			</div>
 			<div> <span id="displayPreis"></span></div>
 			<div id="displayQM"></div>
 			<div id="displayGesamtpreis"></div>
+			<h3 id="tabelleTitel"></h3>
 			<div id="tableContainer"></div>
 		</div>
 	</div>

@@ -5,14 +5,17 @@ const Laenge = document.getElementById("Laenge");
 const Staerke = document.getElementById("Staerke");
 const ergTitel = document.getElementById("ergTitel");
 const tischForm = document.getElementById("tischForm");
+const tischFarbe = document.getElementById("tischFarbe");
 const displayQM = document.getElementById("displayQM");
+const risseCheckbox = document.getElementById("Risse");
 const resetButton = document.getElementById("resetBtn");
-const displayPreis = document.getElementById("displayPreis");
-const displayGesamtpreis = document.getElementById("displayGesamtpreis");
 const vorschauList = document.getElementById("vorschau");
 const balkenCheckbox = document.getElementById("Balken");
-const risseCheckbox = document.getElementById("Risse");
+const displayPreis = document.getElementById("displayPreis");
+const tabelleTitel = document.getElementById("tabelleTitel");
 const tableContainer = document.getElementById("tableContainer");
+const vorschauListOhneBild = document.getElementById("vorschauOhneBild");
+const displayGesamtpreis = document.getElementById("displayGesamtpreis");
 
 const tischFormList = [
   { key: "F1", value: "Gerade Kannte" },
@@ -56,32 +59,32 @@ const preisListeGedoppelt = [
 let preisListe;
 
 addEventListener("DOMContentLoaded", () => {
-
-      // Add event listeners to radio buttons
-    document.querySelectorAll('input[name="Tischplatte"]').forEach(radio => {
+  // Add event listeners to radio buttons
+  document.querySelectorAll('input[name="Tischplatte"]').forEach((radio) => {
     radio.addEventListener("change", function () {
       // Clear previous options
-      Staerke.innerHTML = '<option value="" disabled selected> - bitte auswählen - </option>';
+      Staerke.innerHTML =
+        '<option value="" disabled selected> - bitte auswählen - </option>';
 
       // Add new options based on selected value
       const selected = this.value;
-      preisListe = selected == "vollmassiv" ? preisListeVollmassiv : preisListeGedoppelt;
+      preisListe =
+        selected == "vollmassiv" ? preisListeVollmassiv : preisListeGedoppelt;
       for (let i = 0; i < preisListe.length; i++) {
         const value = preisListe[i].key;
         const option = document.createElement("option"); // สร้าง <option>
-        option.value = value;                             // กำหนด value
-        option.textContent = value;                       // กำหนดข้อความที่แสดง
-        Staerke.appendChild(option);                // เพิ่มลงใน <select>
+        option.value = value; // กำหนด value
+        option.textContent = value; // กำหนดข้อความที่แสดง
+        Staerke.appendChild(option); // เพิ่มลงใน <select>
       }
     });
-   });
-
+  });
 
   /* === Rechnen geklickt werden === */
   form1.addEventListener("submit", function (event) {
     // Verhindern, dass die Seite aktualisiert wird
     event.preventDefault();
-
+    vorschauListOhneBild.innerHTML = "";
     vorschauList.innerHTML = "";
     tableContainer.innerHTML = "";
     displayPreis.innerHTML = "";
@@ -110,26 +113,49 @@ addEventListener("DOMContentLoaded", () => {
     const qm = (inputBreite / 100) * (inputLaenge / 100);
     const rissePreis = qm * 47.6;
     const balkenPreis = qm * 71.4;
-    const qmDE = qm.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    const rissePreisDE = rissePreis.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    const balkenPreisDE = balkenPreis.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const qmDE = qm.toLocaleString("de-DE", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    const rissePreisDE = rissePreis.toLocaleString("de-DE", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    const balkenPreisDE = balkenPreis.toLocaleString("de-DE", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
 
     let preisBerechnung;
-    if (qm < 1) { preisBerechnung = qm * sPreis.value * 1.05; } 
-    else { preisBerechnung = qm * sPreis.value; }
-    const preisBerechnungDE = (parseFloat(preisBerechnung.toFixed(2))).toLocaleString('de-DE')
+    if (qm < 1) {
+      preisBerechnung = qm * sPreis.value * 1.05;
+    } else {
+      preisBerechnung = qm * sPreis.value;
+    }
+    const preisBerechnungDE = parseFloat(
+      preisBerechnung.toFixed(2)
+    ).toLocaleString("de-DE");
     let gesamtPreis = preisBerechnung;
 
     ergTitel.innerText = "Ihr Wunsch";
-    displayPreis.innerHTML = "----------------------<br>"+"Preis :" + preisBerechnungDE + " €";
-    displayQM.innerHTML = "für " + qmDE + " m<sup>2</sup>" + "<br>----------------------<br>";
-
-
+    displayPreis.innerHTML =
+      "----------------------<br>" + "Preis :" + preisBerechnungDE + " €";
+    displayQM.innerHTML =
+      "für " + qmDE + " m<sup>2</sup>" + "<br>----------------------<br>";
 
     function addListItem(text, eingabe, einheit) {
       const newListItem = document.createElement("li");
-      newListItem.textContent = text + eingabe + einheit;
-      vorschauList.appendChild(newListItem);
+      if (
+        eingabe == inputBreite ||
+        eingabe == inputLaenge ||
+        eingabe == selectedStaerke
+      ) {
+        newListItem.innerHTML = text + "<br>" + eingabe + einheit;
+        vorschauListOhneBild.appendChild(newListItem);
+      } else {
+        newListItem.innerHTML = text + "<br>" + eingabe + einheit;
+        vorschauList.appendChild(newListItem);
+      }
     }
 
     /* === Preistabelle erzeugen === */
@@ -164,6 +190,13 @@ addEventListener("DOMContentLoaded", () => {
       //console.log(jedePreis);
       const row = document.createElement("tr");
 
+      if (preisListe == preisListeVollmassiv) {
+        tabelleTitel.innerText = "Brutto-QM-Preis Tischplatte vollmassiv";
+      } else {
+        tabelleTitel.innerText =
+          "Brutto-QM-Preis Tischplatte optisch gedoppelt (-25%)";
+      }
+
       for (let j = 0; j < headers.length; j++) {
         const header = headers[j];
         const td = document.createElement("td");
@@ -179,19 +212,35 @@ addEventListener("DOMContentLoaded", () => {
             row.appendChild(td);
             break;
           case 2:
-            td.textContent = jedePreis.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            td.textContent = jedePreis.toLocaleString("de-DE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            });
             row.appendChild(td);
             break;
           case 3:
-            td.textContent = (jedePreis + rissePreis).toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            td.textContent = (jedePreis + rissePreis).toLocaleString("de-DE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            });
             row.appendChild(td);
             break;
           case 4:
-            td.textContent = (jedePreis + balkenPreis).toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            td.textContent = (jedePreis + balkenPreis).toLocaleString("de-DE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            });
             row.appendChild(td);
             break;
           case 5:
-            td.textContent = (jedePreis + rissePreis + balkenPreis).toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            td.textContent = (
+              jedePreis +
+              rissePreis +
+              balkenPreis
+            ).toLocaleString("de-DE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            });
             row.appendChild(td);
             break;
           default:
@@ -207,19 +256,44 @@ addEventListener("DOMContentLoaded", () => {
     addListItem("Breite : ", inputBreite, " cm.");
     addListItem("Länge : ", inputLaenge, " cm.");
     addListItem("Stärke : ", selectedStaerke, " mm.");
+    
+    // Tischform
     addListItem("Tischform : ", tischItem.value, "");
+    
+    //Tischfarbe
+    addListItem("Tischfarbe : ", tischFarbe.value, "");
+
+
     addListItem("Rissanteil : ", selectedRissanteil, "");
+    const img = document.createElement("img");
+      const vorschauBildPlatz = document.querySelectorAll("li");
+      img.src = "images" + "/Rissanteil/" + selectedRissanteil + ".jpg";
+      img.alt = selectedRissanteil;
+      vorschauBildPlatz[4].appendChild(img);
+
     if (balkenCheckbox.checked) {
-      addListItem("mit Reine Balken Außenseiten **", "", "");
+      addListItem("**", "mit Reine Balken Außenseiten", "");
       gesamtPreis += balkenPreis;
       displayPreis.innerHTML += "<br> + " + balkenPreisDE + " € zzgl. Balken";
+
+      const img = document.createElement("img");
+      const vorschauBildPlatz = document.querySelectorAll("li");
+      img.src = "images" + "/Rissanteil/" + balkenCheckbox.value + ".jpg";
+      img.alt = balkenCheckbox.value;
+      vorschauBildPlatz[5].appendChild(img);
     }
-    addListItem("Finish : ", selectedFinish, "");
     if (risseCheckbox.checked) {
-      gesamtPreis += rissePreis; 
+      addListItem("Finish : ", selectedFinish, "");
+      gesamtPreis += rissePreis;
       displayPreis.innerHTML += "<br> + " + rissePreisDE + " € zzgl. Risse";
+      
     }
-    console.log(gesamtPreis)
-    displayGesamtpreis.innerHTML = "Gesamtpreis:" + gesamtPreis.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2 });;
+    console.log(gesamtPreis);
+    displayGesamtpreis.innerHTML =
+      "Gesamtpreis:" +
+      gesamtPreis.toLocaleString("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
   });
 });
