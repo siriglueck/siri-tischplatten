@@ -99,6 +99,7 @@ form1.addEventListener("submit", function (event) {
       e.preventDefault(); // cancel the reset
     } else {
       submitBtn.disabled = false;
+      submitBtn.textContent = "rechnen";
       vorschauList.innerHTML = "";
       tableContainer.innerHTML = "";
       displayPreis.innerHTML = "";
