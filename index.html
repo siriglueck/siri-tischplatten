@@ -79,6 +79,10 @@
 				<label for="Rissanteil">Rissanteil :</label>
 				<sup class="erforderlich">*</sup>
 					<div>
+						<input type="radio" name="Rissanteil" value="Ohne" required />
+						<label for="Leich">Ohne Rissanteil</label>
+					</div>
+					<div>
 						<input type="radio" name="Rissanteil" value="Leich" required />
 						<label for="Leich">Leichter Rissanteil</label>
 					</div>
@@ -86,35 +90,55 @@
 						<input type="radio" name="Rissanteil" value="Normal" required/>
 						<label for="Normal">Normaler Rissanteil</label>
 					</div>
-					<div><img id="RissImg" src="" alt=""></div>
+					<br>
+					<div>
+						<input type="checkbox" id="Balken" name="Balken" />
+						<label for="Balken"> mit "Reine Balken Außenseiten" kombiniert werden <strong>(Preis-Aufschlag 71,40 €/m²)</strong></label>
+					</div>
+
 			</fieldset>
 			
 			<br>
 
-			<input type="checkbox" id="Balken" name="Balken" />
-			<label for="Balken"> mit "Reine Balken Außenseiten" kombiniert werden <strong>(Preis-Aufschlag 71,40 €/m²)</strong></label>
 			<span></span>
-			<br><br>
-
+			<br>
 
 			<!-- Farbe -->
+			<label for="tischForm">Farbe :</label>
+			<select name="tischForm" id="tischForm" required>
+				<option value="" disabled selected>-- Bitte auswählen --</option>
+				<option value="1">Natura</option>
+				<option value="2">Alte Eiche</option>
+				<option value="3">Eiche dunkel</option>
+				<option value="4">Hellgrau geölt</option>
+				<option value="5">Dunkelgrau geölt</option>
+				<option value="6">Weiss geölt</option>
+				<option value="7">Weiss gekälkt</option>
+			</select>
+			
+			<br><br>
+
+			<!-- Finish -->
 			<fieldset>
-				<label for="Farbe">Farbe :</label>
+				<label for="Finish">Finish :</label>
 					<sup class="erforderlich">*</sup>
 					<div>
-						<input type="radio" name="Farbe" value="Mattlack" required />
+						<input type="radio" name="Finish" value="Mattlack" required />
 						<label for="Mattlack">Mattlack</label>
 					</div>
 					<div>
-						<input type="radio" name="Farbe" value="Hartöl" required/>
+						<input type="radio" name="Finish" value="Hartöl" required/>
 						<label for="Hartöl">Hartöl</label>
+					</div>
+					<div>
+						<input type="radio" name="Finish" value="Äste/Risse schwarz verfüllt *" id="Risse" required />
+						<label for="Risse"> Äste/Risse schwarz verfüllt <strong>(Preis-Aufschlag 47,60 €/m²)</strong>
 					</div>
 			</fieldset>
 
 			<br>
 
-			<input type="checkbox" id="Risse" name="Risse" />
-			<label for="Risse"> Äste/Risse schwarz verfüllt <strong>(Preis-Aufschlag 47,60 €/m²)</strong></label>
+			</label>
 			<span></span>
 
 		</fieldset>
@@ -132,7 +156,7 @@
 	<ul id="vorschau">
 
 	</ul>
-	<p>(*, **) mit Preis-Aufschlag</p>
+	<p>(*) mit Preis-Aufschlag</p>
 	<p>----------------------</p>
 
 	<p>Preis : <span id="displayPreis"></span></p>
