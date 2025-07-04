@@ -1,7 +1,45 @@
 body {
-	margin: 5% 10%;
+	margin: 0;
+	padding: 0 2%;
+	background-color: gainsboro;
 }
+
 
 .roteStern {
 	color: red;
+}
+
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.eingabe {
+	margin: 0 5%;
+	width: 90%;
+}
+
+.ausgabe {
+	margin: 0 5%;
+	width: 90%;
+}
+
+@media screen and (width > 768px) {
+  .flex {
+	display: flex;
+	flex-wrap: nowrap;
+  }
+
+  .eingabe {
+	padding: 0;
+	width: 40%;
+	margin: 0 0 0 2rem;
+  }
+
+  .ausgabe {
+	padding: 0;
+	width: 60%;
+	margin: 0 2rem;
+  }
+
 }
