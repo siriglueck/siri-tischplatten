@@ -1,4 +1,4 @@
-const form = document.getElementById("form1");
+const form1 = document.getElementById("form1");
 const Breite = document.getElementById("Breite");
 const Laenge = document.getElementById("Laenge");
 const Staerke = document.getElementById("Staerke");
@@ -6,8 +6,10 @@ const tischForm = document.getElementById("tischForm");
 const displayQM = document.getElementById("displayQM");
 const displayPreis = document.getElementById("displayPreis");
 const vorschauList = document.getElementById("vorschau");
-const rbaCheckbox = document.getElementById("RBA");
-const svCheckbox = document.getElementById("SV");
+const balkenCheckbox = document.getElementById("Balken");
+const risseCheckbox = document.getElementById("Risse");
+const resetButton = document.getElementById("resetBtn");
+const tableContainer = document.getElementById("tableContainer");
 
 const tischFormList = [
   { key: "F1", value: "Gerade Kannte" },
@@ -36,7 +38,7 @@ const preisListe = [
   { key: 120, value: 1040 },
 ];
 
-form.addEventListener("submit", function (event) {
+form1.addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent the page from refreshing
   const inputBreite = Breite.value;
   const inputLaenge = Laenge.value;
@@ -53,7 +55,9 @@ form.addEventListener("submit", function (event) {
   const selectedFarbe = Farbe.value;
 
   const qm = (inputBreite / 100) * (inputLaenge / 100);
-  console.log(sPreis.value);
+  const rissePreis = qm * 47.6;
+  const balkenPreis = qm * 71.4;
+
   let preisBerechnung;
 
   if (qm < 1) {
@@ -61,7 +65,8 @@ form.addEventListener("submit", function (event) {
   } else {
     preisBerechnung = qm * sPreis.value;
   }
-  displayPreis.innerText = preisBerechnung.toFixed(2);
+
+  displayPreis.innerText = preisBerechnung.toFixed(2) + " €";
 
   addListItem("Breite : ", inputBreite, " cm.");
   addListItem("Länge : ", inputLaenge, " cm.");
@@ -70,12 +75,14 @@ form.addEventListener("submit", function (event) {
   addListItem("Rissanteil : ", selectedRissanteil, "");
   addListItem("Farbe : ", selectedFarbe, "");
 
-  if (rbaCheckbox.checked) {
+  if (balkenCheckbox.checked) {
     addListItem("* mit Reine Balken Außenseiten", "", "");
+    displayPreis.innerHTML += "<br> + " + balkenPreis + " € zzgl. Balken";
   }
 
-  if (svCheckbox.checked) {
+  if (risseCheckbox.checked) {
     addListItem("** Äste/Risse schwarz verfüllt", "", "");
+    displayPreis.innerHTML += "<br> + " + rissePreis + " € zzgl. Risse";
   }
 
   function addListItem(text, input, einheit) {
@@ -85,57 +92,94 @@ form.addEventListener("submit", function (event) {
   }
 
   displayQM.innerText = qm.toFixed(2);
-});
 
-//* === Preistabelle generieren === */
-const table = document.createElement("table");
-table.border = "1";
-
-// 1. Create table element
-const thead = document.createElement("thead");
-const headerRow = document.createElement("tr");
-
-// 2. Create table header (thead)
-//   const headers = [
-// 	'Plattenstärke',
-// 	'Preis/m²',
-// 	'Preis',
-// 	'zzgl. Risse verfüllen <br> + 47,60 € / m²',
-// 	'zzgl. Reine Balken Aussenseiten <br> + 71,40 € / m²',
-// 	'zzgl. Risse verfüllen und Reine Balken Aussenseiten <br> + 47,60 € / m² <br> + 71,40 € / m²'
-// 	];
-const headers = ["Name", "Age", "City"];
-headers.forEach((text) => {
-  const th = document.createElement("th");
-  th.textContent = text;
-  headerRow.appendChild(th);
-});
-
-thead.appendChild(headerRow);
-table.appendChild(thead);
-
-// 3. Create table body (tbody)
-const tbody = document.createElement("tbody");
-
-const data = [
-  { Name: "Alice", Age: 25, City: "New York" },
-  { Name: "Bob", Age: 30, City: "London" },
-  { Name: "Charlie", Age: 28, City: "Paris" },
-];
-
-data.forEach((item) => {
-  const row = document.createElement("tr");
-
-  headers.forEach((header) => {
-    const td = document.createElement("td");
-    td.textContent = item[header];
-    row.appendChild(td);
+  resetButton.addEventListener("click", function (e) {
+    const confirmReset = confirm("Möcten Sie das Formular zurücksetzen?");
+    if (!confirmReset) {
+      e.preventDefault(); // cancel the reset
+    } else {
+      submitBtn.disabled = false;
+      vorschauList.innerHTML = "";
+      tableContainer.innerHTML = "";
+      displayPreis.innerHTML = "";
+      displayQM.innerHTML = "";
+    }
   });
 
-  tbody.appendChild(row);
+  //* === Preistabelle generieren === */
+  const preisTable = document.createElement("table");
+  preisTable.border = "1";
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+  const headers = [
+    "Plattenstärke (mm)",
+    "Preis/m²",
+    "Preis",
+    "zzgl. Risse verfüllen 47,60 € / m²",
+    "zzgl. Reine Balken Aussenseiten <br> + 71,40 € / m²",
+    "zzgl. Risse verfüllen und Reine Balken Aussenseiten <br> + 47,60 € / m² <br> + 71,40 € / m²",
+  ];
+  // Platzhalter für Tabellekörper
+  headers.forEach((text) => {
+    const th = document.createElement("th");
+    th.textContent = text;
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  preisTable.appendChild(thead);
+  // Tabellekörper erzeugen
+  const tbody = document.createElement("tbody");
+  // Preis * QM
+  for (let i = 0; i < preisListe.length; i++) {
+    let staerkeKey = preisListe[i].key;
+    let staerkeValue = preisListe[i].value;
+    let jedePreis = parseFloat((qm * staerkeValue).toFixed(2));
+    //console.log(jedePreis);
+    const row = document.createElement("tr");
+
+    for (let j = 0; j < headers.length; j++) {
+      const header = headers[j];
+      const td = document.createElement("td");
+      //td.textContent = jedePreis;
+      //row.appendChild(td);
+      switch (j) {
+        case 0:
+          td.textContent = staerkeKey;
+          row.appendChild(td);
+          break;
+        case 1:
+          td.textContent = staerkeValue;
+          row.appendChild(td);
+          break;
+        case 2:
+          td.textContent = jedePreis;
+          row.appendChild(td);
+          break;
+        case 3:
+          td.textContent = (jedePreis + rissePreis).toFixed(2);
+          row.appendChild(td);
+          break;
+        case 4:
+          td.textContent = (jedePreis + balkenPreis).toFixed(2);
+          row.appendChild(td);
+          break;
+        case 5:
+          td.textContent = (jedePreis + rissePreis + balkenPreis).toFixed(2);
+          row.appendChild(td);
+          break;
+        default:
+          console.log(`Kein Zugriff`);
+      }
+    }
+
+    tbody.appendChild(row);
+  }
+
+  preisTable.appendChild(tbody);
+
+  tableContainer.appendChild(preisTable);
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "gerechnet";
 });
-
-table.appendChild(tbody);
-
-// 4. Append table to the DOM (e.g. inside a div with id="tableContainer")
-document.getElementById("tableContainer").appendChild(table);

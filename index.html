@@ -79,19 +79,19 @@
 				<label for="Rissanteil">Rissanteil :</label>
 				<sup class="erforderlich">*</sup>
 					<div>
-						<input type="radio" name="Rissanteil" value="Leich" />
+						<input type="radio" name="Rissanteil" value="Leich" required />
 						<label for="Leich">Leichter Rissanteil</label>
 					</div>
 					<div>
-						<input type="radio" name="Rissanteil" value="Normal" />
+						<input type="radio" name="Rissanteil" value="Normal" required/>
 						<label for="Normal">Normaler Rissanteil</label>
 					</div>
 			</fieldset>
 			
 			<br>
 
-			<input type="checkbox" id="RBA" name="RBA" />
-			<label for="RBA"> mit "Reine Balken Außenseiten" kombiniert werden <strong>(Preis-Aufschlag 71,40 €/m²)</strong></label>
+			<input type="checkbox" id="Balken" name="Balken" />
+			<label for="Balken"> mit "Reine Balken Außenseiten" kombiniert werden <strong>(Preis-Aufschlag 71,40 €/m²)</strong></label>
 			<span></span>
 			<br><br>
 
@@ -99,26 +99,30 @@
 			<!-- Farbe -->
 			<fieldset>
 				<label for="Farbe">Farbe :</label>
+					<sup class="erforderlich">*</sup>
 					<div>
-						<input type="radio" name="Farbe" value="Mattlack" />
+						<input type="radio" name="Farbe" value="Mattlack" required />
 						<label for="Mattlack">Mattlack</label>
 					</div>
 					<div>
-						<input type="radio"  name="Farbe" value="Hartöl" />
+						<input type="radio" name="Farbe" value="Hartöl" required/>
 						<label for="Hartöl">Hartöl</label>
 					</div>
 			</fieldset>
 
 			<br>
 
-			<input type="checkbox" id="SV" name="SV" />
-			<label for="SV"> Äste/Risse schwarz verfüllt <strong>(Preis-Aufschlag 47,60 €/m²)</strong></label>
+			<input type="checkbox" id="Risse" name="Risse" />
+			<label for="Risse"> Äste/Risse schwarz verfüllt <strong>(Preis-Aufschlag 47,60 €/m²)</strong></label>
 			<span></span>
 
 		</fieldset>
 		
 		<br>
-		<button type="submit" id="Rechnen">Rechnen</button>
+		<button type="submit" id="submitBtn">rechnen</button>
+		<br>
+		<br>
+		<button type="reset" id="resetBtn">zurücksetzen</button>
 	</form>
 
 	<!-- Zusammenfassung -->
@@ -129,10 +133,11 @@
 	</ul>
 	<p>(*, **) mit Preis-Aufschlag</p>
 	<p>----------------------</p>
-	<h3>Fläche : <span id="displayQM"></span> m<sup>2</sup></h3>
-	
-	<h3>Preis : <span id="displayPreis"></span> €</h3>
 
+	<p>Preis : <span id="displayPreis"></span></p>
+	<p>für <span id="displayQM"></span> m<sup>2</sup></p>
+	<p>----------------------</p>
+	<br>
 	<div id="tableContainer"></div>
 
 	<script src="js/main.js"></script>

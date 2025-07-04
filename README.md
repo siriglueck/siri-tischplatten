@@ -4,11 +4,11 @@
 ## Eingaben
 **Auf der Website kann der Kunde..**
 
-- [ ] die Maße 
+- [x] die Maße 
     1. Breite (maximal 180cm)
     2. Länge (maximal 450cm)
     3. Strärke (2,5 - 12 cm) <small>- siehe die Tabelle unter*</small>
-- [ ] der Form (nur 1 Option möglich)
+- [x] der Form (nur 1 Option möglich)
     1. Gerade Kannte
     2. Facettenkante
     3. Mit Baumkane
@@ -19,11 +19,11 @@
     8. Schiffsbodenmuster
     9. Flechmuster
     10. Rautenmuster
-- [ ] Rissanteil (nur 1 Option möglich)
+- [x] Rissanteil (nur 1 Option möglich)
     1. Leichter Rissanteil
     2. Normaler Rissanteil
     >kann jeweils mit "Reine Balken Außenseiten" kombiniert werden (Preis-Aufschlag 71,40 €/m²)
-- [ ] Farbe (nur 1 Option möglich)
+- [x] Farbe (nur 1 Option möglich)
     1. Mattlack
     2. Hartöl
     >Äste/Risse schwarz verfüllt (Preis-Aufschlag 47,60 €/m²)
