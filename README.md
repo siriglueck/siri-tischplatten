@@ -26,7 +26,7 @@
 - [x] Farbe (nur 1 Option möglich)
     1. Mattlack
     2. Hartöl
-    >Äste/Risse schwarz verfüllt (Preis-Aufschlag 47,60 €/m²)
+    3. Äste/Risse schwarz verfüllt (Preis-Aufschlag 47,60 €/m²)
 
 
 **der anzufertigenden Tischplatte eingeben**

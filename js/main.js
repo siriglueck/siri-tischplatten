@@ -42,14 +42,16 @@ const preisListe = [
 /* === Rechnen geklickt werden === */
 form1.addEventListener("submit", function (event) {
   // Verhindern, dass die Seite aktualisiert wird
-  event.preventDefault(); 
-  
+  event.preventDefault();
+
   /* === DOM Zugriff & Variablen 2/2 === */
   const inputBreite = Breite.value;
   const inputLaenge = Laenge.value;
   const selectedStaerke = Staerke.value;
   const tischItem = tischFormList.find((item) => item.key === tischForm.value);
-  const sPreis = preisListe.find((item) => item.key === parseInt(selectedStaerke));
+  const sPreis = preisListe.find(
+    (item) => item.key === parseInt(selectedStaerke)
+  );
 
   const Rissanteil = document.querySelector('input[name="Rissanteil"]:checked');
   const selectedRissanteil = Rissanteil.value;
@@ -63,10 +65,12 @@ form1.addEventListener("submit", function (event) {
   const balkenPreis = qm * 71.4;
 
   let preisBerechnung;
-  if (qm < 1) { preisBerechnung = qm * sPreis.value * 1.05; } 
-  else { preisBerechnung = qm * sPreis.value; }
+  if (qm < 1) {
+    preisBerechnung = qm * sPreis.value * 1.05;
+  } else {
+    preisBerechnung = qm * sPreis.value;
+  }
 
-  
   displayPreis.innerText = preisBerechnung.toFixed(2) + " €";
   displayQM.innerText = qm.toFixed(2);
 
@@ -75,7 +79,7 @@ form1.addEventListener("submit", function (event) {
     newListItem.textContent = text + input + einheit;
     vorschauList.appendChild(newListItem);
   }
-  
+
   /* === zurücksetzen === */
   resetButton.addEventListener("click", function (e) {
     const confirmReset = confirm("Möcten Sie das Formular zurücksetzen?");
@@ -98,11 +102,11 @@ form1.addEventListener("submit", function (event) {
   const headerRow = document.createElement("tr");
   const headers = [
     "Plattenstärke (mm)",
-    "Preis/m²",
+    "Grundpreis/m²",
     "Preis",
     "zzgl. Risse verfüllen",
     "zzgl. Reine Balken Aussenseiten",
-    "zzgl. Risse verfüllen und Reine Balken Aussenseiten"
+    "zzgl. Risse verfüllen und Reine Balken Aussenseiten",
   ];
   // Platzhalter für Tabellekörper
   headers.forEach((text) => {
@@ -169,14 +173,13 @@ form1.addEventListener("submit", function (event) {
   addListItem("Tischform : ", tischItem.value, "");
   addListItem("Rissanteil : ", selectedRissanteil, "");
   if (balkenCheckbox.checked) {
-    addListItem("mit Reine Balken Außenseiten*", "", "");
+    addListItem("mit Reine Balken Außenseiten **", "", "");
     displayPreis.innerHTML += "<br> + " + balkenPreis + " € zzgl. Balken";
   }
   addListItem("Finish : ", selectedFinish, "");
   if (risseCheckbox.checked) {
     displayPreis.innerHTML += "<br> + " + rissePreis + " € zzgl. Risse";
   }
-
 
   submitBtn.disabled = true;
   submitBtn.textContent = "gerechnet";
