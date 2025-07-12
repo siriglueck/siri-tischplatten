@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 
 <head>
 	<meta charset="UTF-8">
@@ -9,59 +9,90 @@
 	<title>Tischplatten-Konfigurator</title>
 </head>
 
-<body class="bg-gradient-to-tl from-orange-300 to-yellow-100">
-	<h1 class="text-3xl tracking-wide font-bold text-center"> Tischplatten-Konfigurator </h1>
-	<div class="flex justify-center m-10 border-0 rounded-lg shadow-lg bg-white">
-			<!-- Form -->
-			<div class="eingabe border-0 p-10">
+<body>
+
+	<div class="flex align-center justify-center bg-gradient-to-tl from-orange-300 to-yellow-100 h-screen">
+		<!-- cardBody -->
+		<div id="cardBody"
+			 class="my-6 mx-16 w-6/12 
+			 		border-0 rounded-lg shadow-xl bg-white 
+			 		dark:bg-gray-800 dark:text-white 
+			 		transition-all duration-800 ease-out">
+			<!-- header -->
+			<div class="h-50 mb-5 rounded-t-lg py-14 bg-[url(images/table-workshop.webp)] bg-cover bg-center">
+				<h1 class="text-3xl py-6 tracking-wider font-bold text-center uppercase text-shadow-lg"> Tischplatten-Konfigurator </h1>
+			</div>
+			<!-- main -->
+			<div class="flex justify-center px-10">
+
+				<!-- Form -->
+				<div class="eingabe border-0">
 					<form action="#" id="form1">
-						<fieldset>
-							<legend class="font-bold">Größe</legend>
-							<br>
+
+						<!-- Größe -->
+						<p class="font-bold">Größe</p>
+						<div class="flex justify-between my-3 px-5">
 							<!-- Breite -->
-							<label for="Breite">Breite :</label>
-							<input type="number" id="Breite" name="Breite" min="0" max="180" placeholder="0-180" required class="flex-1 p-0.5 bg-gray-200 border border-gray-300 rounded text-right" />
-							<span> cm.</span>
-							<sup class="font-bold text-red-600">*</sup>
-							<br><br>
-							<!-- Länge -->
-							<label for="Laenge">Länge :</label>
-							<input type="number" id="Laenge" name="Laenge" min="0" max="450" placeholder="0-450" required class="flex-1 p-0.5 bg-gray-200 border border-gray-300 rounded text-right"/>
-							<span> cm.</span>
-							<sup class="font-bold text-red-600">*</sup>
-		
-							<br><br>
-						</fieldset>
-		
-						<fieldset>
-							<legend class="font-bold">Stil</legend>
-		
-							<!-- Tischplatte -->
-							<div class="formularSektion">
-								<label for="Tischplatte">Tischplatte :</label>
+							<div>
+								<label for="Breite">Breite :</label>
+								<input type="number" id="Breite" name="Breite" min="0" max="180" placeholder="0-180" required 
+									   class="flex-1 p-0.5 rounded text-right 
+									   bg-gray-200 dark:bg-gray-900
+									   focus:outline-2 focus:outline-offset-2 focus:outline-orange-400" />
+								<span> cm.</span>
 								<span class="font-bold text-red-600">*</span>
-								<div>
-									<input type="radio" name="Tischplatte" value="vollmassiv" required class="accent-orange-500"/>
-									<label for="Tischplatte">vollmassiv</label>
-								</div>
-								<div>
-									<input type="radio" name="Tischplatte" value="gedoppelt" required />
-									<label for="Tischplatte">optisch gedoppelt <strong>(-25%)</strong></label>
-								</div>
-								<br>
-								<!-- Stärke -->
-								<label for="Straerke">Plattenstärke :</label>
-								<select name="Staerke" id="Staerke" required class="flex-1 p-0.5 bg-gray-200 border border-gray-300 rounded text-right">
-									<option value="" disabled selected> - bitte auswählen - </option>
-								</select>
-								<span> mm.</span>
-								<sup class="font-bold text-red-600">*</sup>
+
 							</div>
-							<br><br>
-							<!-- Form & Farbe -->
-							<div class="formularSektion">
+							<!-- Länge -->
+							<div>
+								<label for="Laenge">Länge :</label>
+								<input type="number" id="Laenge" name="Laenge" min="0" max="450" placeholder="0-450" required 
+									   class="flex-1 p-0.5 rounded text-right 
+									   bg-gray-200 dark:bg-gray-900
+									   focus:outline-2 focus:outline-offset-2 focus:outline-orange-400" />
+								<span> cm.</span>
+								<span class="font-bold text-red-600">*</span>
+							</div>
+						</div>
+
+
+						<!-- Stil der Tischplatte -->
+						<label for="Tischplatte" class="font-bold">Stil der Tischplatte :</label>
+						<span class="font-bold text-red-600">*</span>
+						
+						<div class="flex justify-between my-5 px-5">
+							<div>
+								<input type="radio" name="Tischplatte" value="vollmassiv" required class="accent-orange-400" />
+								<label for="Tischplatte">vollmassiv</label>
+							</div>
+							<div>
+								<input type="radio" name="Tischplatte" value="gedoppelt" required class="accent-orange-400"/>
+								<label for="Tischplatte">optisch gedoppelt <small>(-25%)</small></label>
+							</div>
+							<br>
+							<!-- Stärke -->
+							<div class="flex">
+								<label for="Staerke">Stärke :&nbsp;&nbsp;</label>
+								<select name="Staerke" id="Staerke" required
+									class="flex-1 p-0.5 rounded text-right 
+									bg-gray-200 dark:bg-gray-900
+									focus:outline-2 focus:outline-offset-2 focus:outline-orange-400" />
+									<option value="" disabled selected> --- </option>
+								</select>
+								<span>&nbsp;mm.</span>
+								<span class="font-bold text-red-600">*</span>
+							</div>
+						</div>
+
+						<!-- Form & Farbe -->
+						<div class="flex justify-between my-5 px-5">
+							<!-- Form -->
+							<div>
 								<label for="tischForm">Form :</label>
-								<select name="tischForm" id="tischForm" required class="flex-1 p-0.5 bg-gray-200 border border-gray-300 rounded text-center">
+								<select name="tischForm" id="tischForm" required
+									class="flex-1 p-0.5 rounded text-center 
+									bg-gray-200 dark:bg-gray-900
+									focus:outline-2 focus:outline-offset-2 focus:outline-orange-400" />
 									<option value="" disabled selected> - bitte auswählen - </option>
 									<option value="F1">Gerade Kannte</option>
 									<option value="F2">Facettenkante</option>
@@ -75,10 +106,15 @@
 									<option value="F10">Rautenmuster</option>
 								</select>
 								<span class="font-bold text-red-600">*</span>
-								<br><br>
-								<!-- Farbe -->
+							</div>
+							
+							<!-- Farbe -->
+							<div>
 								<label for="tischFarbe">Farbe :</label>
-								<select name="tischFarbe" id="tischFarbe" required class="bg-gray-200 border-0 rounded text-center">
+								<select name="tischFarbe" id="tischFarbe" required
+									class="flex-1 p-0.5 rounded text-right 
+									   bg-gray-200 dark:bg-gray-900
+									   focus:outline-2 focus:outline-offset-2 focus:outline-orange-400" />
 									<option value="" disabled selected> - bitte auswählen - </option>
 									<option value="1">Natura</option>
 									<option value="2">Alte Eiche</option>
@@ -89,73 +125,82 @@
 									<option value="7">Weiss gekälkt</option>
 								</select>
 								<span class="font-bold text-red-600">*</span>
-								<br><br>
 							</div>
+							
+						</div>
+						<div class="flex justify-between my-3">
 							<!-- Rissanteil -->
-							<div class="formularSektion">
-								<p>Rissanteil : <span class="font-bold text-red-600">*</span></p>
+							<div class="my-3 px-5">
+								<p class="font-bold">Rissanteil : <span class="font-bold text-red-600">*</span></p>
 								<div>
-									<input type="radio" name="Rissanteil" value="ohne-rissenanteil" required />
+									<input type="radio" name="Rissanteil" value="ohne-rissenanteil" required class="accent-orange-400"/>
 									<label for="Ohne">Ohne Rissanteil</label>
 								</div>
 								<div>
-									<input type="radio" name="Rissanteil" value="leichter-rissanteil" required />
+									<input type="radio" name="Rissanteil" value="leichter-rissanteil" required class="accent-orange-400"/>
 									<label for="Leich">Leichter Rissanteil</label>
 								</div>
 								<div>
-									<input type="radio" name="Rissanteil" value="normaler-rissanteil" required />
+									<input type="radio" name="Rissanteil" value="normaler-rissanteil" required class="accent-orange-400"/>
 									<label for="Normal">Normaler Rissanteil</label>
 								</div>
 								<br>
-								<div>
-									<input type="checkbox" id="Balken" name="Balken" value="reine-balken-aussenseiten" />
-									<label for="Balken"> mit "Reine Balken Außenseiten" kombiniert werden <strong>(Preis-Aufschlag 71,40€/m²)</strong></label>
-								</div>
 							</div>
-		
-							<br>
-		
+						
 							<!-- Finish -->
-							<div class="formularSektion">
-								<p>Finish : <span class="font-bold text-red-600">*</span></p>
+							<div class="my-3 px-5">
+								<p class="font-bold">Finish : <span class="font-bold text-red-600">*</span></p>
 								<div>
-									<input type="radio" name="Finish" value="Mattlack" required />
+									<input type="radio" name="Finish" value="Mattlack" required class="accent-orange-400"/>
 									<label for="Mattlack">Mattlack</label>
 								</div>
 								<div>
-									<input type="radio" name="Finish" value="Hartöl" required />
+									<input type="radio" name="Finish" value="Hartöl" required class="accent-orange-400"/>
 									<label for="Hartöl">Hartöl</label>
 								</div>
 								<div>
-									<input type="radio" name="Finish" value="Äste/Risse schwarz verfüllt **" id="Risse" required />
-									<label for="Risse"> Äste/Risse schwarz verfüllt <strong>(Preis-Aufschlag 47,60 €/m²)</strong>
+									<input type="radio" name="Finish" value="Äste/Risse schwarz verfüllt **" id="Risse"
+										required class="accent-orange-400"/>
+									<label for="Risse"> Äste/Risse schwarz verfüllt <br>(Preis-Aufschlag 47,60 €/m²)</label>
 								</div>
 							</div>
-		
-							<br>
-							</label>
-						</fieldset>
-
-						<button type="submit" id="submitBtn" class="text-white bg-gradient-to-br from-orange-600 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 shadow border-2 cursor-pointer">Rechnen</button>
-
-
+							
+						</div>
+						<div class="my-6">
+							<input type="checkbox" id="Balken" name="Balken" value="reine-balken-aussenseiten" class="accent-orange-400"/>
+							<label for="Balken"> mit "Reine Balken Außenseiten" kombiniert werden
+								<strong>(Preis-Aufschlag 71,40€/m²)</strong></label>
+						</div>
+						
+						<button type="submit" id="submitBtn"
+							class="text-white bg-gradient-to-br from-orange-600 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 shadow border-2 cursor-pointer">
+							Rechnen
+						</button>
 					</form>
-			</div>
-		
-			<!-- Zusammenfassung -->
-			<div class="ausgabe p-10 border-l-2 border-gray-100">
-				<h3 id="ergTitel"></h3>
-				<div>
-					<ul id="vorschauOhneBild" class="flex"></ul>
-					<ul id="vorschau" class="flex wrap"></ul>
+
+						
+					
+					
 				</div>
-				<div> <span id="displayPreis"></span></div>
-				<div id="displayQM"></div>
-				<div id="displayGesamtpreis"></div>
-				<h3 id="tabelleTitel"></h3>
-				<div id="tableContainer"></div>
+				
+				<!-- Zusammenfassung -->
+				<div class="px-5">
+					<h3 id="ergTitel" class="font-bold"></h3>
+					<div>
+						<ul id="vorschauOhneBild" class="flex"></ul>
+						<ul id="vorschau" class="flex"></ul>
+					</div>
+					<div> <span id="displayPreis"></span></div>
+					<div id="displayQM"></div>
+					<div id="displayGesamtpreis"></div>
+					<h3 id="tabelleTitel"></h3>
+					<div id="tableContainer"></div>
+				</div>
+				
 			</div>
-	
+			<p class="text-center py-4 text-gray-400"><img src="images/siri-logo-icon.png" alt="siri-logo" class="inline w-10">powered by SiriGlück </p>
+			
+		</div>
 	</div>
 
 	<script src="js/main.js"></script>

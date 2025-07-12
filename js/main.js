@@ -4,18 +4,19 @@ const Breite = document.getElementById("Breite");
 const Laenge = document.getElementById("Laenge");
 const Staerke = document.getElementById("Staerke");
 const ergTitel = document.getElementById("ergTitel");
+const cardBody = document.getElementById("cardBody");
+const displayQM = document.getElementById("displayQM");
 const tischForm = document.getElementById("tischForm");
 const tischFarbe = document.getElementById("tischFarbe");
-const displayQM = document.getElementById("displayQM");
-const risseCheckbox = document.getElementById("Risse");
 const resetButton = document.getElementById("resetBtn");
-const vorschauList = document.getElementById("vorschau");
-const balkenCheckbox = document.getElementById("Balken");
 const displayPreis = document.getElementById("displayPreis");
+const vorschauList = document.getElementById("vorschau");
 const tabelleTitel = document.getElementById("tabelleTitel");
+const risseCheckbox = document.getElementById("Risse");
+const balkenCheckbox = document.getElementById("Balken");
 const tableContainer = document.getElementById("tableContainer");
-const vorschauListOhneBild = document.getElementById("vorschauOhneBild");
 const displayGesamtpreis = document.getElementById("displayGesamtpreis");
+const vorschauListOhneBild = document.getElementById("vorschauOhneBild");
 
 const tischFormList = [
   { key: "F1", value: "Gerade Kannte" },
@@ -58,13 +59,26 @@ const preisListeGedoppelt = [
 
 let preisListe;
 
+// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+document.documentElement.classList.toggle(
+  "dark",
+  localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+);
+// Whenever the user explicitly chooses light mode
+localStorage.theme = "light";
+// Whenever the user explicitly chooses dark mode
+localStorage.theme = "dark";
+// Whenever the user explicitly chooses to respect the OS preference
+localStorage.removeItem("theme");
+
 addEventListener("DOMContentLoaded", () => {
   // Add event listeners to radio buttons
   document.querySelectorAll('input[name="Tischplatte"]').forEach((radio) => {
     radio.addEventListener("change", function () {
       // Clear previous options
-      Staerke.innerHTML =
-        '<option value="" disabled selected> - bitte auswählen - </option>';
+      Staerke.innerHTML = '<option value="" disabled selected> -- </option>';
 
       // Add new options based on selected value
       const selected = this.value;
@@ -82,6 +96,8 @@ addEventListener("DOMContentLoaded", () => {
 
   /* === Rechnen geklickt werden === */
   form1.addEventListener("submit", function (event) {
+    cardBody.classList.remove("w-6/12");
+    cardBody.classList.add("w-full");
     // Verhindern, dass die Seite aktualisiert wird
     event.preventDefault();
     vorschauListOhneBild.innerHTML = "";
@@ -150,15 +166,17 @@ addEventListener("DOMContentLoaded", () => {
         eingabe == inputLaenge ||
         eingabe == selectedStaerke
       ) {
-        newListItem.innerHTML = text + "<br>" + eingabe + einheit;
+        newListItem.innerHTML = text + eingabe + einheit;
         vorschauListOhneBild.appendChild(newListItem);
       } else {
-        newListItem.innerHTML = text + "<br>" + eingabe + einheit;
+        newListItem.innerHTML = text + eingabe + einheit;
         vorschauList.appendChild(newListItem);
+        newListItem.classList.add("overflow-hidden", "border");
       }
     }
 
     /* === Preistabelle erzeugen === */
+    /*
     const preisTable = document.createElement("table");
     preisTable.border = "1";
     const thead = document.createElement("thead");
@@ -176,6 +194,7 @@ addEventListener("DOMContentLoaded", () => {
       const th = document.createElement("th");
       th.textContent = text;
       headerRow.appendChild(th);
+      th.classList.add("border", "border-gray-300");
     });
 
     thead.appendChild(headerRow);
@@ -206,10 +225,12 @@ addEventListener("DOMContentLoaded", () => {
           case 0:
             td.textContent = staerkeKey;
             row.appendChild(td);
+            td.classList.add("border", "border-gray-300");
             break;
           case 1:
             td.textContent = staerkeValue;
             row.appendChild(td);
+            td.classList.add("border", "border-gray-300");
             break;
           case 2:
             td.textContent = jedePreis.toLocaleString("de-DE", {
@@ -217,6 +238,7 @@ addEventListener("DOMContentLoaded", () => {
               maximumFractionDigits: 2,
             });
             row.appendChild(td);
+            td.classList.add("border", "border-gray-300");
             break;
           case 3:
             td.textContent = (jedePreis + rissePreis).toLocaleString("de-DE", {
@@ -224,6 +246,7 @@ addEventListener("DOMContentLoaded", () => {
               maximumFractionDigits: 2,
             });
             row.appendChild(td);
+            td.classList.add("border", "border-gray-300");
             break;
           case 4:
             td.textContent = (jedePreis + balkenPreis).toLocaleString("de-DE", {
@@ -231,6 +254,7 @@ addEventListener("DOMContentLoaded", () => {
               maximumFractionDigits: 2,
             });
             row.appendChild(td);
+            td.classList.add("border", "border-gray-300");
             break;
           case 5:
             td.textContent = (
@@ -242,6 +266,7 @@ addEventListener("DOMContentLoaded", () => {
               maximumFractionDigits: 2,
             });
             row.appendChild(td);
+            td.classList.add("border", "border-gray-300");
             break;
           default:
             console.log(`Kein Zugriff`);
@@ -250,26 +275,34 @@ addEventListener("DOMContentLoaded", () => {
       tbody.appendChild(row);
     }
     preisTable.appendChild(tbody);
-    tableContainer.appendChild(preisTable);
+    preisTable.classList.add(
+      "border",
+      "border-gray-300",
+      "border-collapse",
+      "text-center",
+      "inset-shadow-indigo-500"
+    );
+    tableContainer.appendChild(preisTable); 
+    */
 
     /* === Vorschau sektion === */
     addListItem("Breite : ", inputBreite, " cm.");
     addListItem("Länge : ", inputLaenge, " cm.");
     addListItem("Stärke : ", selectedStaerke, " mm.");
-    
+
     // Tischform
     addListItem("Tischform : ", tischItem.value, "");
-    
+
     //Tischfarbe
     addListItem("Tischfarbe : ", tischFarbe.value, "");
 
-
     addListItem("Rissanteil : ", selectedRissanteil, "");
     const img = document.createElement("img");
-      const vorschauBildPlatz = document.querySelectorAll("li");
-      img.src = "images" + "/Rissanteil/" + selectedRissanteil + ".jpg";
-      img.alt = selectedRissanteil;
-      vorschauBildPlatz[4].appendChild(img);
+    const vorschauBildPlatz = document.querySelectorAll("li");
+    img.src = "images" + "/Rissanteil/" + selectedRissanteil + ".jpg";
+    img.alt = selectedRissanteil;
+    img.classList.add("w-52", "h-52", "object-cover");
+    vorschauBildPlatz[4].appendChild(img);
 
     if (balkenCheckbox.checked) {
       addListItem("**", "mit Reine Balken Außenseiten", "");
@@ -280,13 +313,13 @@ addEventListener("DOMContentLoaded", () => {
       const vorschauBildPlatz = document.querySelectorAll("li");
       img.src = "images" + "/Rissanteil/" + balkenCheckbox.value + ".jpg";
       img.alt = balkenCheckbox.value;
+      img.classList.add("w-52", "h-52", "object-cover");
       vorschauBildPlatz[5].appendChild(img);
     }
     if (risseCheckbox.checked) {
       addListItem("Finish : ", selectedFinish, "");
       gesamtPreis += rissePreis;
       displayPreis.innerHTML += "<br> + " + rissePreisDE + " € zzgl. Risse";
-      
     }
     console.log(gesamtPreis);
     displayGesamtpreis.innerHTML =
