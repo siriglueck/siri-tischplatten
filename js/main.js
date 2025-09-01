@@ -1,8 +1,9 @@
 /* === DOM Zugriff & Variablen 1/2 === */
+const ausgabeSpalte = document.getElementById("ausgabe");
 const form1 = document.getElementById("form1");
-constbBreite = document.getElementById(bbreite");
-constlLaenge = document.getElementById(llaenge");
-const Stasrke = document.getElementById("stserke");
+const breite = document.getElementById("breite");
+const laenge = document.getElementById("laenge");
+const staerke = document.getElementById("staerke");
 const ergTitel = document.getElementById("ergTitel");
 const tischForm = document.getElementById("tischForm");
 const tischFarbe = document.getElementById("tischFarbe");
@@ -63,7 +64,7 @@ addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('input[name="Tischplatte"]').forEach((radio) => {
     radio.addEventListener("change", function () {
       // Clear previous options
-      Staerke.innerHTML =
+      staerke.innerHTML =
         '<option value="" disabled selected> - bitte auswählen - </option>';
 
       // Add new options based on selected value
@@ -75,7 +76,7 @@ addEventListener("DOMContentLoaded", () => {
         const option = document.createElement("option"); // สร้าง <option>
         option.value = value; // กำหนด value
         option.textContent = value; // กำหนดข้อความที่แสดง
-        Staerke.appendChild(option); // เพิ่มลงใน <select>
+        staerke.appendChild(option); // เพิ่มลงใน <select>
       }
     });
   });
@@ -89,11 +90,12 @@ addEventListener("DOMContentLoaded", () => {
     tableContainer.innerHTML = "";
     displayPreis.innerHTML = "";
     displayQM.innerHTML = "";
+    ausgabeSpalte.classList.remove("disabled");
 
     /* === DOM Zugriff & Variablen 2/2 === */
-    const inpubBreite = breite.value;
-    const inpulLaenge = laenge.value;
-    const selectedstaerke = staerke.value;
+    const inputBreite = breite.value;
+    const inputLaenge = laenge.value;
+    const selectedStaerke = staerke.value;
     const tischItem = tischFormList.find(
       (item) => item.key === tischForm.value
     );
@@ -101,7 +103,7 @@ addEventListener("DOMContentLoaded", () => {
       (item) => item.key === parseInt(selectedStaerke)
     );
 
-    const Rissanteil = document.querySelector(
+    const rissAnteil = document.querySelector(
       'input[name="Rissanteil"]:checked'
     );
     const selectedRissanteil = rissAnteil.value;
@@ -111,8 +113,8 @@ addEventListener("DOMContentLoaded", () => {
 
     /* === Rechnungen === */
     const qm = (inputBreite / 100) * (inputLaenge / 100);
-    const rissePreise= qm * 47.6;
-    const balkenPreis = sm * 71.4;
+    const rissePreis = qm * 47.6;
+    const balkenPreis = qm * 71.4;
     const qmDE = qm.toLocaleString("de-DE", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
@@ -146,9 +148,9 @@ addEventListener("DOMContentLoaded", () => {
     function addListItem(text, eingabe, einheit) {
       const newListItem = document.createElement("li");
       if (
-        eingabe == inpubBreite ||
-        eingabe == inpulLaenge ||
-        eingabe == selectedstaerke
+        eingabe == inputBreite ||
+        eingabe == inputLaenge ||
+        eingabe == selectedStaerke
       ) {
         newListItem.innerHTML = text + "<br>" + eingabe + einheit;
         vorschauListOhneBild.appendChild(newListItem);
@@ -253,23 +255,22 @@ addEventListener("DOMContentLoaded", () => {
     tableContainer.appendChild(preisTable);
 
     /* === Vorschau sektion === */
-    addListItem("Breite : ", inpubBreite, " cm.");
+    addListItem("Breite : ", inputBreite, " cm.");
     addListItem("Länge : ", inputLaenge, " cm.");
-    addListItem("Stäske : ", selectedstaerke, " mm.");
-    
+    addListItem("Stäske : ", selectedStaerke, " mm.");
+
     // Tischform
     addListItem("Tischform : ", tischItem.value, "");
-    
+
     //Tischfarbe
     addListItem("Tischfarbe : ", tischFarbe.value, "");
 
-
     addListItem("Rissanteil : ", selectedRissanteil, "");
     const img = document.createElement("img");
-      const vorschauBildPlatz = document.querySelectorAll("li");
-      img.src = "images" + "/Rissanteil/" + selectedRissanteil + ".jpg";
-      img.alt = selectedRissanteil;
-      vorschauBildPlatz[4].appendChild(img);
+    const vorschauBildPlatz = document.querySelectorAll("li");
+    img.src = "images" + "/Rissanteil/" + selectedRissanteil + ".jpg";
+    img.alt = selectedRissanteil;
+    vorschauBildPlatz[4].appendChild(img);
 
     if (balkenCheckbox.checked) {
       addListItem("**", "mit Reine Balken Außenseiten", "");
@@ -286,7 +287,6 @@ addEventListener("DOMContentLoaded", () => {
       addListItem("Finish : ", selectedFinish, "");
       gesamtPreis += rissePreis;
       displayPreis.innerHTML += "<br> + " + rissePreisDE + " € zzgl. Risse";
-      
     }
     console.log(gesamtPreis);
     displayGesamtpreis.innerHTML =
@@ -295,5 +295,38 @@ addEventListener("DOMContentLoaded", () => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       });
+  });
+
+  /* === Toggle Theme === */
+  const toggleBtn = document.getElementById("toggleBtn");
+  const icon = document.getElementById("icon");
+  const label = document.getElementById("label");
+  const html = document.documentElement;
+
+  // ฟังก์ชันอัปเดต icon และข้อความ
+  function updateIcon() {
+    if (html.classList.contains("dark")) {
+      icon.textContent = "☀️";
+      label.textContent = "Light Mode";
+    } else {
+      icon.textContent = "🌙";
+      label.textContent = "Dark Mode";
+    }
+  }
+
+  // โหลดสถานะจาก localStorage
+  if (localStorage.getItem("theme") === "dark") {
+    html.classList.add("dark");
+  }
+  updateIcon();
+
+  // สลับโหมดเมื่อกดปุ่ม
+  toggleBtn.addEventListener("click", () => {
+    html.classList.toggle("dark");
+    localStorage.setItem(
+      "theme",
+      html.classList.contains("dark") ? "dark" : "light"
+    );
+    updateIcon();
   });
 });

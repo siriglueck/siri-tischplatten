@@ -1,20 +1,19 @@
 body {
-	margin: 0;
-	padding: 0 2%;
-	background-color: gainsboro;
+  margin: 0;
+  padding: 0 2%;
+  background-color: gainsboro;
 }
 
-ul
-{
-    list-style-type: none;
+ul {
+  list-style-type: none;
 }
 
 li {
-	padding: 5px;
+  padding: 5px;
 }
 
 img {
-  width: 150px;       
+  width: 150px;
   height: 150px;
   display: flex;
   align-items: center;
@@ -25,48 +24,53 @@ img {
 }
 
 #tableContainer {
-	text-align: center;
+  text-align: center;
 }
 
 .roteStern {
-	color: red;
+  color: red;
 }
 
 .flex {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .wrap {
-	flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .eingabe {
-	margin: 0 5%;
-	width: 90%;
+  margin: 0 5%;
+  width: 90%;
 }
 
 .ausgabe {
-	margin: 0 5%;
-	width: 90%;
+  margin: 0 5%;
+  width: 90%;
+}
+
+.disabled {
+  display: none;
 }
 
 @media screen and (width > 768px) {
   .flex {
-	display: flex;
-	flex-wrap: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
   }
 
   .eingabe {
-	padding: 0;
-	width: 40%;
-	margin: 0 0 0 2rem;
+    padding: 0;
+    width: 40%;
+    margin: 0 0 0 2rem;
   }
 
   .ausgabe {
-	padding: 0;
-	width: 60%;
-	margin: 0 2rem;
+    padding: 0;
+    width: 60%;
+    margin: 0 2rem;
   }
-
 }

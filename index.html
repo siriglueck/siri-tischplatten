@@ -5,34 +5,113 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tischplatten-Konfigurator</title>
-	<link rel="stylesheet" href="css/style.css">
+	<!-- Tailwind CSS als CDN -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	
+	<!-- enable darkMode as a dark:class -->
+	<script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
 </head>
 
-<body>
-	<h1> Tischplatten-Konfigurator </h1>
+<body class="bg-gray-300 dark:bg-gray-900 text-black dark:text-white transition-colors duration-500">
 
-	<div class="flex">
+	
+	<div class="relative shadow mx-10 my-5 px-10 py-5 flex justify-center bg-white dark:bg-gray-800 rounded-lg">
+		
+		<div class="absolute mx-5 top-2 right-5 flex justify-end items-center">
+			
+
+
+				<label class="inline-flex items-center me-5 cursor-pointer">
+			<input id="toggleBtn" type="checkbox" value="" class="sr-only peer" checked>
+			<div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-yellow-300 dark:peer-focus:ring-yellow-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-400 dark:peer-checked:bg-yellow-400"></div>
+						<span id="icon">🌙</span>
+			<span id="label" class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Yellow</span>
+			</label>
+
+
+
+			<button id="toggleBtnDEL" class="flex items-center gap-2 p-2 bg-gray-300 dark:bg-gray-900 text-black dark:text-white rounded hover:bg-gray-200 transition">
+
+			<span id="labelDEL">Dark Mode</span>
+			</button>
+			
+			<button type="button" id="clearBtn" 
+			class="text-gray-400 hover:text-red-500 transition">
+			
+			
+
+
+			</button>
+		
+		</div>
+
+		
+
 		<!-- Form -->
 		<div class="eingabe">
+			
+			
+			<h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Tischplatten <span class="underline underline-offset-3 decoration-8 decoration-yellow-400 dark:decoration-yellow-400">Konfigurator</span></h1>
+			<p class="mb-10 text-sm font-normal text-gray-500 lg:text-xl dark:text-gray-400">Ein Projekt, das darauf abzielt, Tailwind CSS, VanillaJS und DOM-Manipulation zu üben</p>
+
+
 				<form action="#" id="form1">
 					<fieldset>
 						<legend>Größe</legend>
 						<br>
 						<!-- Breite -->
-						<label for="Breite">Breite :</label>
-						<input type="number" id="Breite" name="Breite" min="0" max="180" placeholder="0-180" required />
+						<label for="breite">Breite :</label>
+						<input type="number" id="breite" name="breite" min="0" max="180" placeholder="0-180" required />
 						<span> cm.</span>
 						<sup class="roteStern">*</sup>
 						<br><br>
 						<!-- Länge -->
 						<label for="Laenge">Länge :</label>
-						<input type="number" id="Laenge" name="Laenge" min="0" max="450" placeholder="0-450" required />
+						<input type="number" id="laenge" name="laenge" min="0" max="450" placeholder="0-450" required />
 						<span> cm.</span>
 						<sup class="roteStern">*</sup>
 				
 						<br><br>
 					</fieldset>
 				
+
+										
+					
+<form>
+    <div class="flex">
+        <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your Email</label>
+        <button id="dropdown-button" data-dropdown-toggle="dropdown" class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button">vollmassiv <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+  </svg></button>
+  <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+            <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shopping</a>
+            </li>
+			 </ul>
+        </div>
+       
+        <div class="relative w-full">
+
+			<select name="staerke" id="staerke" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Plattenstärke auswählen" required>
+								<option value="" disabled selected> - bitte auswählen - </option>
+							</select>
+							
+           
+        </div>
+		<span> mm.</span>
+    </div>
+</form>
+
+
+
+
+
+
 					<fieldset>
 						<legend>Stil</legend>
 				
@@ -50,8 +129,8 @@
 							</div>
 							<br>
 							<!-- Stärke -->
-							<label for="Staerke">Plattenstärke :</label>
-							<select name="Staerke" id="Staerke" required>
+							<label for="staerke">Plattenstärke :</label>
+							<select name="staerke" id="staerke" required>
 								<option value="" disabled selected> - bitte auswählen - </option>
 							</select>
 							<span> mm.</span>
@@ -92,8 +171,22 @@
 							<br><br>
 						</div>
 						<!-- Rissanteil -->
+						
+						<p>Rissanteil : <span class="roteStern">*</span></p>
+						<div class="inline-flex rounded-md shadow-xs" role="group">
+							<button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+								Ohne
+							</button>
+							<button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+								Leich
+							</button>
+							<button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+								Normal
+							</button>
+						</div>
+
+
 						<div class="formularSektion">
-							<p>Rissanteil : <span class="roteStern">*</span></p>
 							<div>
 								<input type="radio" name="Rissanteil" value="ohne-rissenanteil" required />
 								<label for="Ohne">Ohne Rissanteil</label>
@@ -127,21 +220,22 @@
 								<label for="Hartöl">Hartöl</label>
 							</div>
 							<div>
-								<input type="radio" name="Finish" value="Äste/Risse schwarz verfüllt **" id="Risse" required />
-								<label for="Risse"> Äste/Risse schwarz verfüllt <strong>(Preis-Aufschlag 47,60 €/m²)</strong>
+								<input type="radio" name="Finish" value="Äste/Risse schwarz verfüllt **" id="risse" required />
+								<label for="risse"> Äste/Risse schwarz verfüllt <strong>(Preis-Aufschlag 47,60 €/m²)</strong>
 							</div>
 						</div>
 				
 						<br>
 						</label>
 					</fieldset>
-				
-					<button type="submit" id="submitBtn">rechnen</button>
+					
+
+					<button type="submit" id="submitBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">rechnen</button>
 				</form>
 		</div>
 	
 		<!-- Zusammenfassung -->
-		<div class="ausgabe">
+		<div id="ausgabe" class="ausgabe disabled">
 			<h3 id="ergTitel"></h3>
 			<div>
 				<ul id="vorschauOhneBild" class="flex"></ul>
@@ -156,6 +250,6 @@
 	</div>
 
 	<script src="js/main.js"></script>
-</body>
+</div>
 
 </html>
