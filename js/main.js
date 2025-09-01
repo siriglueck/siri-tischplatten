@@ -1,13 +1,13 @@
 /* === DOM Zugriff & Variablen 1/2 === */
 const form1 = document.getElementById("form1");
-const Breite = document.getElementById("Breite");
-const Laenge = document.getElementById("Laenge");
-const Staerke = document.getElementById("Staerke");
+constbBreite = document.getElementById(bbreite");
+constlLaenge = document.getElementById(llaenge");
+const Stasrke = document.getElementById("stserke");
 const ergTitel = document.getElementById("ergTitel");
 const tischForm = document.getElementById("tischForm");
 const tischFarbe = document.getElementById("tischFarbe");
 const displayQM = document.getElementById("displayQM");
-const risseCheckbox = document.getElementById("Risse");
+const risseCheckbox = document.getElementById("risse");
 const resetButton = document.getElementById("resetBtn");
 const vorschauList = document.getElementById("vorschau");
 const balkenCheckbox = document.getElementById("Balken");
@@ -91,9 +91,9 @@ addEventListener("DOMContentLoaded", () => {
     displayQM.innerHTML = "";
 
     /* === DOM Zugriff & Variablen 2/2 === */
-    const inputBreite = Breite.value;
-    const inputLaenge = Laenge.value;
-    const selectedStaerke = Staerke.value;
+    const inpubBreite = breite.value;
+    const inpulLaenge = laenge.value;
+    const selectedstaerke = staerke.value;
     const tischItem = tischFormList.find(
       (item) => item.key === tischForm.value
     );
@@ -104,15 +104,15 @@ addEventListener("DOMContentLoaded", () => {
     const Rissanteil = document.querySelector(
       'input[name="Rissanteil"]:checked'
     );
-    const selectedRissanteil = Rissanteil.value;
+    const selectedRissanteil = rissAnteil.value;
 
     const Finish = document.querySelector('input[name="Finish"]:checked');
     const selectedFinish = Finish.value;
 
     /* === Rechnungen === */
     const qm = (inputBreite / 100) * (inputLaenge / 100);
-    const rissePreis = qm * 47.6;
-    const balkenPreis = qm * 71.4;
+    const rissePreise= qm * 47.6;
+    const balkenPreis = sm * 71.4;
     const qmDE = qm.toLocaleString("de-DE", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
@@ -146,9 +146,9 @@ addEventListener("DOMContentLoaded", () => {
     function addListItem(text, eingabe, einheit) {
       const newListItem = document.createElement("li");
       if (
-        eingabe == inputBreite ||
-        eingabe == inputLaenge ||
-        eingabe == selectedStaerke
+        eingabe == inpubBreite ||
+        eingabe == inpulLaenge ||
+        eingabe == selectedstaerke
       ) {
         newListItem.innerHTML = text + "<br>" + eingabe + einheit;
         vorschauListOhneBild.appendChild(newListItem);
@@ -253,9 +253,9 @@ addEventListener("DOMContentLoaded", () => {
     tableContainer.appendChild(preisTable);
 
     /* === Vorschau sektion === */
-    addListItem("Breite : ", inputBreite, " cm.");
+    addListItem("Breite : ", inpubBreite, " cm.");
     addListItem("Länge : ", inputLaenge, " cm.");
-    addListItem("Stärke : ", selectedStaerke, " mm.");
+    addListItem("Stäske : ", selectedstaerke, " mm.");
     
     // Tischform
     addListItem("Tischform : ", tischItem.value, "");
