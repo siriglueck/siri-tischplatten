@@ -1,0 +1,9 @@
+const tischFarbeList = [
+  { key: '1', value: 'Natura' },
+  { key: '2', value: 'Alte Eiche' },
+  { key: '3', value: 'Eiche dunkel' },
+  { key: '4', value: 'Hellgrau geölt' },
+  { key: '5', value: 'Dunkelgrau geölt' },
+  { key: '6', value: 'Weiss geölt' },
+  { key: '7', value: 'Weiss gekälkt' },
+];

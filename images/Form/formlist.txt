@@ -1,0 +1,12 @@
+const tischFormList = [
+  { key: '1', value: 'Gerade Kannte' },
+  { key: '2', value: 'Facettenkante' },
+  { key: '3', value: 'Mit Baumkane' },
+  { key: '4', value: 'Durchgängige Bohlen' },
+  { key: '5', value: 'Mit Querfrieß' },
+  { key: '6', value: 'Rund' },
+  { key: '7', value: 'Oval' },
+  { key: '8', value: 'Schiffsbodenmuster' },
+  { key: '9', value: 'Flechmuster' },
+  { key: '10', value: 'Rautenmuster' },
+];

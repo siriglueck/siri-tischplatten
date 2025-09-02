@@ -13,7 +13,7 @@
 	<script>
     tailwind.config = {
       darkMode: 'class',
-    }
+    } 
 	</script>
 
 
@@ -21,7 +21,7 @@
 
 <body class="bg-gray-300 dark:bg-gray-900 text-black dark:text-white transition-colors duration-500">
 
-	<div class="relative shadow mx-10 my-5 px-10 py-5 flex justify-center bg-white dark:bg-gray-800 rounded-lg">
+	<div id="wrapper" class="flex-col md:flex-row gap-4  w-fit transition-all duration-500 relative w-auto overflow-hidden transition-all duration-500 ease-in-out shadow-md mx-auto my-5 px-10 py-5 flex justify-center bg-white dark:bg-gray-800 rounded-lg">
 		
 		<div class="absolute mx-5 top-2 right-5 flex justify-end items-center">
 			
@@ -47,11 +47,11 @@
 		<div class="eingabe m-4">
 			
 			
-			<h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Tischplatten <span class="underline underline-offset-3 decoration-8 decoration-yellow-400 dark:decoration-yellow-400">Konfigurator</span></h1>
-			<p class="mb-10 text-md font-normal text-gray-500 lg:text-xl dark:text-gray-400">Erstelle Ihre individuelle Tischplatte – wähle Material, Größe und Design in wenigen Klicks.</p>
+			<h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">Tischplatten <span class="underline underline-offset-3 decoration-8 decoration-yellow-400 dark:decoration-yellow-400">Konfigurator</span></h1>
+			<p class="mb-6 text-md font-normal text-gray-500 lg:text-lg dark:text-gray-400">Erstelle Ihre individuelle Tischplatte – wähle Material, Größe und Design in wenigen Klicks.</p>
 
 
-				<form action="#" id="form1">
+				<form action="#" id="form1" class="my-4">
 					
 						
 					
@@ -72,71 +72,34 @@
 
 
 
+<label for="tischplatte" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+  Stil und Plattenstärke (mm.)
+  <span class="text-xs font-normal text-gray-500 dark:text-gray-400">Beim optischen Verdoppeln -25% </span>
+</label>
+
+<div class="flex w-full rounded-lg overflow-hidden border border-gray-300 dark:border-gray-600">
+  <!-- Dropdown 1 -->
+  <select name="tischplatte" id="tischplatte" required
+          class="flex-1 bg-gray-100 text-gray-900 text-sm p-2.5 border-r border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
+    <option value="" disabled selected>  - bitte auswählen -  </option>
+    <option value="vollmassiv">vollmassiv</option>
+    <option value="gedoppelt">optisch gedoppelt</option>
+  </select>
+
+  <!-- Dropdown 2 : Plattenstärke -->
+  <select name="staerke" id="staerke" required
+          class="flex-1 bg-gray-50 text-gray-900 text-sm p-2.5 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
+    <option value="" disabled selected>  - bitte auswählen -  </option>
+  </select>
+</div>
 
 
 
 
+  
 
-
-										
-					
-				<label for="breite" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stil und Plattenstärke (mm.)</label>
-					<div class="flex">
-						<label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your Email</label>
-						<button id="dropdown-button" data-dropdown-toggle="dropdown" class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button">vollmassiv <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-						</svg></button>
-						<div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-							<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-							<li>
-								<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shopping</a>
-							</li>
-							</ul>
-						</div>
-					
-						<div class="relative w-full">
-
-							<select name="staerkeDEL" id="staerkeDEL" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Plattenstärke auswählen" >
-												<option value="" disabled selected> - bitte auswählen - </option>
-											</select>
-											
-						
-						</div>
-						
-					</div>
-				<p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400"> Beim optischen Verdoppeln erhalten Kunden <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">25% Rabatt</a></p>
-
-
-
-
-
-
-
+				
 					<fieldset>
-						<legend>Stil</legend>
-				
-						<!-- Tischplatte -->
-						<div class="formularSektion">
-							<label for="Tischplatte">Tischplatte :</label>
-							<sup class="roteStern">*</sup>
-							<div>
-								<input type="radio" name="Tischplatte" value="vollmassiv" required />
-								<label for="Tischplatte">vollmassiv</label>
-							</div>
-							<div>
-								<input type="radio" name="Tischplatte" value="gedoppelt" required />
-								<label for="Tischplatte">optisch gedoppelt <strong>(-25%)</strong></label>
-							</div>
-				
-
-							<!-- Stärke -->
-							<label for="staerke">Plattenstärke :</label>
-							<select name="staerke" id="staerke" required>
-								<option value="" disabled selected> - bitte auswählen - </option>
-							</select>
-							<span> mm.</span>
-							<sup class="roteStern">*</sup>
-						</div>
 
 
 						<!-- Form & Farbe -->
@@ -144,23 +107,23 @@
 
 							<label for="tischForm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Form</label>
 							<select name="tischForm"  id="tischForm" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-								<option disabled selected> - bitte auswählen - </option>
-								<option value="F1">Gerade Kannte</option>
-								<option value="F2">Facettenkante</option>
-								<option value="F3">Mit Baumkane</option>
-								<option value="F4">Durchgängige Bohlen</option>
-								<option value="F5">Mit Querfrieß</option>
-								<option value="F6">Rund</option>
-								<option value="F7">Oval</option>
-								<option value="F8">Schiffsbodenmuster</option>
-								<option value="F9">Flechmuster</option>
-								<option value="F10">Rautenmuster</option>
+								<option disabled selected>  - bitte auswählen - </option>
+								<option value="1">Gerade Kannte</option>
+								<option value="2">Facettenkante</option>
+								<option value="3">Mit Baumkane</option>
+								<option value="4">Durchgängige Bohlen</option>
+								<option value="5">Mit Querfrieß</option>
+								<option value="6">Rund</option>
+								<option value="7">Oval</option>
+								<option value="8">Schiffsbodenmuster</option>
+								<option value="9">Flechmuster</option>
+								<option value="10">Rautenmuster</option>
 							</select>
 					
 							<!-- Farbe -->
-							<label for="tischFarbe" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farbe :</label>
+							<label for="tischFarbe" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farbe</label>
 							<select name="tischFarbe" id="tischFarbe" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-								<option value="" disabled selected> - bitte auswählen - </option>
+								<option value="" class="text-gray-600" disabled selected> - bitte auswählen - </option>
 								<option value="1">Natura</option>
 								<option value="2">Alte Eiche</option>
 								<option value="3">Eiche dunkel</option>
@@ -176,24 +139,24 @@
 							<!-- Rissanteil -->
 					
 							<div>
-								<h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Rissanteil</h3>
+								<label for="rissAnteil" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rissanteil</label>
 								<ul class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
 									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
 										<div class="flex items-center ps-3">
-											<input id="ohne" type="radio" value="ohne-rissanteil" name="rissAnteil" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="ohne" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ohne </label>
+											<input id="ohne" type="radio" value="ohne" name="rissAnteil" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+											<label for="ohne" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">ohne </label>
 										</div>
 									</li>
 									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
 										<div class="flex items-center ps-3">
-											<input id="leich" type="radio" value="leicher-rissanteil" name="rissAnteil" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="leich" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Leich</label>
+											<input id="leich" type="radio" value="leich" name="rissAnteil" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+											<label for="leich" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">leich</label>
 										</div>
 									</li>
 									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
 										<div class="flex items-center ps-3">
-											<input id="normal" type="radio" value="normaler-rissanteil" name="rissAnteil" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="normal" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Normal</label>
+											<input id="normal" type="radio" value="normal" name="rissAnteil" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+											<label for="normal" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">normal</label>
 										</div>
 									</li>
 									
@@ -202,27 +165,26 @@
 
 						<!-- Finish -->
 							<div>
-								<h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Finish</h3>
+								<label for="finish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Finish</label>
 								<ul class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
 									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
 										<div class="flex items-center ps-3">
 											<input id="mattlack" type="radio" value="mattlack" name="finish" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="mattlack" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mattlack </label>
+											<label for="mattlack" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">mattlack</label>
 										</div>
 									</li>
 									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
 										<div class="flex items-center ps-3">
 											<input id="hartoel" type="radio" value="hartoel" name="finish" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="hartoel" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hartöl</label>
+											<label for="hartoel" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">hartöl</label>
 										</div>
 									</li>
 									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
 										<div class="flex items-center ps-3">
 											<input id="risse" type="radio" value="risse" name="finish" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="risse" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Äste/Risse schwarz verfüllt (Preis-Aufschlag 47,60 €/m²)</label>
+											<label for="risse" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Äste/Risse schwarz verfüllt*<span class="text-xs font-normal text-gray-500 dark:text-gray-400">(Preis-Aufschlag 47,60€/m²)</span></label>
 										</div>
 									</li>
-								
 								</ul>
 							</div>
 
@@ -235,11 +197,22 @@
 					</fieldset>
 					
 
-												<!-- Balken Checkbox -->
-							<div class="flex items-center">
-								<input id="balken" name="balken" type="checkbox" value="reine-balken-aussenseiten" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-								<label for="balken" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">mit "Reine Balken Außenseiten" kombiniert werden <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">(Preis-Aufschlag 71,40€/m²)</a>.</label>
+						<!-- Balken Checkbox -->
+							
+						 <div class="flex mb-4">
+							<div class="flex items-center h-5">
+								<input id="balken" name="balken"
+								value="reine-balken-aussenseiten" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 							</div>
+							<div class="ms-2 text-sm">
+								<label for="balken" class="font-medium text-gray-900 dark:text-gray-300">mit "Reine Balken Außenseiten" kombiniert werden</label>
+								<p class="text-xs font-normal text-gray-500 dark:text-gray-400">(Preis-Aufschlag 71,40€/m²)</p>
+							</div>
+						</div>
+
+
+
+						
 
 					<button type="submit" id="submitBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">rechnen</button>
 				</form>
@@ -248,117 +221,83 @@
 
 
 
-
-
-		<div class="w-full my-8 mx-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+		<!-- Zusammenfassung -->
+		<div id="ausgabe" class="ausgabe w-fit hidden p-4 ">
+						<div class="w-full flex-col flex-wrap justify-center my-8 mx-4 p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
 		
 			
 			<!-- Cards Berechnungen -->
-			<div class="flex flex-wrap justify-evenly">
+			<div class="flex flex-wrap justify-between">
 				
-				<div class="max-w-sm m-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+				<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
 					<div class="p-5">
-				
-							<h5 id="ergTitelXXX" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+							<h5 id="flaecheTitel" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
 							<span id="displayQM" class="text-5xl font-extrabold tracking-tight"></span>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Plazhalter</p>
+						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
 					</div>
 				</div>
 				
-				<div class="max-w-sm m-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-					<div class="p-5">
-				
-							<h5 id="ergTitel" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+				<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
+					<div class="p-5">		
+							<h5 id="gesamtpreisTitel" class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
 							<span id="displayPreis" class="text-5xl font-extrabold tracking-tight"></span>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Plazhalter</p>
+						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
 					</div>
 				</div>
+
+			<div class="w-4/12 bg-white dark:bg-gray-800 dark:border-gray-700">
+				
+			</div>
 
 
 			</div>
 
 			<!-- Cards Design -->
-			<div class="flex flex-wrap justify-evenly">
-
-				<div class="w-1/5 m-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-					<a href="#">
-						<img class="rounded-t-lg h-1/3 w-full" src="./images/Form/oval.jpg" alt="" />
-					</a>
-					<div class="p-5">
-							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-							<span class="text-5xl font-extrabold tracking-tight"></span>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Form</p>
+			flex flex-wrap justify-between
+			<div class="grid auto-rows-fr grid-cols-4 gap-6 ">
+				<div class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+					<img id="formPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
+					<div class="py-2 px-4">
+						<p class="font-normal text-gray-700 dark:text-gray-400">Form</p>
+						<h5 id="selectedForm" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
 					</div>
 				</div>
-
-				<div class="w-1/5 m-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-					<a href="#">
-						<img class="rounded-t-lg h-1/3 w-full" src="./images/Farbe/hellgrau-geoelt.jpg" alt="" />
-					</a>
-					<div class="p-5">
-							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-							<span class="text-5xl font-extrabold tracking-tight"></span>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Farbe</p>
-					</div>
-				</div>
-
-				<div class="w-1/5 m-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-					<a href="#">
-						<img class="rounded-t-lg h-1/3 w-full" src="./images/Rissanteil/leichter-rissanteil.jpg" alt="" />
-					</a>
-					<div class="p-5">
-							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-							<span class="text-5xl font-extrabold tracking-tight"></span>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Rissanteil</p>
-					</div>
-				</div>
-
-				<div class="w-1/5 m-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-					<a href="#">
-						<img class="rounded-t-lg h-1/3 w-full" src="./images/Finish/hart-oel.jpg" alt="" />
-					</a>
-					<div class="p-5">
-							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-							<span class="text-5xl font-extrabold tracking-tight"></span>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Finish</p>
-					</div>
-				</div>
-
-
 				
+				<div class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+					<img id="farbePic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
+					<div class="py-2 px-4">
+						<p class="font-normal text-gray-700 dark:text-gray-400">Farbe</p>
+						<h5 id="selectedFarbe" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
+					</div>
+				</div>				
+
+				<div class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+					<img id="rissPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
+					<div class="py-2 px-4">
+						<p class="font-normal text-gray-700 dark:text-gray-400">Rissanteil</p>
+						<h5 id="selectedRissanteil" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
+					</div>
+				</div>
+
+				<div class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+					<img id="finishPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
+					<div class="py-2 px-4">
+						<p class="font-normal text-gray-700 dark:text-gray-400">Finish</p>
+						<h5 id="selectedFinish" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
+					</div>
+				</div>
+
 			</div>
 			
 			<!-- Tabelle -->
-			<div>
-				<h3 id="tabelleTitel" class="text-lg font-bold dark:text-white"></h3>
-				<div id="tableContainer" class="relative overflow-x-auto"></div>
-			</div>
+			<h3 id="tabelleTitel" class="mb-2 mt-6 text-lg text-center font-bold dark:text-white"></h3>
+			<div id="tableContainer" class="relative overflow-x-auto"></div>
+		
 
-
-				<div class="pendingReview">
-				<ul id="vorschauOhneBild" class="flex"></ul>
-				<ul id="vorschau" class="flex wrap"></ul>
-			</div>
-			<div> <span id="displayPreisDEL"></span></div>
-			<div id="displayGesamtpreis"></div>
 		
 		</div>
 
-
-		
-
-
-
-
-
-
-
-
-
-
-		<!-- Zusammenfassung -->
-		<div id="ausgabe" class="ausgabe p-4 ">
-		
+			
 			
 		</div>
 	</div>
@@ -374,8 +313,8 @@
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SiriGlück</span>
             </a>
 			<span class="block text-sm text-gray-600 sm:text-center dark:text-gray-400">© 2025 -
-				<a href="https://flowbite.com/" class="hover:underline">LinkedIn</a> | 
-				<a href="https://flowbite.com/" class="hover:underline">GitHub </a> -
+				<a href="https://www.linkedin.com/in/siriluck-rattanapong/" target="_blank" class="hover:underline">LinkedIn</a> | 
+				<a href="https://github.com/siriglueck" target="_blank" class="hover:underline">GitHub </a> -
 			All Rights Reserved.</span>
             
         </div>
