@@ -1,6 +1,7 @@
 /* === DOM Zugriff & Variablen 1/2 === */
-const ausgabeSpalte = document.getElementById("ausgabe");
 const form1 = document.getElementById("form1");
+const ausgabe = document.getElementById("ausgabe");
+const clearBtn = document.getElementById("clearBtn");
 const breite = document.getElementById("breite");
 const laenge = document.getElementById("laenge");
 const staerke = document.getElementById("staerke");
@@ -11,7 +12,7 @@ const displayQM = document.getElementById("displayQM");
 const risseCheckbox = document.getElementById("risse");
 const resetButton = document.getElementById("resetBtn");
 const vorschauList = document.getElementById("vorschau");
-const balkenCheckbox = document.getElementById("Balken");
+const balkenCheckbox = document.getElementById("balken");
 const displayPreis = document.getElementById("displayPreis");
 const tabelleTitel = document.getElementById("tabelleTitel");
 const tableContainer = document.getElementById("tableContainer");
@@ -81,16 +82,21 @@ addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* === Rechnen geklickt werden === */
-  form1.addEventListener("submit", function (event) {
-    // Verhindern, dass die Seite aktualisiert wird
-    event.preventDefault();
+  /* === X geklickt werden === */
+  clearBtn.addEventListener("click", () => {
+    ausgabe.innerHTML = "";
     vorschauListOhneBild.innerHTML = "";
     vorschauList.innerHTML = "";
     tableContainer.innerHTML = "";
     displayPreis.innerHTML = "";
     displayQM.innerHTML = "";
-    ausgabeSpalte.classList.remove("disabled");
+    form1.reset();
+  });
+
+  /* === Rechnen geklickt werden === */
+  form1.addEventListener("submit", function (event) {
+    // Verhindern, dass die Seite aktualisiert wird
+    event.preventDefault();
 
     /* === DOM Zugriff & Variablen 2/2 === */
     const inputBreite = breite.value;
@@ -104,12 +110,12 @@ addEventListener("DOMContentLoaded", () => {
     );
 
     const rissAnteil = document.querySelector(
-      'input[name="Rissanteil"]:checked'
+      'input[name="rissAnteil"]:checked'
     );
     const selectedRissanteil = rissAnteil.value;
 
-    const Finish = document.querySelector('input[name="Finish"]:checked');
-    const selectedFinish = Finish.value;
+    const finish = document.querySelector('input[name="finish"]:checked');
+    const selectedFinish = finish.value;
 
     /* === Rechnungen === */
     const qm = (inputBreite / 100) * (inputLaenge / 100);
@@ -139,11 +145,9 @@ addEventListener("DOMContentLoaded", () => {
     ).toLocaleString("de-DE");
     let gesamtPreis = preisBerechnung;
 
-    ergTitel.innerText = "Ihr Wunsch";
-    displayPreis.innerHTML =
-      "----------------------<br>" + "Preis :" + preisBerechnungDE + " €";
-    displayQM.innerHTML =
-      "für " + qmDE + " m<sup>2</sup>" + "<br>----------------------<br>";
+    ergTitel.innerText = "Gesamtpreis";
+    displayPreis.innerHTML = " € " + preisBerechnungDE;
+    displayQM.innerHTML = "Fläche " + qmDE + " m<sup>2</sup>";
 
     function addListItem(text, eingabe, einheit) {
       const newListItem = document.createElement("li");
@@ -162,7 +166,6 @@ addEventListener("DOMContentLoaded", () => {
 
     /* === Preistabelle erzeugen === */
     const preisTable = document.createElement("table");
-    preisTable.border = "1";
     const thead = document.createElement("thead");
     const headerRow = document.createElement("tr");
     const headers = [
@@ -179,9 +182,9 @@ addEventListener("DOMContentLoaded", () => {
       th.textContent = text;
       headerRow.appendChild(th);
     });
-
     thead.appendChild(headerRow);
     preisTable.appendChild(thead);
+
     // Tabellekörper erzeugen
     const tbody = document.createElement("tbody");
     // Preis * QM
@@ -193,10 +196,11 @@ addEventListener("DOMContentLoaded", () => {
       const row = document.createElement("tr");
 
       if (preisListe == preisListeVollmassiv) {
-        tabelleTitel.innerText = "Brutto-QM-Preis Tischplatte vollmassiv";
+        tabelleTitel.innerText =
+          "Vollmassive Tischplatte – Brutto-Preis pro Quadratmeter";
       } else {
         tabelleTitel.innerText =
-          "Brutto-QM-Preis Tischplatte optisch gedoppelt (-25%)";
+          "Optisch gedoppelte Tischplatte – Brutto-Preis pro Quadratmeter";
       }
 
       for (let j = 0; j < headers.length; j++) {
@@ -204,6 +208,7 @@ addEventListener("DOMContentLoaded", () => {
         const td = document.createElement("td");
         //td.textContent = jedePreis;
         //row.appendChild(td);
+        td.classList.add("px-6", "py-4");
         switch (j) {
           case 0:
             td.textContent = staerkeKey;
@@ -249,15 +254,38 @@ addEventListener("DOMContentLoaded", () => {
             console.log(`Kein Zugriff`);
         }
       }
+      row.classList.add("px-6", "py-4");
       tbody.appendChild(row);
     }
+
     preisTable.appendChild(tbody);
     tableContainer.appendChild(preisTable);
 
+    // Tabellendesign hinzufügen
+
+    headerRow.classList.add(
+      "bg-white",
+      "border-b",
+      "dark:bg-gray-800",
+      "dark:border-gray-700",
+      "border-gray-200",
+      "hover:bg-gray-50",
+      "dark:hover:bg-gray-600"
+    );
+
+    preisTable.classList.add(
+      "w-10/12",
+      "text-sm",
+      "text-left",
+      "rtl:text-right",
+      "text-gray-500",
+      "dark:text-gray-400"
+    );
+
     /* === Vorschau sektion === */
-    addListItem("Breite : ", inputBreite, " cm.");
-    addListItem("Länge : ", inputLaenge, " cm.");
-    addListItem("Stäske : ", selectedStaerke, " mm.");
+    // addListItem("Breite : ", inputBreite, " cm.");
+    // addListItem("Länge : ", inputLaenge, " cm.");
+    // addListItem("Stäske : ", selectedStaerke, " mm.");
 
     // Tischform
     addListItem("Tischform : ", tischItem.value, "");
@@ -275,7 +303,6 @@ addEventListener("DOMContentLoaded", () => {
     if (balkenCheckbox.checked) {
       addListItem("**", "mit Reine Balken Außenseiten", "");
       gesamtPreis += balkenPreis;
-      displayPreis.innerHTML += "<br> + " + balkenPreisDE + " € zzgl. Balken";
 
       const img = document.createElement("img");
       const vorschauBildPlatz = document.querySelectorAll("li");
@@ -286,7 +313,6 @@ addEventListener("DOMContentLoaded", () => {
     if (risseCheckbox.checked) {
       addListItem("Finish : ", selectedFinish, "");
       gesamtPreis += rissePreis;
-      displayPreis.innerHTML += "<br> + " + rissePreisDE + " € zzgl. Risse";
     }
     console.log(gesamtPreis);
     displayGesamtpreis.innerHTML =
