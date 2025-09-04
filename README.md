@@ -83,3 +83,4 @@ Die gerechten Preisen sollen in einer Tabelle mit allen anderen möglichen Eigen
 - alternatively .toFixed(decimal units)
 - but both return String
 - attribute names are case-sensitive
+- GitHub Page can host only a static NOT server-side rendering web 
