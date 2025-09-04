@@ -8,12 +8,12 @@
 
 	<!-- Tailwind CSS als CDN -->
 	<script src="https://cdn.tailwindcss.com"></script>
-	
+
 	<!-- enable darkMode as a dark:class -->
 	<script>
-    tailwind.config = {
-      darkMode: 'class',
-    } 
+		tailwind.config = {
+			darkMode: 'class',
+		} 
 	</script>
 
 
@@ -21,304 +21,326 @@
 
 <body class="bg-gray-300 dark:bg-gray-900 text-black dark:text-white transition-colors duration-500">
 
-	<div id="wrapper" class="flex-col md:flex-row gap-4  w-fit transition-all duration-500 relative w-auto overflow-hidden transition-all duration-500 ease-in-out shadow-md mx-auto my-5 px-10 py-5 flex justify-center bg-white dark:bg-gray-800 rounded-lg">
-		
+	<div id="wrapper"
+		class="flex-col md:flex-row gap-4  w-fit transition-all duration-500 relative w-auto overflow-hidden transition-all duration-500 ease-in-out shadow-md mx-auto my-5 px-10 py-5 flex justify-center bg-white dark:bg-gray-800 rounded-lg">
+
 		<div class="absolute mx-5 top-2 right-5 flex justify-end items-center">
-			
+
 
 			<label class="inline-flex items-center me-5 cursor-pointer">
-			<input id="toggleBtn" type="checkbox" value="" class="sr-only peer" checked>
-			<span id="icon">🌙</span>
-			<span id="label" class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300 invisible md:visible">Yellow</span>
+				<input id="toggleBtn" type="checkbox" value="" class="sr-only peer" checked>
+				<span id="icon">🌙</span>
+				<span id="label"
+					class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300 invisible md:visible">Yellow</span>
 			</label>
 
-			
-			<button type="button" id="clearBtn" 
-			class="text-3xl text-gray-400 hover:text-red-500 transition">
+
+			<button type="button" id="clearBtn" class="text-3xl text-gray-400 hover:text-red-500 transition">
 				<span id="labelDEL">&#10799;</span>
 			</button>
-		
+
 
 		</div>
 
-		
+
 
 		<!-- Form -->
 		<div class="eingabe m-4">
-			
-			
-			<h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">Tischplatten <span class="underline underline-offset-3 decoration-8 decoration-yellow-400 dark:decoration-yellow-400">Konfigurator</span></h1>
-			<p class="mb-6 text-md font-normal text-gray-500 lg:text-lg dark:text-gray-400">Erstelle Ihre individuelle Tischplatte – wähle Material, Größe und Design in wenigen Klicks.</p>
 
 
-				<form action="#" id="form1" class="my-4">
-					
-						
-					
+			<h1
+				class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+				Tischplatten <span
+					class="underline underline-offset-3 decoration-8 decoration-yellow-400 dark:decoration-yellow-400">Konfigurator</span>
+			</h1>
+			<p class="mb-6 text-md font-normal text-gray-500 lg:text-lg dark:text-gray-400">Erstelle Ihre individuelle
+				Tischplatte – wähle Material, Größe und Design in wenigen Klicks.</p>
+
+
+			<form action="#" id="form1" class="my-4">
+
+
+
+				<div class="grid gap-6 mb-6 md:grid-cols-2">
+					<!-- Breite -->
+					<div>
+						<label for="breite" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Breite
+							(cm.)</label>
+						<input type="number" id="breite" name="breite" min="0" max="180" placeholder="0-180" required
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+					</div>
+					<!-- Länge -->
+					<div>
+						<label for="laenge" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Länge (cm.)</label>
+						<input type="number" id="laenge" name="laenge" min="0" max="450" placeholder="0-450" required
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+					</div>
+				</div>
+
+
+
+
+
+				<label for="tischplatte" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					Stil und Plattenstärke (mm.)
+					<span class="text-xs font-normal text-gray-500 dark:text-gray-400">Beim optischen Verdoppeln -25% </span>
+				</label>
+
+				<div class="flex w-full rounded-lg overflow-hidden border border-gray-300 dark:border-gray-600">
+					<!-- Dropdown 1 -->
+					<select name="tischplatte" id="tischplatte" required
+						class="flex-1 bg-gray-100 text-gray-900 text-sm p-2.5 border-r border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
+						<option value="" disabled selected> - bitte auswählen - </option>
+						<option value="vollmassiv">vollmassiv</option>
+						<option value="gedoppelt">optisch gedoppelt</option>
+					</select>
+
+					<!-- Dropdown 2 : Plattenstärke -->
+					<select name="staerke" id="staerke" required
+						class="flex-1 bg-gray-50 text-gray-900 text-sm p-2.5 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
+						<option value="" disabled selected> - bitte auswählen - </option>
+					</select>
+				</div>
+
+
+				<fieldset>
+
+
+					<!-- Form & Farbe -->
+					<div class="formularSektion">
+
+						<label for="tischForm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Form</label>
+						<select name="tischForm" id="tischForm" required
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+							<option disabled selected> - bitte auswählen - </option>
+							<option value="1">Gerade Kannte</option>
+							<option value="2">Facettenkante</option>
+							<option value="3">Mit Baumkane</option>
+							<option value="4">Durchgängige Bohlen</option>
+							<option value="5">Mit Querfrieß</option>
+							<option value="6">Rund</option>
+							<option value="7">Oval</option>
+							<option value="8">Schiffsbodenmuster</option>
+							<option value="9">Flechmuster</option>
+							<option value="10">Rautenmuster</option>
+						</select>
+
+						<!-- Farbe -->
+						<label for="tischFarbe" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farbe</label>
+						<select name="tischFarbe" id="tischFarbe" required
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+							<option value="" class="text-gray-600" disabled selected> - bitte auswählen - </option>
+							<option value="1">Natura</option>
+							<option value="2">Alte Eiche</option>
+							<option value="3">Eiche dunkel</option>
+							<option value="4">Hellgrau geölt</option>
+							<option value="5">Dunkelgrau geölt</option>
+							<option value="6">Weiss geölt</option>
+							<option value="7">Weiss gekälkt</option>
+						</select>
+
+					</div>
+
 					<div class="grid gap-6 mb-6 md:grid-cols-2">
-						<!-- Breite -->
+						<!-- Rissanteil -->
+
 						<div>
-							<label for="breite" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Breite (cm.)</label>
-							<input type="number" id="breite" name="breite" min="0" max="180" placeholder="0-180" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+							<label for="rissAnteil"
+								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rissanteil</label>
+							<ul
+								class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+								<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+									<div class="flex items-center ps-3">
+										<input id="ohne" type="radio" value="ohne" name="rissAnteil" required
+											class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+										<label for="ohne" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">ohne
+										</label>
+									</div>
+								</li>
+								<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+									<div class="flex items-center ps-3">
+										<input id="leich" type="radio" value="leich" name="rissAnteil" required
+											class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+										<label for="leich"
+											class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">leich</label>
+									</div>
+								</li>
+								<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+									<div class="flex items-center ps-3">
+										<input id="normal" type="radio" value="normal" name="rissAnteil" required
+											class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+										<label for="normal"
+											class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">normal</label>
+									</div>
+								</li>
+
+							</ul>
 						</div>
-						<!-- Länge -->
+
+						<!-- Finish -->
 						<div>
-							<label for="laenge" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Länge (cm.)</label>
-							<input type="number" id="laenge" name="laenge" min="0" max="450" placeholder="0-450" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-						</div>						
+							<label for="finish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Finish</label>
+							<ul
+								class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+								<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+									<div class="flex items-center ps-3">
+										<input id="mattlack" type="radio" value="mattlack" name="finish" required
+											class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+										<label for="mattlack"
+											class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">mattlack</label>
+									</div>
+								</li>
+								<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+									<div class="flex items-center ps-3">
+										<input id="hartoel" type="radio" value="hartoel" name="finish" required
+											class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+										<label for="hartoel"
+											class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">hartöl</label>
+									</div>
+								</li>
+								<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+									<div class="flex items-center ps-3">
+										<input id="risse" type="radio" value="risse" name="finish" required
+											class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+										<label for="risse"
+											class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Äste/Risse schwarz
+											verfüllt*<span class="text-xs font-normal text-gray-500 dark:text-gray-400">(Preis-Aufschlag
+												47,60€/m²)</span></label>
+									</div>
+								</li>
+							</ul>
+						</div>
+
 					</div>
 
 
+				</fieldset>
 
 
+				<!-- Balken Checkbox -->
 
-<label for="tischplatte" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-  Stil und Plattenstärke (mm.)
-  <span class="text-xs font-normal text-gray-500 dark:text-gray-400">Beim optischen Verdoppeln -25% </span>
-</label>
-
-<div class="flex w-full rounded-lg overflow-hidden border border-gray-300 dark:border-gray-600">
-  <!-- Dropdown 1 -->
-  <select name="tischplatte" id="tischplatte" required
-          class="flex-1 bg-gray-100 text-gray-900 text-sm p-2.5 border-r border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
-    <option value="" disabled selected>  - bitte auswählen -  </option>
-    <option value="vollmassiv">vollmassiv</option>
-    <option value="gedoppelt">optisch gedoppelt</option>
-  </select>
-
-  <!-- Dropdown 2 : Plattenstärke -->
-  <select name="staerke" id="staerke" required
-          class="flex-1 bg-gray-50 text-gray-900 text-sm p-2.5 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
-    <option value="" disabled selected>  - bitte auswählen -  </option>
-  </select>
-</div>
+				<div class="flex mb-4">
+					<div class="flex items-center h-5">
+						<input id="balken" name="balken" value="reine-balken-aussenseiten" type="checkbox"
+							class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+					</div>
+					<div class="ms-2 text-sm">
+						<label for="balken" class="font-medium text-gray-900 dark:text-gray-300">mit "Reine Balken Außenseiten"
+							kombiniert werden</label>
+						<p class="text-xs font-normal text-gray-500 dark:text-gray-400">(Preis-Aufschlag 71,40€/m²)</p>
+					</div>
+				</div>
 
 
 
 
-  
 
-				
-					<fieldset>
-
-
-						<!-- Form & Farbe -->
-						<div class="formularSektion">
-
-							<label for="tischForm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Form</label>
-							<select name="tischForm"  id="tischForm" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-								<option disabled selected>  - bitte auswählen - </option>
-								<option value="1">Gerade Kannte</option>
-								<option value="2">Facettenkante</option>
-								<option value="3">Mit Baumkane</option>
-								<option value="4">Durchgängige Bohlen</option>
-								<option value="5">Mit Querfrieß</option>
-								<option value="6">Rund</option>
-								<option value="7">Oval</option>
-								<option value="8">Schiffsbodenmuster</option>
-								<option value="9">Flechmuster</option>
-								<option value="10">Rautenmuster</option>
-							</select>
-					
-							<!-- Farbe -->
-							<label for="tischFarbe" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farbe</label>
-							<select name="tischFarbe" id="tischFarbe" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-								<option value="" class="text-gray-600" disabled selected> - bitte auswählen - </option>
-								<option value="1">Natura</option>
-								<option value="2">Alte Eiche</option>
-								<option value="3">Eiche dunkel</option>
-								<option value="4">Hellgrau geölt</option>
-								<option value="5">Dunkelgrau geölt</option>
-								<option value="6">Weiss geölt</option>
-								<option value="7">Weiss gekälkt</option>
-							</select>
-					
-						</div>
-						
-						<div class="grid gap-6 mb-6 md:grid-cols-2">
-							<!-- Rissanteil -->
-					
-							<div>
-								<label for="rissAnteil" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rissanteil</label>
-								<ul class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-										<div class="flex items-center ps-3">
-											<input id="ohne" type="radio" value="ohne" name="rissAnteil" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="ohne" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">ohne </label>
-										</div>
-									</li>
-									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-										<div class="flex items-center ps-3">
-											<input id="leich" type="radio" value="leich" name="rissAnteil" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="leich" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">leich</label>
-										</div>
-									</li>
-									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-										<div class="flex items-center ps-3">
-											<input id="normal" type="radio" value="normal" name="rissAnteil" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="normal" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">normal</label>
-										</div>
-									</li>
-									
-								</ul>
-							</div>
-
-						<!-- Finish -->
-							<div>
-								<label for="finish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Finish</label>
-								<ul class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-										<div class="flex items-center ps-3">
-											<input id="mattlack" type="radio" value="mattlack" name="finish" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="mattlack" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">mattlack</label>
-										</div>
-									</li>
-									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-										<div class="flex items-center ps-3">
-											<input id="hartoel" type="radio" value="hartoel" name="finish" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="hartoel" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">hartöl</label>
-										</div>
-									</li>
-									<li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-										<div class="flex items-center ps-3">
-											<input id="risse" type="radio" value="risse" name="finish" required class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-											<label for="risse" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Äste/Risse schwarz verfüllt*<span class="text-xs font-normal text-gray-500 dark:text-gray-400">(Preis-Aufschlag 47,60€/m²)</span></label>
-										</div>
-									</li>
-								</ul>
-							</div>
-
-						</div>
-
-
-
-
-	
-					</fieldset>
-					
-
-						<!-- Balken Checkbox -->
-							
-						 <div class="flex mb-4">
-							<div class="flex items-center h-5">
-								<input id="balken" name="balken"
-								value="reine-balken-aussenseiten" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-							</div>
-							<div class="ms-2 text-sm">
-								<label for="balken" class="font-medium text-gray-900 dark:text-gray-300">mit "Reine Balken Außenseiten" kombiniert werden</label>
-								<p class="text-xs font-normal text-gray-500 dark:text-gray-400">(Preis-Aufschlag 71,40€/m²)</p>
-							</div>
-						</div>
-
-
-
-						
-
-					<button type="submit" id="submitBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">rechnen</button>
-				</form>
+				<button type="submit" id="submitBtn"
+					class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">rechnen</button>
+			</form>
 		</div>
-	
+
 
 
 
 		<!-- Zusammenfassung -->
-		<div id="ausgabe" class="ausgabe w-fit hidden p-4 ">
-						<div class="w-full flex-col flex-wrap justify-center my-8 mx-4 p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-		
-			
-			<!-- Cards Berechnungen -->
-			<div class="flex flex-wrap justify-between">
-				
-				<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
-					<div class="p-5">
-							<h5 id="flaecheTitel" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
-							<span id="displayQM" class="text-5xl font-extrabold tracking-tight"></span>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+		<div id="ausgabe" class="ausgabe w-fit px-4 ">
+			<div
+				class="w-full flex-col flex-wrap justify-center my-8 mx-4 p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+
+
+				<!-- Cards Berechnenergebnisse -->
+				<div class="grid auto-rows-fr grid-cols-4 gap-6">
+
+					<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
+						<div class="py-5">
+							<h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Fläche</h5>
+							<span id="displayQM" class="text-4xl font-bold tracking-tight"></span>
+						</div>
 					</div>
-				</div>
-				
-				<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
-					<div class="p-5">		
-							<h5 id="gesamtpreisTitel" class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
-							<span id="displayPreis" class="text-5xl font-extrabold tracking-tight"></span>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+
+					<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
+						<div class="py-5">
+							<h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Grundpreis</h5>
+							<span id="displayGrundPreis" class="text-4xl font-bold tracking-tight"></span>
+						</div>
 					</div>
+
+					<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
+
+					</div>
+
+					<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
+						<div class="py-5">
+							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Gesamtpreis</h5>
+							<span id="displayGesamtPreis" i class="text-4xl font-extrabold tracking-tight"></span>
+						</div>
+					</div>
+
+
 				</div>
 
-			<div class="w-4/12 bg-white dark:bg-gray-800 dark:border-gray-700">
-				
+				<!-- Cards Design -->
+				<div class="grid auto-rows-fr grid-cols-4 gap-6 ">
+					<div
+						class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+						<img id="formPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
+						<div class="py-2 px-4">
+							<p class="font-normal text-gray-700 dark:text-gray-400">Form</p>
+							<h5 id="selectedForm" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
+							</h5>
+						</div>
+					</div>
+
+					<div
+						class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+						<img id="farbePic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
+						<div class="py-2 px-4">
+							<p class="font-normal text-gray-700 dark:text-gray-400">Farbe</p>
+							<h5 id="selectedFarbe" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
+							</h5>
+						</div>
+					</div>
+
+					<div
+						class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+						<img id="rissPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
+						<div class="py-2 px-4">
+							<p class="font-normal text-gray-700 dark:text-gray-400">Rissanteil</p>
+							<h5 id="selectedRissanteil"
+								class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
+						</div>
+					</div>
+
+					<div
+						class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+						<img id="finishPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
+						<div class="py-2 px-4">
+							<p class="font-normal text-gray-700 dark:text-gray-400">Finish</p>
+							<h5 id="selectedFinish" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
+							</h5>
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Tabelle -->
+				<div class="grid my-2 auto-rows-auto grid-cols-4 gap-6">
+					<div class="col-span-4 gap-6 text-center">
+						<h3 id="tabelleTitel" class="text-lg font-bold dark:text-white"></h3>
+					</div>
+					<div id="tableContainer" class="col-span-4 text-center"></div>
+				</div>
+
+
+
 			</div>
 
 
-			</div>
 
-			<!-- Cards Design -->
-			flex flex-wrap justify-between
-			<div class="grid auto-rows-fr grid-cols-4 gap-6 ">
-				<div class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-					<img id="formPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
-					<div class="py-2 px-4">
-						<p class="font-normal text-gray-700 dark:text-gray-400">Form</p>
-						<h5 id="selectedForm" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
-					</div>
-				</div>
-				
-				<div class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-					<img id="farbePic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
-					<div class="py-2 px-4">
-						<p class="font-normal text-gray-700 dark:text-gray-400">Farbe</p>
-						<h5 id="selectedFarbe" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
-					</div>
-				</div>				
-
-				<div class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-					<img id="rissPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
-					<div class="py-2 px-4">
-						<p class="font-normal text-gray-700 dark:text-gray-400">Rissanteil</p>
-						<h5 id="selectedRissanteil" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
-					</div>
-				</div>
-
-				<div class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-					<img id="finishPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
-					<div class="py-2 px-4">
-						<p class="font-normal text-gray-700 dark:text-gray-400">Finish</p>
-						<h5 id="selectedFinish" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
-					</div>
-				</div>
-
-			</div>
-			
-			<!-- Tabelle -->
-			<h3 id="tabelleTitel" class="mb-2 mt-6 text-lg text-center font-bold dark:text-white"></h3>
-			<div id="tableContainer" class="relative overflow-x-auto"></div>
-		
-
-		
-		</div>
-
-			
-			
 		</div>
 	</div>
 
-	
-
-<footer>
-    <div class="w-full max-w-screen-xxl mx-auto px-10 md:pb-8">
-		<hr class="my-3 border-gray-400 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <div class="sm:flex sm:items-center sm:justify-between">
-            <a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-				<img src="./images/siri-logo-icon2.png" class="h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SiriGlück</span>
-            </a>
-			<span class="block text-sm text-gray-600 sm:text-center dark:text-gray-400">© 2025 -
-				<a href="https://www.linkedin.com/in/siriluck-rattanapong/" target="_blank" class="hover:underline">LinkedIn</a> | 
-				<a href="https://github.com/siriglueck" target="_blank" class="hover:underline">GitHub </a> -
-			All Rights Reserved.</span>
-            
-        </div>
-    </div>
 
 
 
@@ -326,13 +348,36 @@
 
 
 
+	<footer>
+		<div class="w-full max-w-screen-xxl mx-auto px-10 md:pb-8">
+			<hr class="my-3 border-gray-400 sm:mx-auto dark:border-gray-700 lg:my-8" />
+			<div class="sm:flex sm:items-center sm:justify-between">
+				<a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+					<img src="./images/siri-logo-icon2.png" class="h-8" alt="Flowbite Logo" />
+					<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SiriGlück</span>
+				</a>
+				<span class="block text-sm text-gray-600 sm:text-center dark:text-gray-400">© 2025 -
+					<a href="https://www.linkedin.com/in/siriluck-rattanapong/" target="_blank"
+						class="hover:underline">LinkedIn</a> |
+					<a href="https://github.com/siriglueck" target="_blank" class="hover:underline">GitHub </a> -
+					All Rights Reserved.</span>
 
-</footer>
+			</div>
+		</div>
 
 
 
-	
+
+
+
+
+
+	</footer>
+
+
+
+
 	<script src="js/main.js"></script>
-</div>
+	</div>
 
 </html>

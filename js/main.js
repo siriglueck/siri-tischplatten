@@ -6,18 +6,16 @@ const clearBtn = document.getElementById('clearBtn');
 const breite = document.getElementById('breite');
 const laenge = document.getElementById('laenge');
 const staerke = document.getElementById('staerke');
-const gesamtpreisTitel = document.getElementById('gesamtpreisTitel');
-const flaecheTitel = document.getElementById('flaecheTitel');
 const tischForm = document.getElementById('tischForm');
 const tischFarbe = document.getElementById('tischFarbe');
 const displayQM = document.getElementById('displayQM');
 const rissAnteil = document.getElementById('rissAnteil');
 const resetButton = document.getElementById('resetBtn');
 const balkenCheckbox = document.getElementById('balken');
-const displayPreis = document.getElementById('displayPreis');
 const tabelleTitel = document.getElementById('tabelleTitel');
 const tableContainer = document.getElementById('tableContainer');
-const displayGesamtpreis = document.getElementById('displayGesamtpreis');
+const displayGrundPreis = document.getElementById('displayGrundPreis');
+const displayGesamtPreis = document.getElementById('displayGesamtPreis');
 const selectedForm = document.getElementById('selectedForm');
 const selectedFarbe = document.getElementById('selectedFarbe');
 const selectedRissanteil = document.getElementById('selectedRissanteil');
@@ -168,11 +166,10 @@ addEventListener('DOMContentLoaded', () => {
     const preisBerechnungDE = parseFloat(
       preisBerechnung.toFixed(2)
     ).toLocaleString('de-DE');
-    let gesamtPreis = preisBerechnung;
+    let gesamtPreis = preisBerechnungDE;
 
-    gesamtpreisTitel.innerText = 'Gesamtpreis';
-    displayPreis.innerHTML = ' € ' + gesamtPreis;
-    flaecheTitel.innerText = 'Fläche';
+    displayGesamtPreis.innerHTML = ' € ' + gesamtPreis;
+    displayGrundPreis.innerHTML = ' € ' + preisBerechnungDE;
     displayQM.innerHTML = qmDE + ' m<sup>2</sup>';
 
     /* === Preistabelle erzeugen === */
@@ -183,17 +180,27 @@ addEventListener('DOMContentLoaded', () => {
       'Plattenstärke (mm)',
       'Grundpreis/m² (€)',
       'Preis (€)',
-      '+ zzgl. Risse verfüllen (€)',
-      '+ zzgl. Reine Balken Aussenseiten (€)',
-      '+ zzgl. Risse verfüllen und Reine Balken Aussenseiten (€)',
+      '+ zzgl. Risse (€)',
+      '+ zzgl. Reine Balken (€)',
+      '+ zzgl. Risse & Balken (€)',
     ];
     // Platzhalter für Tabellekörper
     headers.forEach((text) => {
       const th = document.createElement('th');
       th.textContent = text;
+      th.setAttribute('scope', 'col');
       headerRow.appendChild(th);
     });
     thead.appendChild(headerRow);
+    thead.classList.add(
+      'text-xs',
+      'text-gray-700',
+      'uppercase',
+      'bg-gray-50',
+      'dark:bg-gray-700',
+      'dark:text-gray-400'
+    );
+
     preisTable.appendChild(thead);
 
     // Tabellekörper erzeugen
@@ -219,14 +226,14 @@ addEventListener('DOMContentLoaded', () => {
         const td = document.createElement('td');
         //td.textContent = jedePreis;
         //row.appendChild(td);
-        td.classList.add('px-6', 'py-4');
+        td.classList.add('px-6', 'py-2');
         switch (j) {
           case 0:
-            td.textContent = staerkeKey;
+            td.textContent = staerkeKey + ' mm';
             row.appendChild(td);
             break;
           case 1:
-            td.textContent = staerkeValue;
+            td.textContent = staerkeValue + ' €/m²';
             row.appendChild(td);
             break;
           case 2:
@@ -285,15 +292,7 @@ addEventListener('DOMContentLoaded', () => {
     );
 
     preisTable.classList.add(
-      'w-10/12',
-      'text-sm',
-      'my-2',
-      'p-5',
-      'mx-auto',
-      'border',
-      'rounded-lg',
-      'border-gray-200',
-      'mx-auto',
+      'w-full',
       'text-sm',
       'text-left',
       'rtl:text-right',
@@ -339,15 +338,6 @@ addEventListener('DOMContentLoaded', () => {
       gesamtPreis += rissePreis;
     }
     */
-
-    console.log(gesamtPreis);
-
-    displayGesamtpreis.innerHTML =
-      'Gesamtpreis:' +
-      gesamtPreis.toLocaleString('de-DE', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      });
   });
 
   /* === Toggle Theme === */
