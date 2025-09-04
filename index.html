@@ -8,142 +8,140 @@
 
 	<!-- Tailwind CSS als CDN -->
 	<script src="https://cdn.tailwindcss.com"></script>
-
-	<!-- enable darkMode as a dark:class -->
+	<!-- enable Tailwind Dark Mode -->
 	<script>
 		tailwind.config = {
 			darkMode: 'class',
 		} 
 	</script>
 
-
 </head>
 
-<body class="bg-gray-300 dark:bg-gray-900 text-black dark:text-white transition-colors duration-500">
+<body class="bg-gray-300 dark:bg-gray-900 text-black dark:text-white transition-colors duration-800">
 
-	<div id="wrapper"
-		class="flex-col md:flex-row gap-4  w-fit transition-all duration-500 relative w-auto overflow-hidden transition-all duration-500 ease-in-out shadow-md mx-auto my-5 px-10 py-5 flex justify-center bg-white dark:bg-gray-800 rounded-lg">
+	<!-- Wrapper -->
+	<div id="wrapper" class="flex items-center justify-center">
+		<!-- Container -->
+		<div
+			class="flex-col lg:flex-row gap-4 w-fit relative overflow-hidden transition-all duration-500 ease-in-out shadow-lg m-5 px-10 py-5 flex justify-center bg-white dark:bg-gray-800 rounded-lg">
 
-		<div class="absolute mx-5 top-2 right-5 flex justify-end items-center">
-
-
-			<label class="inline-flex items-center me-5 cursor-pointer">
-				<input id="toggleBtn" type="checkbox" value="" class="sr-only peer" checked>
-				<span id="icon">🌙</span>
-				<span id="label"
-					class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300 invisible md:visible">Yellow</span>
-			</label>
-
-
-			<button type="button" id="clearBtn" class="text-3xl text-gray-400 hover:text-red-500 transition">
-				<span id="labelDEL">&#10799;</span>
-			</button>
-
-
-		</div>
-
-
-
-		<!-- Form -->
-		<div class="eingabe m-4">
-
-
-			<h1
-				class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-				Tischplatten <span
-					class="underline underline-offset-3 decoration-8 decoration-yellow-400 dark:decoration-yellow-400">Konfigurator</span>
-			</h1>
-			<p class="mb-6 text-md font-normal text-gray-500 lg:text-lg dark:text-gray-400">Erstelle Ihre individuelle
-				Tischplatte – wähle Material, Größe und Design in wenigen Klicks.</p>
-
-
-			<form action="#" id="form1" class="my-4">
-
-
-
-				<div class="grid gap-6 mb-6 md:grid-cols-2">
-					<!-- Breite -->
-					<div>
-						<label for="breite" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Breite
-							(cm.)</label>
-						<input type="number" id="breite" name="breite" min="0" max="180" placeholder="0-180" required
-							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+			<!-- Toggle Button & Clear Button -->
+			<div class="absolute mx-5 top-2 right-5  gap-x-4 leading-none">
+				<!-- Toggle Button -->
+				<label class="inline-flex items-center mb-5 cursor-pointer ">
+					<input type="checkbox" id="toggleBtn" value="" class="sr-only peer">
+					<div
+						class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600">
 					</div>
-					<!-- Länge -->
-					<div>
-						<label for="laenge" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Länge (cm.)</label>
-						<input type="number" id="laenge" name="laenge" min="0" max="450" placeholder="0-450" required
-							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-					</div>
-				</div>
-
-
-
-
-
-				<label for="tischplatte" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-					Stil und Plattenstärke (mm.)
-					<span class="text-xs font-normal text-gray-500 dark:text-gray-400">Beim optischen Verdoppeln -25% </span>
+					<span id="label" class="mx-2 text-sm font-medium text-gray-600 dark:text-gray-300">Small toggle</span>
 				</label>
+				<!-- Clear Button -->
+				<button type="button" id="clearBtn" class="text-3xl text-gray-400 hover:text-red-500 transition leading-none">
+					<span>&#10799;</span>
+				</button>
+			</div>
 
-				<div class="flex w-full rounded-lg overflow-hidden border border-gray-300 dark:border-gray-600">
-					<!-- Dropdown 1 -->
-					<select name="tischplatte" id="tischplatte" required
-						class="flex-1 bg-gray-100 text-gray-900 text-sm p-2.5 border-r border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
-						<option value="" disabled selected> - bitte auswählen - </option>
-						<option value="vollmassiv">vollmassiv</option>
-						<option value="gedoppelt">optisch gedoppelt</option>
-					</select>
+			<!-- Input Column -->
+			<div id="input" class="m-2">
 
-					<!-- Dropdown 2 : Plattenstärke -->
-					<select name="staerke" id="staerke" required
-						class="flex-1 bg-gray-50 text-gray-900 text-sm p-2.5 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
-						<option value="" disabled selected> - bitte auswählen - </option>
-					</select>
+				<!-- Title & Description -->
+				<div>
+					<!-- Title -->
+					<h1
+						class="my-8 lg:my-4 text-5xl font-extrabold leading-none tracking-tight text-gray-900  lg:text-6xl dark:text-white">
+						Tischplatten
+						<!-- Underline with yellow -->
+						<span class="underline underline-offset-3 decoration-8 decoration-yellow-400 dark:decoration-yellow-400">
+							Konfigurator </span>
+					</h1>
+					<!-- Description -->
+					<p class="mb-6 text-md font-normal text-gray-600 lg:text-lg dark:text-gray-400">
+						Erstelle Ihre individuelle Tischplatte - wähle Material, Größe und Design in wenigen Klicks.
+					</p>
 				</div>
 
+				<!-- Form -->
+				<form action="#" id="form1" class="my-4">
 
-				<fieldset>
+					<!-- Maßeingabe -->
+					<fieldset class="grid gap-6 mb-6 md:grid-cols-2">
+						<!-- Breite -->
+						<div>
+							<label for="breite" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Breite
+								(cm.)</label>
+							<input type="number" id="breite" name="breite" min="0" max="180" placeholder="0-180" required
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+						</div>
+						<!-- Länge -->
+						<div>
+							<label for="laenge" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Länge
+								(cm.)</label>
+							<input type="number" id="laenge" name="laenge" min="0" max="450" placeholder="0-450" required
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+						</div>
+					</fieldset>
 
+					<!-- Stil und Plattenstärke -->
+					<fieldset class="mb-4">
+						<label for="tischplatte" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+							Stil und Plattenstärke (mm.)
+							<span class="text-xs font-normal text-gray-500 dark:text-gray-400">Beim optischen Verdoppeln -25% </span>
+						</label>
+						<div class="flex w-full rounded-lg overflow-hidden border border-gray-300 dark:border-gray-600">
+							<!-- Dropdown 1 -->
+							<select name="tischplatte" id="tischplatte" required
+								class="flex-1 bg-gray-100 text-gray-900 text-sm p-2.5 border-r border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
+								<option value="" disabled selected> - bitte auswählen - </option>
+								<option value="vollmassiv">vollmassiv</option>
+								<option value="gedoppelt">optisch gedoppelt</option>
+							</select>
+							<!-- Dropdown 2 : Plattenstärke -->
+							<select name="staerke" id="staerke" required
+								class="flex-1 bg-gray-50 text-gray-900 text-sm p-2.5 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
+								<option value="" disabled selected> - bitte auswählen - </option>
+							</select>
+						</div>
+					</fieldset>
 
 					<!-- Form & Farbe -->
-					<div class="formularSektion">
-
-						<label for="tischForm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Form</label>
-						<select name="tischForm" id="tischForm" required
-							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-							<option disabled selected> - bitte auswählen - </option>
-							<option value="1">Gerade Kannte</option>
-							<option value="2">Facettenkante</option>
-							<option value="3">Mit Baumkane</option>
-							<option value="4">Durchgängige Bohlen</option>
-							<option value="5">Mit Querfrieß</option>
-							<option value="6">Rund</option>
-							<option value="7">Oval</option>
-							<option value="8">Schiffsbodenmuster</option>
-							<option value="9">Flechmuster</option>
-							<option value="10">Rautenmuster</option>
-						</select>
-
+					<fieldset>
+						<div class="mb-4">
+							<label for="tischForm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Form</label>
+							<select name="tischForm" id="tischForm" required
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+								<option disabled selected> - bitte auswählen - </option>
+								<option value="1">Gerade Kannte</option>
+								<option value="2">Facettenkante</option>
+								<option value="3">Mit Baumkane</option>
+								<option value="4">Durchgängige Bohlen</option>
+								<option value="5">Mit Querfrieß</option>
+								<option value="6">Rund</option>
+								<option value="7">Oval</option>
+								<option value="8">Schiffsbodenmuster</option>
+								<option value="9">Flechmuster</option>
+								<option value="10">Rautenmuster</option>
+							</select>
+						</div>
 						<!-- Farbe -->
-						<label for="tischFarbe" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farbe</label>
-						<select name="tischFarbe" id="tischFarbe" required
-							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-							<option value="" class="text-gray-600" disabled selected> - bitte auswählen - </option>
-							<option value="1">Natura</option>
-							<option value="2">Alte Eiche</option>
-							<option value="3">Eiche dunkel</option>
-							<option value="4">Hellgrau geölt</option>
-							<option value="5">Dunkelgrau geölt</option>
-							<option value="6">Weiss geölt</option>
-							<option value="7">Weiss gekälkt</option>
-						</select>
+						<div class="mb-4">
+							<label for="tischFarbe" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farbe</label>
+							<select name="tischFarbe" id="tischFarbe" required
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+								<option value="" class="text-gray-600" disabled selected> - bitte auswählen - </option>
+								<option value="1">Natura</option>
+								<option value="2">Alte Eiche</option>
+								<option value="3">Eiche dunkel</option>
+								<option value="4">Hellgrau geölt</option>
+								<option value="5">Dunkelgrau geölt</option>
+								<option value="6">Weiss geölt</option>
+								<option value="7">Weiss gekälkt</option>
+							</select>
+						</div>
+					</fieldset>
 
-					</div>
-
-					<div class="grid gap-6 mb-6 md:grid-cols-2">
+					<!-- Rissanteil & Finish -->
+					<div class="grid gap-6 mb-2 md:grid-cols-2">
 						<!-- Rissanteil -->
-
 						<div>
 							<label for="rissAnteil"
 								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rissanteil</label>
@@ -173,10 +171,8 @@
 											class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">normal</label>
 									</div>
 								</li>
-
 							</ul>
 						</div>
-
 						<!-- Finish -->
 						<div>
 							<label for="finish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Finish</label>
@@ -204,153 +200,265 @@
 											class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
 										<label for="risse"
 											class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Äste/Risse schwarz
-											verfüllt*<span class="text-xs font-normal text-gray-500 dark:text-gray-400">(Preis-Aufschlag
-												47,60€/m²)</span></label>
+											verfüllt *</label>
+
+
+
+
+
 									</div>
 								</li>
 							</ul>
-						</div>
-
-					</div>
-
-
-				</fieldset>
-
-
-				<!-- Balken Checkbox -->
-
-				<div class="flex mb-4">
-					<div class="flex items-center h-5">
-						<input id="balken" name="balken" value="reine-balken-aussenseiten" type="checkbox"
-							class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-					</div>
-					<div class="ms-2 text-sm">
-						<label for="balken" class="font-medium text-gray-900 dark:text-gray-300">mit "Reine Balken Außenseiten"
-							kombiniert werden</label>
-						<p class="text-xs font-normal text-gray-500 dark:text-gray-400">(Preis-Aufschlag 71,40€/m²)</p>
-					</div>
-				</div>
-
-
-
-
-
-				<button type="submit" id="submitBtn"
-					class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">rechnen</button>
-			</form>
-		</div>
-
-
-
-
-		<!-- Zusammenfassung -->
-		<div id="ausgabe" class="ausgabe w-fit px-4 ">
-			<div
-				class="w-full flex-col flex-wrap justify-center my-8 mx-4 p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-
-
-				<!-- Cards Berechnenergebnisse -->
-				<div class="grid auto-rows-fr grid-cols-4 gap-6">
-
-					<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
-						<div class="py-5">
-							<h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Fläche</h5>
-							<span id="displayQM" class="text-4xl font-bold tracking-tight"></span>
+							<span class="text-xs font-normal text-gray-500 dark:text-gray-400"> * Preis-Aufschlag
+								47,60€/m² </span>
 						</div>
 					</div>
 
-					<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
-						<div class="py-5">
-							<h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Grundpreis</h5>
-							<span id="displayGrundPreis" class="text-4xl font-bold tracking-tight"></span>
+					<!-- Balken Checkbox -->
+					<fieldset class="flex mb-4">
+						<div class="flex items-center h-5">
+							<input id="balken" name="balken" value="reine-balken-aussenseiten" type="checkbox"
+								class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 						</div>
-					</div>
-
-					<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
-
-					</div>
-
-					<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
-						<div class="py-5">
-							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Gesamtpreis</h5>
-							<span id="displayGesamtPreis" i class="text-4xl font-extrabold tracking-tight"></span>
+						<div class="ms-2 text-sm">
+							<label for="balken" class="font-medium text-gray-900 dark:text-gray-300">
+								mit "Reine Balken Außenseiten"kombiniert werden
+								<span class="text-xs font-normal text-gray-500 dark:text-gray-400">
+									(Preis-Aufschlag 71,40€/m²)
+								</span>
+							</label>
 						</div>
-					</div>
+					</fieldset>
 
-
-				</div>
-
-				<!-- Cards Design -->
-				<div class="grid auto-rows-fr grid-cols-4 gap-6 ">
-					<div
-						class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-						<img id="formPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
-						<div class="py-2 px-4">
-							<p class="font-normal text-gray-700 dark:text-gray-400">Form</p>
-							<h5 id="selectedForm" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
-							</h5>
-						</div>
-					</div>
-
-					<div
-						class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-						<img id="farbePic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
-						<div class="py-2 px-4">
-							<p class="font-normal text-gray-700 dark:text-gray-400">Farbe</p>
-							<h5 id="selectedFarbe" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
-							</h5>
-						</div>
-					</div>
-
-					<div
-						class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-						<img id="rissPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
-						<div class="py-2 px-4">
-							<p class="font-normal text-gray-700 dark:text-gray-400">Rissanteil</p>
-							<h5 id="selectedRissanteil"
-								class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
-						</div>
-					</div>
-
-					<div
-						class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-						<img id="finishPic" class="rounded-t-lg h-52 w-60 object-cover" src="" alt="" />
-						<div class="py-2 px-4">
-							<p class="font-normal text-gray-700 dark:text-gray-400">Finish</p>
-							<h5 id="selectedFinish" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
-							</h5>
-						</div>
-					</div>
-
-				</div>
-
-				<!-- Tabelle -->
-				<div class="grid my-2 auto-rows-auto grid-cols-4 gap-6">
-					<div class="col-span-4 gap-6 text-center">
-						<h3 id="tabelleTitel" class="text-lg font-bold dark:text-white"></h3>
-					</div>
-					<div id="tableContainer" class="col-span-4 text-center"></div>
-				</div>
-
-
+					<!-- Submit Button -->
+					<!-- Full width on small screens, auto width on larger screens -->
+					<button type="submit" id="submitBtn"
+						class="w-full sm:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+						rechnen
+					</button>
+				</form>
 
 			</div>
 
+			<!-- Output Column -->
+			<div id="output" class="w-fit m-2 ">
+
+				<!-- Output Container -->
+				<div
+					class="w-fit flex-col flex-wrap justify-start my-8 mx-4 px-12 py-12 md:py-2 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+
+					<!-- Output Title -->
+					<div class="grid gap-6 auto-rows-fr grid-cols-1 overflow-x-auto  md:grid-cols-4">
+						<!-- Fläche -->
+						<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
+							<div class="py-5">
+								<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Fläche</h5>
+								<span id="displayQM" class="text-4xl font-extrabold text-gray-900  tracking-tight"></span>
+							</div>
+						</div>
+						<!-- Grundpreis -->
+						<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
+							<div class="py-5">
+								<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Grundpreis</h5>
+								<span id="displayGrundPreis" class="text-4xl font-extrabold text-gray-900 tracking-tight"></span>
+							</div>
+						</div>
+						<!-- Placeholder -->
+						<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
+						</div>
+						<!-- Gesamtpreis -->
+						<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
+							<div class="py-5">
+								<h5 class="mb-2 text-2xl font-bold tracking-tight text-green-700 dark:text-green-400">
+									Gesamtpreis</h5>
+								<span id="displayGesamtPreis"
+									class="text-4xl font-extrabold text-green-700 tracking-tight dark:text-green-400"></span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Cards -->
+					<div class="grid auto-rows-fr grid-cols-4 gap-6 ">
+						<!-- From card -->
+						<div
+							class="h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+							<img id="formPic" class="rounded-t-lg h-40 w-40 object-cover" src="" alt="" />
+							<div class="py-2 px-4">
+								<p class="font-normal text-gray-700 dark:text-gray-400">Form</p>
+								<h5 id="selectedForm" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
+								</h5>
+							</div>
+						</div>
+						<!-- Farbe card -->
+						<div
+							class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+							<img id="farbePic" class="rounded-t-lg h-40 w-40 object-cover" src="" alt="" />
+							<div class="py-2 px-4">
+								<p class="font-normal text-gray-700 dark:text-gray-400">Farbe</p>
+								<h5 id="selectedFarbe" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
+								</h5>
+							</div>
+						</div>
+						<!-- Rissanteil card -->
+						<div
+							class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+							<img id="rissPic" class="rounded-t-lg h-40 w-40 object-cover" src="" alt="" />
+							<div class="py-2 px-4">
+								<p class="font-normal text-gray-700 dark:text-gray-400">Rissanteil</p>
+								<h5 id="selectedRissanteil"
+									class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white"></h5>
+							</div>
+						</div>
+						<!-- Finish card -->
+						<div
+							class=" h-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+							<img id="finishPic" class="rounded-t-lg h-40 w-40 object-cover" src="" alt="" />
+							<div class="py-2 px-4">
+								<p class="font-normal text-gray-700 dark:text-gray-400">Finish</p>
+								<h5 id="selectedFinish" class="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">
+								</h5>
+							</div>
+						</div>
+					</div>
+
+					<!-- Tabelle -->
+					<!--<div class="grid my-2 auto-rows-auto grid-cols-4">
+						<!--<div class="col-span-4 text-center my-2">
+						<!--	<h3 id="tabelleTitel" class="text-sm font-bold dark:text-white"></h3>
+						<!--</div>
+						<!-- <div id="tableContainer" class="col-span-4 text-center"></div> -->
+
+					<!-- Mockup -->
+					<div class="grid my-2 auto-rows-auto grid-cols-4">
+						<div class="col-span-4 text-center my-2">
+							<h3 id="tabelleTitel" class="text-sm font-bold dark:text-white">Vollmassive Tischplatte – Brutto-Preis
+								pro Quadratmeter</h3>
+						</div>
+
+						<div id="tableContainer" class="col-span-4 text-center border-2 border-solid sm:rounded-lg">
+							<div class="relative overflow-x-auto sm:rounded-lg">
+								<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+									<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+										<tr
+											class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+											<th scope="col">Plattenstärke</th>
+											<th scope="col">Grundpreis/m²</th>
+											<th scope="col">Preis</th>
+											<th scope="col">+ zzgl. Risse</th>
+											<th scope="col">+ zzgl. Reine Balken</th>
+											<th scope="col">+ zzgl. Risse &amp; Balken</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr
+											class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"">
+											<td class=" px-6 py-1">25 mm</td>
+											<td class="px-6 py-1">300 €/m²</td>
+											<td class="px-6 py-1">€ 1.080,00</td>
+											<td class="px-6 py-1">€ 1.251,36</td>
+											<td class="px-6 py-1">€ 1.337,04</td>
+											<td class="px-6 py-1">€ 1.508,40</td>
+										</tr>
+										<tr class="px-6 py-4">
+											<td class="px-6 py-2">30 mm</td>
+											<td class="px-6 py-2">360 €/m²</td>
+											<td class="px-6 py-2">€ 1.296,00</td>
+											<td class="px-6 py-2">€ 1.467,36</td>
+											<td class="px-6 py-2">€ 1.553,04</td>
+											<td class="px-6 py-2">€ 1.724,40</td>
+										</tr>
+										<tr class="px-6 py-4">
+											<td class="px-6 py-2">40 mm</td>
+											<td class="px-6 py-2">420 €/m²</td>
+											<td class="px-6 py-2">€ 1.512,00</td>
+											<td class="px-6 py-2">€ 1.683,36</td>
+											<td class="px-6 py-2">€ 1.769,04</td>
+											<td class="px-6 py-2">€ 1.940,40</td>
+										</tr>
+										<tr class="px-6 py-4">
+											<td class="px-6 py-2">50 mm</td>
+											<td class="px-6 py-2">480 €/m²</td>
+											<td class="px-6 py-2">€ 1.728,00</td>
+											<td class="px-6 py-2">€ 1.899,36</td>
+											<td class="px-6 py-2">€ 1.985,04</td>
+											<td class="px-6 py-2">€ 2.156,40</td>
+										</tr>
+										<tr class="px-6 py-4">
+											<td class="px-6 py-2">60 mm</td>
+											<td class="px-6 py-2">560 €/m²</td>
+											<td class="px-6 py-2">€ 2.016,00</td>
+											<td class="px-6 py-2">€ 2.187,36</td>
+											<td class="px-6 py-2">€ 2.273,04</td>
+											<td class="px-6 py-2">€ 2.444,40</td>
+										</tr>
+										<tr class="px-6 py-4">
+											<td class="px-6 py-2">70 mm</td>
+											<td class="px-6 py-2">640 €/m²</td>
+											<td class="px-6 py-2">€ 2.304,00</td>
+											<td class="px-6 py-2">€ 2.475,36</td>
+											<td class="px-6 py-2">€ 2.561,04</td>
+											<td class="px-6 py-2">€ 2.732,40</td>
+										</tr>
+										<tr class="px-6 py-4">
+											<td class="px-6 py-2">80 mm</td>
+											<td class="px-6 py-2">720 €/m²</td>
+											<td class="px-6 py-2">€ 2.592,00</td>
+											<td class="px-6 py-2">€ 2.763,36</td>
+											<td class="px-6 py-2">€ 2.849,04</td>
+											<td class="px-6 py-2">€ 3.020,40</td>
+										</tr>
+										<tr class="px-6 py-4">
+											<td class="px-6 py-2">90 mm</td>
+											<td class="px-6 py-2">800 €/m²</td>
+											<td class="px-6 py-2">€ 2.880,00</td>
+											<td class="px-6 py-2">€ 3.051,36</td>
+											<td class="px-6 py-2">€ 3.137,04</td>
+											<td class="px-6 py-2">€ 3.308,40</td>
+										</tr>
+										<tr class="px-6 py-4">
+											<td class="px-6 py-2">100 mm</td>
+											<td class="px-6 py-2">880 €/m²</td>
+											<td class="px-6 py-2">€ 3.168,00</td>
+											<td class="px-6 py-2">€ 3.339,36</td>
+											<td class="px-6 py-2">€ 3.425,04</td>
+											<td class="px-6 py-2">€ 3.596,40</td>
+										</tr>
+										<tr class="px-6 py-4">
+											<td class="px-6 py-2">110 mm</td>
+											<td class="px-6 py-2">960 €/m²</td>
+											<td class="px-6 py-2">€ 3.456,00</td>
+											<td class="px-6 py-2">€ 3.627,36</td>
+											<td class="px-6 py-2">€ 3.713,04</td>
+											<td class="px-6 py-2">€ 3.884,40</td>
+										</tr>
+										<tr class="px-6 py-4">
+											<td class="px-6 py-2">120 mm</td>
+											<td class="px-6 py-2">1040 €/m²</td>
+											<td class="px-6 py-2">€ 3.744,00</td>
+											<td class="px-6 py-2">€ 3.915,36</td>
+											<td class="px-6 py-2">€ 4.001,04</td>
+											<td class="px-6 py-2">€ 4.172,40</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 
 
+					</div>
+
+				</div>
+
+			</div>
 		</div>
+
 	</div>
+	</div>
+	<!-- Footer -->
 
-
-
-
-
-
-
-
-	<footer>
-		<div class="w-full max-w-screen-xxl mx-auto px-10 md:pb-8">
-			<hr class="my-3 border-gray-400 sm:mx-auto dark:border-gray-700 lg:my-8" />
+	<footer class="hidden">
+		<div class="w-11/12 max-w-screen-xxl mx-auto px-10 md:pb-8">
+			<hr class="my-3 border-gray-400 sm:mx-auto dark:border-gray-700 lg:my-6" />
 			<div class="sm:flex sm:items-center sm:justify-between">
 				<a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
 					<img src="./images/siri-logo-icon2.png" class="h-8" alt="Flowbite Logo" />
@@ -359,24 +467,11 @@
 				<span class="block text-sm text-gray-600 sm:text-center dark:text-gray-400">© 2025 -
 					<a href="https://www.linkedin.com/in/siriluck-rattanapong/" target="_blank"
 						class="hover:underline">LinkedIn</a> |
-					<a href="https://github.com/siriglueck" target="_blank" class="hover:underline">GitHub </a> -
-					All Rights Reserved.</span>
-
+					<a href="https://github.com/siriglueck" target="_blank" class="hover:underline">GitHub </a> -</span>
 			</div>
 		</div>
-
-
-
-
-
-
-
-
 	</footer>
-
-
-
-
+	<!-- JavaScript -->
 	<script src="js/main.js"></script>
 	</div>
 

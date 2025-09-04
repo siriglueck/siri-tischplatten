@@ -1,7 +1,7 @@
 /* === DOM Zugriff & Variablen 1/2 === */
 const form1 = document.getElementById('form1');
 const wrapper = document.getElementById('wrapper');
-const ausgabe = document.getElementById('ausgabe');
+const ausgabe = document.getElementById('output');
 const clearBtn = document.getElementById('clearBtn');
 const breite = document.getElementById('breite');
 const laenge = document.getElementById('laenge');
@@ -177,12 +177,12 @@ addEventListener('DOMContentLoaded', () => {
     const thead = document.createElement('thead');
     const headerRow = document.createElement('tr');
     const headers = [
-      'Plattenstärke (mm)',
-      'Grundpreis/m² (€)',
-      'Preis (€)',
-      '+ zzgl. Risse (€)',
-      '+ zzgl. Reine Balken (€)',
-      '+ zzgl. Risse & Balken (€)',
+      'Plattenstärke',
+      'Grundpreis/m²',
+      'Preis',
+      '+ zzgl. Risse',
+      '+ zzgl. Reine Balken',
+      '+ zzgl. Risse & Balken',
     ];
     // Platzhalter für Tabellekörper
     headers.forEach((text) => {
@@ -215,10 +215,10 @@ addEventListener('DOMContentLoaded', () => {
 
       if (preisListe == preisListeVollmassiv) {
         tabelleTitel.innerText =
-          'Vollmassive Tischplatte – Brutto-Preis pro Quadratmeter';
+          'Vollmassive Tischplatte - Brutto-Preis pro Quadratmeter';
       } else {
         tabelleTitel.innerText =
-          'Optisch gedoppelte Tischplatte – Brutto-Preis pro Quadratmeter';
+          'Optisch gedoppelte Tischplatte - Brutto-Preis pro Quadratmeter';
       }
 
       for (let j = 0; j < headers.length; j++) {
@@ -226,7 +226,7 @@ addEventListener('DOMContentLoaded', () => {
         const td = document.createElement('td');
         //td.textContent = jedePreis;
         //row.appendChild(td);
-        td.classList.add('px-6', 'py-2');
+        td.classList.add('px-6', 'py-1');
         switch (j) {
           case 0:
             td.textContent = staerkeKey + ' mm';
@@ -237,42 +237,55 @@ addEventListener('DOMContentLoaded', () => {
             row.appendChild(td);
             break;
           case 2:
-            td.textContent = jedePreis.toLocaleString('de-DE', {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            });
+            td.textContent =
+              '€ ' +
+              jedePreis.toLocaleString('de-DE', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              });
             row.appendChild(td);
             break;
           case 3:
-            td.textContent = (jedePreis + rissePreis).toLocaleString('de-DE', {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            });
+            td.textContent =
+              '€ ' +
+              (jedePreis + rissePreis).toLocaleString('de-DE', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              });
             row.appendChild(td);
             break;
           case 4:
-            td.textContent = (jedePreis + balkenPreis).toLocaleString('de-DE', {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            });
+            td.textContent =
+              '€ ' +
+              (jedePreis + balkenPreis).toLocaleString('de-DE', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              });
             row.appendChild(td);
             break;
           case 5:
-            td.textContent = (
-              jedePreis +
-              rissePreis +
-              balkenPreis
-            ).toLocaleString('de-DE', {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            });
+            td.textContent =
+              '€ ' +
+              (jedePreis + rissePreis + balkenPreis).toLocaleString('de-DE', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              });
             row.appendChild(td);
             break;
           default:
             console.log(`Kein Zugriff`);
         }
       }
-      row.classList.add('px-6', 'py-4');
+      row.classList.add(
+        'px-6',
+        'bg-white',
+        'border-b',
+        'dark:bg-gray-800',
+        'dark:border-gray-700',
+        'border-gray-200',
+        'hover:bg-gray-100',
+        'dark:hover:bg-gray-600'
+      );
       tbody.appendChild(row);
     }
 
@@ -342,17 +355,14 @@ addEventListener('DOMContentLoaded', () => {
 
   /* === Toggle Theme === */
   const toggleBtn = document.getElementById('toggleBtn');
-  const icon = document.getElementById('icon');
   const label = document.getElementById('label');
   const html = document.documentElement;
 
   // ฟังก์ชันอัปเดต icon และข้อความ
   function updateIcon() {
     if (html.classList.contains('dark')) {
-      icon.textContent = '☀️';
       label.textContent = 'Light Mode';
     } else {
-      icon.textContent = '🌙';
       label.textContent = 'Dark Mode';
     }
   }
