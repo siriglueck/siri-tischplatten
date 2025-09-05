@@ -174,34 +174,35 @@ addEventListener('DOMContentLoaded', () => {
 
     /* === Preistabelle erzeugen === */
     const preisTable = document.createElement('table');
-    const thead = document.createElement('thead');
-    const headerRow = document.createElement('tr');
-    const headers = [
+    const preisTableTHead = document.createElement('thead');
+    const preisTableTR = document.createElement('tr');
+    const preisTableTH = [
       'Plattenstärke',
       'Grundpreis/m²',
       'Preis',
-      '+ zzgl. Risse',
-      '+ zzgl. Reine Balken',
-      '+ zzgl. Risse & Balken',
+      '+zzgl. Risse',
+      '+zzgl. Balken',
+      '+zzgl. Risse & Balken',
     ];
     // Platzhalter für Tabellekörper
-    headers.forEach((text) => {
+    preisTableTH.forEach((text) => {
       const th = document.createElement('th');
       th.textContent = text;
       th.setAttribute('scope', 'col');
-      headerRow.appendChild(th);
+      preisTableTR.appendChild(th);
+      th.classList.add('px-6', 'py-1');
     });
-    thead.appendChild(headerRow);
-    thead.classList.add(
+    preisTableTHead.appendChild(preisTableTR);
+    preisTableTHead.classList.add(
       'text-xs',
       'text-gray-700',
-      'uppercase',
+      'text-center',
       'bg-gray-50',
       'dark:bg-gray-700',
       'dark:text-gray-400'
     );
 
-    preisTable.appendChild(thead);
+    preisTable.appendChild(preisTableTHead);
 
     // Tabellekörper erzeugen
     const tbody = document.createElement('tbody');
@@ -221,8 +222,8 @@ addEventListener('DOMContentLoaded', () => {
           'Optisch gedoppelte Tischplatte - Brutto-Preis pro Quadratmeter';
       }
 
-      for (let j = 0; j < headers.length; j++) {
-        const header = headers[j];
+      for (let j = 0; j < preisTableTH.length; j++) {
+        const header = preisTableTH[j];
         const td = document.createElement('td');
         //td.textContent = jedePreis;
         //row.appendChild(td);
@@ -294,12 +295,12 @@ addEventListener('DOMContentLoaded', () => {
 
     // Tabellendesign hinzufügen
 
-    headerRow.classList.add(
-      'bg-white',
+    preisTableTR.classList.add(
+      'bg-gray-200',
       'border-b',
-      'dark:bg-gray-800',
-      'dark:border-gray-700',
-      'border-gray-200',
+      'dark:bg-gray-700',
+      'dark:border-gray-400',
+      'border-gray-400',
       'hover:bg-gray-50',
       'dark:hover:bg-gray-600'
     );
@@ -311,6 +312,18 @@ addEventListener('DOMContentLoaded', () => {
       'rtl:text-right',
       'text-gray-500',
       'dark:text-gray-400'
+    );
+
+    tableContainer.classList.add(
+      'col-span-4',
+      'text-center',
+      'border',
+      'border-gray-300',
+      'dark:border-gray-400',
+      'border-solid',
+      'sm:rounded-lg',
+      'relative',
+      'overflow-x-auto'
     );
 
     // Form Card
