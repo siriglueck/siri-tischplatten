@@ -102,10 +102,24 @@ addEventListener('DOMContentLoaded', () => {
     tableContainer.innerHTML = '';
   }
 
+  let checkExpand = false;
+
+  const container = document.getElementById('container');
+  function containerSize() {
+    if (!checkExpand && container.classList.contains('w-fit')) {
+      container.classList.remove('w-fit');
+      container.classList.add('w-10/12');
+      checkExpand = true; // ถ้ามีอยู่ → ลบ
+    }
+  }
+
   /* === X geklickt werden === */
   clearBtn.addEventListener('click', () => {
     ausgabe.classList.add('hidden');
     clearScreen();
+    container.classList.remove('w-10/12');
+    container.classList.add('w-fit');
+    checkExpand = false; // ถ้าไม่มี → เพิ่ม
   });
 
   /* === Rechnen geklickt werden === */
@@ -116,6 +130,7 @@ addEventListener('DOMContentLoaded', () => {
     tabelleTitel.innerText = '';
     tableContainer.innerHTML = '';
     ausgabe.classList.remove('hidden');
+    containerSize();
 
     /* === DOM Zugriff & Variablen 2/2 === */
     const inputBreite = breite.value;
@@ -190,7 +205,7 @@ addEventListener('DOMContentLoaded', () => {
       th.textContent = text;
       th.setAttribute('scope', 'col');
       preisTableTR.appendChild(th);
-      th.classList.add('px-6', 'py-1');
+      th.classList.add('py-1');
     });
     preisTableTHead.appendChild(preisTableTR);
     preisTableTHead.classList.add(
@@ -212,7 +227,7 @@ addEventListener('DOMContentLoaded', () => {
       let staerkeValue = preisListe[i].value;
       let jedePreis = qm * staerkeValue;
       //console.log(jedePreis);
-      const row = document.createElement('tr');
+      const tr = document.createElement('tr');
 
       if (preisListe == preisListeVollmassiv) {
         tabelleTitel.innerText =
@@ -231,54 +246,55 @@ addEventListener('DOMContentLoaded', () => {
         switch (j) {
           case 0:
             td.textContent = staerkeKey + ' mm';
-            row.appendChild(td);
+            tr.appendChild(td);
             break;
           case 1:
             td.textContent = staerkeValue + ' €/m²';
-            row.appendChild(td);
+            tr.appendChild(td);
             break;
           case 2:
             td.textContent =
-              '€ ' +
+              '€' +
               jedePreis.toLocaleString('de-DE', {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               });
-            row.appendChild(td);
+            tr.appendChild(td);
             break;
           case 3:
             td.textContent =
-              '€ ' +
+              '€' +
               (jedePreis + rissePreis).toLocaleString('de-DE', {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               });
-            row.appendChild(td);
+            tr.appendChild(td);
             break;
           case 4:
             td.textContent =
-              '€ ' +
+              '€' +
               (jedePreis + balkenPreis).toLocaleString('de-DE', {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               });
-            row.appendChild(td);
+            tr.appendChild(td);
             break;
           case 5:
             td.textContent =
-              '€ ' +
+              '€' +
               (jedePreis + rissePreis + balkenPreis).toLocaleString('de-DE', {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               });
-            row.appendChild(td);
+            tr.appendChild(td);
             break;
           default:
             console.log(`Kein Zugriff`);
         }
       }
-      row.classList.add(
+      tr.classList.add(
         'px-6',
+        'text-center',
         'bg-white',
         'border-b',
         'dark:bg-gray-800',
@@ -287,7 +303,7 @@ addEventListener('DOMContentLoaded', () => {
         'hover:bg-gray-100',
         'dark:hover:bg-gray-600'
       );
-      tbody.appendChild(row);
+      tbody.appendChild(tr);
     }
 
     preisTable.appendChild(tbody);
@@ -296,7 +312,7 @@ addEventListener('DOMContentLoaded', () => {
     // Tabellendesign hinzufügen
 
     preisTableTR.classList.add(
-      'bg-gray-200',
+      'bg-gray-100',
       'border-b',
       'dark:bg-gray-700',
       'dark:border-gray-400',
