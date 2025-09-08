@@ -192,12 +192,12 @@ addEventListener('DOMContentLoaded', () => {
     const preisTableTHead = document.createElement('thead');
     const preisTableTR = document.createElement('tr');
     const preisTableTH = [
-      'Plattenstärke',
-      'Grundpreis/m²',
-      'Preis',
-      '+zzgl. Risse',
-      '+zzgl. Balken',
-      '+zzgl. Risse & Balken',
+      'Plattenstärke (mm)',
+      'Grundpreis (€/m²)',
+      'Preis (€)',
+      '+zzgl. Risse (€)',
+      '+zzgl. Balken (€)',
+      '+zzgl. Risse & Balken (€)',
     ];
     // Platzhalter für Tabellekörper
     preisTableTH.forEach((text) => {
@@ -245,47 +245,43 @@ addEventListener('DOMContentLoaded', () => {
         td.classList.add('px-6', 'py-1');
         switch (j) {
           case 0:
-            td.textContent = staerkeKey + ' mm';
+            td.textContent = staerkeKey;
             tr.appendChild(td);
             break;
           case 1:
-            td.textContent = staerkeValue + ' €/m²';
+            td.textContent = staerkeValue;
             tr.appendChild(td);
             break;
           case 2:
-            td.textContent =
-              '€' +
-              jedePreis.toLocaleString('de-DE', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              });
+            td.textContent = jedePreis.toLocaleString('de-DE', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            });
             tr.appendChild(td);
             break;
           case 3:
-            td.textContent =
-              '€' +
-              (jedePreis + rissePreis).toLocaleString('de-DE', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              });
+            td.textContent = (jedePreis + rissePreis).toLocaleString('de-DE', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            });
             tr.appendChild(td);
             break;
           case 4:
-            td.textContent =
-              '€' +
-              (jedePreis + balkenPreis).toLocaleString('de-DE', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              });
+            td.textContent = (jedePreis + balkenPreis).toLocaleString('de-DE', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            });
             tr.appendChild(td);
             break;
           case 5:
-            td.textContent =
-              '€' +
-              (jedePreis + rissePreis + balkenPreis).toLocaleString('de-DE', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              });
+            td.textContent = (
+              jedePreis +
+              rissePreis +
+              balkenPreis
+            ).toLocaleString('de-DE', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            });
             tr.appendChild(td);
             break;
           default:
