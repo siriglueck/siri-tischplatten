@@ -6,6 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tischplatten-Konfigurator</title>
 
+	<!-- favicon-->
+	<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+
 	<!-- Tailwind CSS als CDN -->
 	<script src="https://cdn.tailwindcss.com"></script>
 	<!-- enable Tailwind Dark Mode -->
@@ -23,7 +29,7 @@
 	<div id="wrapper" class="flex items-center justify-center">
 		<!-- Container -->
 		<div id="container"
-			class="flex-col xl:flex-row gap-4 w-fit relative overflow-hidden transition-all duration-500 ease-in-out shadow-lg m-5 px-20 py-5 flex justify-center bg-white dark:bg-gray-800 rounded-lg">
+			class="flex-col xl:flex-row gap-4 w-fit relative overflow-hidden transition-all duration-500 ease-in-out shadow-lg m-5 px-10 py-5 flex justify-center bg-white dark:bg-gray-800 rounded-lg">
 
 			<!-- Toggle Button & Clear Button -->
 			<div class="absolute mx-5 top-2 right-5  gap-x-4 leading-none">
@@ -31,7 +37,7 @@
 				<label class="inline-flex items-center mb-5 cursor-pointer ">
 					<input type="checkbox" id="toggleBtn" value="" class="sr-only peer">
 					<div
-						class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600">
+						class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full  peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600">
 					</div>
 					<span id="label" class="mx-2 text-sm font-medium text-gray-600 dark:text-gray-300">Small toggle</span>
 				</label>
@@ -83,13 +89,13 @@
 
 					<!-- Stil und Plattenstärke -->
 					<fieldset class="mb-4">
-						<label for="tischplatte" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+						<label for="plattenDropDown" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
 							Stil und Plattenstärke (mm.)
 							<span class="text-xs font-normal text-gray-500 dark:text-gray-400">Beim optischen Verdoppeln -25% </span>
 						</label>
 						<div class="flex w-full rounded-lg overflow-hidden border border-gray-300 dark:border-gray-600">
 							<!-- Dropdown 1 -->
-							<select name="tischplatte" id="tischplatte" required
+							<select name="plattenDropDown" id="plattenDropDown" required
 								class="flex-1 bg-gray-100 text-gray-900 text-sm p-2.5 border-r border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500">
 								<option value="" disabled selected> - bitte auswählen - </option>
 								<option value="vollmassiv">vollmassiv</option>
@@ -226,7 +232,6 @@
 					</fieldset>
 
 					<!-- Submit Button -->
-					<!-- Full width on small screens, auto width on larger screens -->
 					<button type="submit" id="submitBtn"
 						class="w-full sm:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 						rechnen
@@ -240,43 +245,48 @@
 
 				<!-- Output Container -->
 				<div
-					class="w-fit flex-col flex-wrap justify-start mt-8 mx-4 px-12 py-12 md:py-2 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+					class="w-fit flex-col flex-wrap justify-start mt-8 mx-4 px-6 py-6 md:py-2 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700">
 
 					<!-- Output Title -->
-					<div class="grid grid-cols-1 gap-6 auto-rows-fr place-items-center overflow-hidden  md:grid-cols-4">
+					<div class="grid grid-cols-1 gap-6 auto-rows-fr place-items-center overflow-x-auto  md:grid-cols-4">
 						<!-- Fläche -->
 						<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
 							<div class="py-5">
-								<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Fläche</h5>
+								<h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Fläche</h5>
 								<span id="displayQM"
-									class="text-3xl font-extrabold text-gray-900  tracking-tight dark:text-white"></span>
+									class="text-2xl font-extrabold text-gray-900  tracking-tight dark:text-white"></span>
 							</div>
 						</div>
 						<!-- Grundpreis -->
 						<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
 							<div class="py-5">
-								<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Grundpreis</h5>
+								<h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Grundpreis</h5>
 								<span id="displayGrundPreis"
-									class="text-3xl font-extrabold text-gray-900 tracking-tight dark:text-white"></span>
+									class="text-2xl font-extrabold text-gray-900 tracking-tight dark:text-white"></span>
 							</div>
 						</div>
 						<!-- Placeholder -->
 						<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
+							<div class="flex-col">
+								<div id="displayRissePreis" class="text-xs font-medium text-gray-600 dark:text-gray-300 py-1"></div>
+								<div id="displayBalkenPreis" class="text-xs font-medium text-gray-600 dark:text-gray-300 "></div>
+
+							</div>
 						</div>
 						<!-- Gesamtpreis -->
 						<div class=" bg-white dark:bg-gray-800 dark:border-gray-700">
 							<div class="py-5">
-								<h5 class="mb-2 text-2xl font-bold tracking-tight text-green-700 dark:text-green-400">
+								<h5 class="mb-2 text-xl font-bold tracking-tight text-green-700 dark:text-green-400">
 									Gesamtpreis</h5>
 								<span id="displayGesamtPreis"
-									class="text-3xl font-extrabold text-green-700 tracking-tight dark:text-green-400"></span>
+									class="text-2xl font-extrabold text-green-700 tracking-tight dark:text-green-400"></span>
 							</div>
 						</div>
 					</div>
 
 					<!-- Cards -->
 					<div class="grid auto-rows-fr grid-cols-1 overflow-hidden  md:grid-cols-4 place-items-center">
-						<!-- From card -->
+						<!-- From -->
 						<div
 							class="h-auto w-11/12 overflow-hidden bg-white border border-gray-200 rounded-lg m-4 shadow-sm dark:bg-gray-800 dark:border-gray-700">
 							<img id="formPic" class="rounded-t-lg h-40 w-full object-cover" src="" alt="" />
@@ -286,7 +296,7 @@
 								</h5>
 							</div>
 						</div>
-						<!-- Farbe card -->
+						<!-- Farbe -->
 						<div
 							class="h-auto w-11/12 overflow-hidden bg-white border border-gray-200 rounded-lg m-4 shadow-sm dark:bg-gray-800 dark:border-gray-700">
 							<img id="farbePic" class="rounded-t-lg h-40 w-full object-cover" src="" alt="" />
@@ -296,8 +306,7 @@
 								</h5>
 							</div>
 						</div>
-
-						<!-- Rissanteil card -->
+						<!-- Rissanteil -->
 						<div
 							class="h-auto w-11/12 overflow-hidden bg-white border border-gray-200 rounded-lg m-4 shadow-sm dark:bg-gray-800 dark:border-gray-700">
 							<img id="rissPic" class="rounded-t-lg h-40 w-full object-cover" src="" alt="" />
@@ -308,10 +317,9 @@
 								</h5>
 							</div>
 						</div>
-
-						<!-- Finish card -->
+						<!-- Finish -->
 						<div
-							class="h-auto w-11/12 overflow-hidden bg-white border border-gray-200 rounded-lg m-4 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+							class="h-auto w-10/12 overflow-hidden bg-white border border-gray-200 rounded-lg m-4 shadow-sm dark:bg-gray-800 dark:border-gray-700">
 							<img id="finishPic" class="rounded-t-lg h-40 w-full object-cover" src="" alt="" />
 							<div class="py-2 px-4">
 								<p class="text-sm text-gray-700 dark:text-gray-400">Finish</p>
@@ -328,33 +336,40 @@
 							<h3 id="tabelleTitel" class="text-sm font-bold dark:text-white"></h3>
 						</div>
 						<div id="tableContainer" class="col-span-4 text-center"></div>
-
 					</div>
 
 				</div>
+
 			</div>
 
 		</div>
 	</div>
-	<!-- Footer -->
 
+	<!-- Footer -->
 	<footer>
-		<div class="w-11/12 max-w-screen-xxl mx-auto px-10 md:pb-8">
-			<hr class="my-3 border-gray-400 sm:mx-auto dark:border-gray-700 lg:my-6" />
-			<div class="sm:flex sm:items-center sm:justify-between">
-				<a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+		<hr class="my-6 mx-auto w-11/12 border-gray-400 dark:border-gray-700 my-2" />
+		<div class="flex mx-auto w-11/12 justify-between items-center max-w-screen-xxl px-10 pb-4">
+			<!-- Logo -->
+			<div>
+				<a href="#" class="flex items-center space-x-3">
 					<img src="./images/siri-logo-icon.png" class="h-8" alt="Flowbite Logo" />
 					<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SiriGlück</span>
 				</a>
+			</div>
+			<!-- CopyRight -->
+			<div>
 				<span class="block text-sm text-gray-600 sm:text-center dark:text-gray-400">© 2025 -
 					<a href="https://www.linkedin.com/in/siriluck-rattanapong/" target="_blank"
-						class="hover:underline">LinkedIn</a> |
+						class="hover:underline">LinkedIn</a>
+					|
 					<a href="https://github.com/siriglueck" target="_blank" class="hover:underline">GitHub </a> -</span>
 			</div>
 		</div>
 	</footer>
+
 	<!-- JavaScript -->
 	<script src="js/main.js"></script>
-	</div>
+
+</body>
 
 </html>
