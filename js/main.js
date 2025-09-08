@@ -1,25 +1,29 @@
 /* === DOM Zugriff & Variablen 1/2 === */
 const form1 = document.getElementById('form1');
-const wrapper = document.getElementById('wrapper');
-const ausgabe = document.getElementById('output');
-const clearBtn = document.getElementById('clearBtn');
 const breite = document.getElementById('breite');
 const laenge = document.getElementById('laenge');
 const staerke = document.getElementById('staerke');
+const wrapper = document.getElementById('wrapper');
+const ausgabe = document.getElementById('output');
+const clearBtn = document.getElementById('clearBtn');
 const tischForm = document.getElementById('tischForm');
-const tischFarbe = document.getElementById('tischFarbe');
+const container = document.getElementById('container');
 const displayQM = document.getElementById('displayQM');
 const rissAnteil = document.getElementById('rissAnteil');
+const tischFarbe = document.getElementById('tischFarbe');
 const resetButton = document.getElementById('resetBtn');
-const balkenCheckbox = document.getElementById('balken');
 const tabelleTitel = document.getElementById('tabelleTitel');
 const tableContainer = document.getElementById('tableContainer');
+const balkenCheckbox = document.getElementById('balken');
 const displayGrundPreis = document.getElementById('displayGrundPreis');
 const displayGesamtPreis = document.getElementById('displayGesamtPreis');
+const displayRissePreis = document.getElementById('displayRissePreis');
+const displayBalkenPreis = document.getElementById('displayBalkenPreis');
 const selectedForm = document.getElementById('selectedForm');
 const selectedFarbe = document.getElementById('selectedFarbe');
-const selectedRissanteil = document.getElementById('selectedRissanteil');
 const selectedFinish = document.getElementById('selectedFinish');
+const selectedRissanteil = document.getElementById('selectedRissanteil');
+const plattenDropDown = document.getElementById('plattenDropDown');
 
 const tischFormList = [
   { key: '1', value: 'Gerade Kannte' },
@@ -71,66 +75,66 @@ const preisListeGedoppelt = [
 ];
 
 let preisListe;
+let checkExpand = false;
 
 addEventListener('DOMContentLoaded', () => {
-  const tischplatteList = document.getElementById('tischplatte');
-  // Event listener เมื่อ dropdown 1 มีการเปลี่ยนค่า
-  tischplatteList.addEventListener('change', function () {
-    // ล้าง option เก่าและตั้ง placeholder ใหม่
+  // Event listener - Dynamic Dropdown
+  plattenDropDown.addEventListener('change', function () {
+    // zurücksetzen
     staerke.innerHTML =
       '<option value="" disabled selected> - bitte auswählen - </option>';
-
-    // เลือกชุดข้อมูลตามค่า
+    // toggle preisListe
     preisListe =
       this.value === 'vollmassiv' ? preisListeVollmassiv : preisListeGedoppelt;
-
-    console.log(preisListe);
-
-    // เติม option
+    // Items von preisListe in Dropdown einfügen
     preisListe.forEach((item) => {
       const option = document.createElement('option');
-      option.value = item.key; // value ที่จะส่งในฟอร์ม
-      option.textContent = `${item.key} mm`; // ข้อความที่แสดง
+      option.value = item.key; // this value is used in calculation
+      option.textContent = `${item.key} mm`; // this shown to user
       staerke.appendChild(option);
     });
   });
 
-  /* === function clearScreen === */
+  /* === functions === */
   function clearScreen() {
-    form1.reset();
     tabelleTitel.innerText = '';
     tableContainer.innerHTML = '';
+    displayQM.innerHTML = '';
+    displayGrundPreis.innerHTML = '';
+    displayGesamtPreis.innerHTML = '';
+    displayRissePreis.innerHTML = '';
+    displayBalkenPreis.innerHTML = '';
+    selectedForm.innerHTML = '';
+    selectedFarbe.innerHTML = '';
+    selectedRissanteil.innerHTML = '';
+    selectedFinish.innerHTML = '';
   }
 
-  let checkExpand = false;
-
-  const container = document.getElementById('container');
-  function containerSize() {
+  function expandContainer() {
     if (!checkExpand && container.classList.contains('w-fit')) {
       container.classList.remove('w-fit');
       container.classList.add('w-10/12');
-      checkExpand = true; // ถ้ามีอยู่ → ลบ
+      checkExpand = true;
     }
   }
 
-  /* === X geklickt werden === */
+  /* === clear button (X) === */
   clearBtn.addEventListener('click', () => {
-    ausgabe.classList.add('hidden');
     clearScreen();
+    form1.reset();
+    ausgabe.classList.add('hidden');
     container.classList.remove('w-10/12');
     container.classList.add('w-fit');
-    checkExpand = false; // ถ้าไม่มี → เพิ่ม
+    checkExpand = false;
   });
 
   /* === Rechnen geklickt werden === */
   form1.addEventListener('submit', function (event) {
     // Verhindern, dass die Seite aktualisiert wird
     event.preventDefault();
-    //ausgabe.classList.remove('hidden');
-    tabelleTitel.innerText = '';
-    tableContainer.innerHTML = '';
+    clearScreen();
+    expandContainer();
     ausgabe.classList.remove('hidden');
-    containerSize();
 
     /* === DOM Zugriff & Variablen 2/2 === */
     const inputBreite = breite.value;
@@ -151,41 +155,72 @@ addEventListener('DOMContentLoaded', () => {
     const rissAnteil = document.querySelector(
       'input[name="rissAnteil"]:checked'
     );
-    //const selectedRissanteil = rissAnteil.value;
 
     const finish = document.querySelector('input[name="finish"]:checked');
 
     /* === Rechnungen === */
-    const qm = (inputBreite / 100) * (inputLaenge / 100);
-    const rissePreis = qm * 47.6;
-    const balkenPreis = qm * 71.4;
+    const qm = (inputBreite / 100) * (inputLaenge / 100); // m²
     const qmDE = qm.toLocaleString('de-DE', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    });
-    const rissePreisDE = rissePreis.toLocaleString('de-DE', {
+    }); // m² DE Format für Vorschau
+    const rissePreisAufschlag = qm * 47.6;
+    const balkenPreisAufschlag = qm * 71.4;
+    const rissePreisAufschlagDE = rissePreisAufschlag.toLocaleString('de-DE', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
-    const balkenPreisDE = balkenPreis.toLocaleString('de-DE', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
+    const balkenPreisAufschlagDE = balkenPreisAufschlag.toLocaleString(
+      'de-DE',
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    );
 
     let preisBerechnung;
+
+    // Aufschlag für Platten < 1qm
     if (qm < 1) {
       preisBerechnung = qm * sPreis.value * 1.05;
     } else {
       preisBerechnung = qm * sPreis.value;
     }
-    const preisBerechnungDE = parseFloat(
-      preisBerechnung.toFixed(2)
-    ).toLocaleString('de-DE');
-    let gesamtPreis = preisBerechnungDE;
 
-    displayGesamtPreis.innerHTML = ' € ' + gesamtPreis;
-    displayGrundPreis.innerHTML = ' € ' + preisBerechnungDE;
+    const grundPreis = preisBerechnung;
+    // Grundpreis in DE Format
+    grundPreisDE = parseFloat(preisBerechnung.toFixed(2)).toLocaleString(
+      'de-DE'
+    );
+
+    // Ausgabe
     displayQM.innerHTML = qmDE + ' m<sup>2</sup>';
+    displayGrundPreis.innerHTML = ' € ' + grundPreisDE;
+
+    // Checkboxen
+    const risseCheckbox = document.getElementById('risse');
+    const balkenCheckbox = document.getElementById('balken');
+    let gesamtPreis = grundPreis;
+    // Checkboxen prüfen
+    if (balkenCheckbox.checked) {
+      gesamtPreis += balkenPreisAufschlag;
+      displayBalkenPreis.innerHTML =
+        'zzgl.Balken </br>+ € ' + balkenPreisAufschlagDE;
+    }
+    if (risseCheckbox.checked) {
+      gesamtPreis += rissePreisAufschlag;
+      displayRissePreis.innerHTML =
+        'zzgl.Risse </br>+ € ' + rissePreisAufschlagDE;
+    }
+    // Ausgabe Gesamtpreis
+    displayGesamtPreis.innerHTML =
+      '€ ' +
+      gesamtPreis.toLocaleString('de-DE', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+
+    /* === Ende Rechnungen === */
 
     /* === Preistabelle erzeugen === */
     const preisTable = document.createElement('table');
@@ -260,24 +295,30 @@ addEventListener('DOMContentLoaded', () => {
             tr.appendChild(td);
             break;
           case 3:
-            td.textContent = (jedePreis + rissePreis).toLocaleString('de-DE', {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            });
+            td.textContent = (jedePreis + rissePreisAufschlag).toLocaleString(
+              'de-DE',
+              {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }
+            );
             tr.appendChild(td);
             break;
           case 4:
-            td.textContent = (jedePreis + balkenPreis).toLocaleString('de-DE', {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            });
+            td.textContent = (jedePreis + balkenPreisAufschlag).toLocaleString(
+              'de-DE',
+              {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }
+            );
             tr.appendChild(td);
             break;
           case 5:
             td.textContent = (
               jedePreis +
-              rissePreis +
-              balkenPreis
+              rissePreisAufschlag +
+              balkenPreisAufschlag
             ).toLocaleString('de-DE', {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
@@ -305,7 +346,7 @@ addEventListener('DOMContentLoaded', () => {
     preisTable.appendChild(tbody);
     tableContainer.appendChild(preisTable);
 
-    // Tabellendesign hinzufügen
+    /* === Table Design === */
 
     preisTableTR.classList.add(
       'bg-gray-100',
@@ -357,25 +398,6 @@ addEventListener('DOMContentLoaded', () => {
     const finishPic = document.getElementById('finishPic');
     finishPic.src = './images/Finish/' + finish.value + '.webp';
     selectedFinish.innerHTML = '' + finish.value;
-
-    console.log(finish.value);
-
-    /*
-    if (balkenCheckbox.checked) {
-      addListItem('**', 'mit Reine Balken Außenseiten', '');
-      gesamtPreis += balkenPreis;
-
-      const img = document.createElement('img');
-      const vorschauBildPlatz = document.querySelectorAll('li');
-      img.src = 'images' + '/Rissanteil/' + balkenCheckbox.value + '.jpg';
-      img.alt = balkenCheckbox.value;
-      vorschauBildPlatz[5].appendChild(img);
-    }
-    if (risseCheckbox.checked) {
-      addListItem('Finish : ', selectedFinish, '');
-      gesamtPreis += rissePreis;
-    }
-    */
   });
 
   /* === Toggle Theme === */
@@ -383,7 +405,6 @@ addEventListener('DOMContentLoaded', () => {
   const label = document.getElementById('label');
   const html = document.documentElement;
 
-  // ฟังก์ชันอัปเดต icon และข้อความ
   function updateIcon() {
     if (html.classList.contains('dark')) {
       label.textContent = 'Light Mode';
@@ -392,13 +413,13 @@ addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // โหลดสถานะจาก localStorage
+  // download theme from localStorage
   if (localStorage.getItem('theme') === 'dark') {
     html.classList.add('dark');
   }
   updateIcon();
 
-  // สลับโหมดเมื่อกดปุ่ม
+  // click to toggle
   toggleBtn.addEventListener('click', () => {
     html.classList.toggle('dark');
     localStorage.setItem(
